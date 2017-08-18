@@ -26,9 +26,21 @@ describe Travis::Conditions, 'eval' do
     end
   end
 
-  describe 'include' do
+  describe 'in' do
     context do
       let(:str) { 'branch IN (foo, master, bar)' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'branch IN (foo, bar)' }
+      it { should be false }
+    end
+  end
+
+  describe 'is' do
+    context do
+      let(:str) { 'branch IS present' }
       it { should be true }
     end
 

@@ -6,15 +6,15 @@ module Travis
       root :expr_or
 
       rule :expr_or  do
-        (expr_and.as(:lft) >> op_or >> expr_or.as(:rgt)).as(:or) | expr_and
+        spaced(expr_and.as(:lft), op_or, expr_or.as(:rgt)).as(:or) | expr_and
       end
 
       rule :expr_and do
-        (expr_inner.as(:lft) >> op_and >> expr_and.as(:rgt)).as(:and) | expr_inner
+        spaced(expr_inner.as(:lft), op_and, expr_and.as(:rgt)).as(:and) | expr_inner
       end
 
       rule :expr_inner do
-        parens(expr_or) | (expr_cmp | expr_incl) >> space?
+        parens(expr_or) | ts(expr_incl | expr_is | expr_cmp)
       end
 
       rule :expr_cmp do
@@ -23,6 +23,10 @@ module Travis
 
       rule :expr_incl do
         spaced(name.as(:lft), op_incl, parens(list).as(:rgt)).as(:incl)
+      end
+
+      rule :expr_is do
+        spaced(name.as(:lft), op_is, presence.as(:rgt)).as(:is)
       end
 
       rule :list do
@@ -49,20 +53,28 @@ module Travis
         str("'") >> match("[^']").repeat.as(:str) >> str("'")
       end
 
+      rule :presence do
+        (stri('present') | stri('blank')).as(:str)
+      end
+
+      rule :op_is do
+        stri('is')
+      end
+
       rule :op_cmp do
         str('=~') | str('=')
       end
 
       rule :op_incl do
-        str('IN') | str('in')
+        stri('in')
       end
 
       rule :op_or do
-        ts(str('OR') | str('or'))
+        stri('or')
       end
 
       rule :op_and do
-        ts(str('AND') | str('and'))
+        stri('and')
       end
 
       rule :space do
@@ -71,6 +83,10 @@ module Travis
 
       rule :space? do
         space.maybe
+      end
+
+      def stri(str)
+        str(str) | str(str.upcase)
       end
 
       def parens(node)
@@ -107,6 +123,10 @@ module Travis
       rule incl: { lft: subtree(:lft), rgt: subtree(:rgt) } do
         list = rgt.is_a?(Array) ? rgt.map { |v| v[:str].to_s } : [rgt[:str].to_s]
         [:in, lft[:str].to_s, list]
+      end
+
+      rule is: { lft: subtree(:lft), rgt: subtree(:rgt) } do
+        [:is, lft[:str].to_s, rgt[:str].to_s.downcase.to_sym]
       end
     end
   end

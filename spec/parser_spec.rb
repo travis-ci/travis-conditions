@@ -40,7 +40,7 @@ describe Travis::Conditions do
     end
   end
 
-  describe 'include' do
+  describe 'in' do
     context do
       let(:str) { 'foo IN (bar)' }
       it { should eq [:in, 'foo', ['bar']] }
@@ -54,6 +54,28 @@ describe Travis::Conditions do
     context do
       let(:str) { 'foo IN (bar, "baz, buz")' }
       it { should eq [:in, 'foo', ['bar', 'baz, buz']] }
+    end
+  end
+
+  describe 'is' do
+    context do
+      let(:str) { 'foo IS present' }
+      it { should eq [:is, 'foo', :present] }
+    end
+
+    context do
+      let(:str) { 'foo IS PRESENT' }
+      it { should eq [:is, 'foo', :present] }
+    end
+
+    context do
+      let(:str) { 'foo IS blank' }
+      it { should eq [:is, 'foo', :blank] }
+    end
+
+    context do
+      let(:str) { 'foo IS BLANK' }
+      it { should eq [:is, 'foo', :blank] }
     end
   end
 

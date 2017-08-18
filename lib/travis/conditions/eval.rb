@@ -30,6 +30,18 @@ module Travis
         def in(lft, rgt)
           rgt.include?(data[lft])
         end
+
+        def is(lft, rgt)
+          send(rgt, lft)
+        end
+
+        def present(value)
+          value.respond_to?(:empty?) && !value.empty?
+        end
+
+        def blank(value)
+          !present(value)
+        end
     end
   end
 end
