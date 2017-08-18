@@ -2,13 +2,18 @@ module Travis
   module Conditions
     class Eval < Struct.new(:sexp, :data)
       def apply
-        evl(sexp)
+        !!evl(sexp)
       end
 
       private
 
         def evl(value)
-          !!send(*value)
+          case value
+          when Array
+            send(*value)
+          else
+            data[value]
+          end
         end
 
         def or(lft, rgt)
@@ -20,19 +25,23 @@ module Travis
         end
 
         def eq(lft, rgt)
-          data[lft] == rgt
+          evl(lft) == rgt
         end
 
         def match(lft, rgt)
-          data[lft] =~ Regexp.new(rgt)
+          evl(lft) =~ Regexp.new(rgt)
         end
 
         def in(lft, rgt)
-          rgt.include?(data[lft])
+          rgt.include?(evl(lft))
         end
 
         def is(lft, rgt)
-          send(rgt, lft)
+          send(rgt, evl(lft))
+        end
+
+        def env(key)
+          data.env(key)
         end
 
         def present(value)

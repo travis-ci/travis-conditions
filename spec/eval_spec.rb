@@ -1,5 +1,5 @@
 describe Travis::Conditions, 'eval' do
-  let(:data) { { branch: 'master' } }
+  let(:data) { { branch: 'master', env: { foo: 'foo' } } }
   subject { described_class.eval(str, data) }
 
   describe 'eq' do
@@ -10,6 +10,16 @@ describe Travis::Conditions, 'eval' do
 
     context do
       let(:str) { 'branch = foo' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(foo) = foo' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(foo) = bar' }
       it { should be false }
     end
   end
@@ -24,6 +34,16 @@ describe Travis::Conditions, 'eval' do
       let(:str) { 'branch =~ ^foo.*$' }
       it { should be false }
     end
+
+    context do
+      let(:str) { 'env(foo) =~ ^foo.*$' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(foo) =~ ^bar.*$' }
+      it { should be false }
+    end
   end
 
   describe 'in' do
@@ -36,6 +56,16 @@ describe Travis::Conditions, 'eval' do
       let(:str) { 'branch IN (foo, bar)' }
       it { should be false }
     end
+
+    context do
+      let(:str) { 'env(foo) IN (foo, bar, baz)' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(foo) IN (bar, baz)' }
+      it { should be false }
+    end
   end
 
   describe 'is' do
@@ -45,8 +75,28 @@ describe Travis::Conditions, 'eval' do
     end
 
     context do
-      let(:str) { 'branch IN (foo, bar)' }
+      let(:str) { 'tag IS present' }
       it { should be false }
+    end
+
+    context do
+      let(:str) { 'branch IS blank' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'tag IS blank' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(foo) IS present' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(bar) IS blank' }
+      it { should be true }
     end
   end
 end
