@@ -1,5 +1,5 @@
 describe Travis::Conditions, 'eval' do
-  let(:data) { { branch: 'master', env: { foo: 'foo' } } }
+  let(:data) { { branch: 'master', tag: nil, env: { foo: 'foo' } } }
   subject { described_class.eval(str, data) }
 
   describe 'eq' do
