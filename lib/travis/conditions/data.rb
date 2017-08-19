@@ -2,7 +2,9 @@ module Travis
   module Conditions
     class Data < Struct.new(:data)
       def initialize(data)
-        super(symbolize(data))
+        data = symbolize(data)
+        data[:env] = symbolize(to_h(data[:env] || {}))
+        super(data)
       end
 
       def [](key)
@@ -14,6 +16,19 @@ module Travis
       end
 
       private
+
+        def to_h(obj)
+          case obj
+          when Hash
+            obj
+          else
+            Array(obj).map { |value| split(value.to_s) }.to_h
+          end
+        end
+
+        def split(str)
+          str.split('=', 2)
+        end
 
         def symbolize(value)
           case value
