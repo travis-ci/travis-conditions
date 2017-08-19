@@ -1,13 +1,8 @@
 module Travis
   module Conditions
     class Data < Struct.new(:data)
-      MSGS = {
-        keys: 'Data must be a symbolized Hash.',
-      }
-
       def initialize(data)
-        super
-        validate
+        super(symbolize(data))
       end
 
       def [](key)
@@ -20,22 +15,15 @@ module Travis
 
       private
 
-        def validate
-          msgs = []
-          msgs << :keys   unless hash? && symbolized?
-          error(msgs) if msgs.any?
-        end
-
-        def error(msgs)
-          raise ArgumentError, msgs.map { |key| MSGS[key] }.join(' ')
-        end
-
-        def hash?
-          data.is_a?(Hash)
-        end
-
-        def symbolized?
-          data.keys.all? { |key| key.is_a?(Symbol) }
+        def symbolize(value)
+          case value
+          when Hash
+            value.map { |key, value| [key.to_sym, symbolize(value)] }.to_h
+          when Array
+            value.map { |value| symbolize(value) }
+          else
+            value
+          end
         end
     end
   end
