@@ -2,6 +2,23 @@ describe Travis::Conditions, 'eval' do
   let(:data) { { branch: 'master', tag: nil, env: { foo: 'foo' } } }
   subject { described_class.eval(str, data) }
 
+  describe 'expressions' do
+    context do
+      let(:str) { 'NOT branch = foo AND (env(foo) = foo OR tag = wat)' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'branch = foo OR env(foo) = foo AND NOT tag = wat' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'branch = foo OR env(foo) = foo AND tag = wat' }
+      it { should be false }
+    end
+  end
+
   describe 'eq' do
     context do
       let(:str) { 'branch = master' }
@@ -21,6 +38,28 @@ describe Travis::Conditions, 'eval' do
     context do
       let(:str) { 'env(foo) = bar' }
       it { should be false }
+    end
+  end
+
+  describe 'not eq' do
+    context do
+      let(:str) { 'branch != master' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'branch != foo' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(foo) != foo' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(foo) != bar' }
+      it { should be true }
     end
   end
 

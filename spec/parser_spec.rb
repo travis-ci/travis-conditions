@@ -39,6 +39,43 @@ describe Travis::Conditions do
     end
   end
 
+  describe 'not eq' do
+    context do
+      let(:str) { 'foo != bar' }
+      it { should eq [:not_eq, 'foo', 'bar'] }
+    end
+
+    context do
+      let(:str) { 'foo !=bar' }
+      it { should eq [:not_eq, 'foo', 'bar'] }
+    end
+
+    context do
+      let(:str) { 'foo!= bar' }
+      it { should eq [:not_eq, 'foo', 'bar'] }
+    end
+
+    context do
+      let(:str) { 'foo!=bar' }
+      it { should eq [:not_eq, 'foo', 'bar'] }
+    end
+
+    context do
+      let(:str) { 'foo != "bar baz"' }
+      it { should eq [:not_eq, 'foo', 'bar baz'] }
+    end
+
+    context do
+      let(:str) { 'foo!="bar baz"' }
+      it { should eq [:not_eq, 'foo', 'bar baz'] }
+    end
+
+    context do
+      let(:str) { 'env(foo) != "bar baz"' }
+      it { should eq [:not_eq, [:env, 'foo'], 'bar baz'] }
+    end
+  end
+
   describe 'match' do
     context do
       let(:str) { 'foo =~ ^v[0-9]$' }
@@ -48,6 +85,18 @@ describe Travis::Conditions do
     context do
       let(:str) { 'env(foo) =~ ^v[0-9]$' }
       it { should eq [:match, [:env, 'foo'], '^v[0-9]$'] }
+    end
+  end
+
+  describe 'not match' do
+    context do
+      let(:str) { 'foo !~ ^v[0-9]$' }
+      it { should eq [:not_match, 'foo', '^v[0-9]$'] }
+    end
+
+    context do
+      let(:str) { 'env(foo) !~ ^v[0-9]$' }
+      it { should eq [:not_match, [:env, 'foo'], '^v[0-9]$'] }
     end
   end
 

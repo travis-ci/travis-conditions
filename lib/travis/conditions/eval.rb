@@ -16,6 +16,10 @@ module Travis
           end
         end
 
+        def not(lft)
+          !evl(lft)
+        end
+
         def or(lft, rgt)
           evl(lft) || evl(rgt)
         end
@@ -28,8 +32,16 @@ module Travis
           evl(lft) == rgt
         end
 
+        def not_eq(lft, rgt)
+          not eq(lft, rgt)
+        end
+
         def match(lft, rgt)
           evl(lft) =~ Regexp.new(rgt)
+        end
+
+        def not_match(lft, rgt)
+          not match(lft, rgt)
         end
 
         def in(lft, rgt)

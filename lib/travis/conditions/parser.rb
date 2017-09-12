@@ -4,7 +4,7 @@ module Travis
   module Conditions
     class Parser < Struct.new(:opts)
       FUNCS    = %w(env)
-      KEYWORDS = %w(branch tag type)
+      KEYWORDS = %w(branch tag type sender)
       PRESENCE = %w(present blank)
 
       def parse(str)
@@ -90,7 +90,7 @@ module Travis
             end
 
             rule :op_cmp do
-              str('=~') | str('=')
+              str('=~') | str('!~') | str('=') | str('!=')
             end
 
             rule :op_incl do
@@ -152,7 +152,9 @@ module Travis
     class Transform < Parslet::Transform
       OP = {
         '='  => :eq,
+        '!=' => :not_eq,
         '=~' => :match,
+        '!~' => :not_match,
       }
 
       str  = ->(node) { node.is_a?(Hash) ? node[:str].to_s : node.to_s }
