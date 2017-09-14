@@ -86,6 +86,16 @@ describe Travis::Conditions do
       let(:str) { 'env(foo) =~ ^v[0-9]$' }
       it { should eq [:match, [:env, 'foo'], '^v[0-9]$'] }
     end
+
+    context do
+      let(:str) { 'foo =~ /^v[0-9]$/' }
+      it { should eq [:match, 'foo', '^v[0-9]$'] }
+    end
+
+    context do
+      let(:str) { 'NOT (foo =~ /^v[0-9]$/)' }
+      it { should eq [:not, [:match, 'foo', '^v[0-9]$']] }
+    end
   end
 
   describe 'not match' do

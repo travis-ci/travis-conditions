@@ -30,11 +30,15 @@ module Travis
             end
 
             rule :expr_inner do
-              lnot(parens(expr_or) | expr_incl | expr_is | expr_cmp)
+              lnot(parens(expr_or) | expr_incl | expr_is | expr_regex | expr_cmp)
             end
 
             rule :expr_cmp do
               spaced(lhs.as(:lft), op_cmp.as(:op), value.as(:rgt)).as(:cmp)
+            end
+
+            rule :expr_regex do
+              spaced(lhs.as(:lft), op_regex.as(:op), regex.as(:rgt)).as(:cmp)
             end
 
             rule :expr_incl do
@@ -69,6 +73,10 @@ module Travis
               match('[\w_\-]').repeat(1).as(:str)
             end
 
+            rule :regex do
+              quoted('/') | match('[\S]').repeat(1).as(:str)
+            end
+
             rule :value do
               unquoted | quoted('"') | quoted("'")
             end
@@ -90,7 +98,11 @@ module Travis
             end
 
             rule :op_cmp do
-              str('=~') | str('!~') | str('=') | str('!=')
+              str('=') | str('!=')
+            end
+
+            rule :op_regex do
+              str('=~') | str('!~')
             end
 
             rule :op_incl do

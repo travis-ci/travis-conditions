@@ -1,5 +1,6 @@
 describe Travis::Conditions, 'eval' do
-  let(:data) { { branch: 'master', tag: nil, env: { foo: 'foo' } } }
+  let(:tag)  { nil }
+  let(:data) { { branch: 'master', tag: tag, env: { foo: 'foo' } } }
   subject { described_class.eval(str, data) }
 
   describe 'expressions' do
@@ -15,6 +16,12 @@ describe Travis::Conditions, 'eval' do
 
     context do
       let(:str) { 'branch = foo OR env(foo) = foo AND tag = wat' }
+      it { should be false }
+    end
+
+    context do
+      let(:tag) { '0.0.1' }
+      let(:str) { 'tag =~ /^(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?(?:\.(0|[1-9]\d*))?(?:-([\w.-]+))?(?:\+([\w.-]+))?$ AND type IN (push, api)/' }
       it { should be false }
     end
   end
