@@ -272,4 +272,9 @@ describe Travis::Conditions do
       it { should eq [:not, [:or, [:eq, [:env, 'a'], '1'],[:eq, [:env, 'b'], '2']]] }
     end
   end
+
+  describe 'parse error' do
+    let(:str) { 'wat.kaputt' }
+    it { expect { subject }.to raise_error(Travis::Conditions::ParseError) }
+  end
 end

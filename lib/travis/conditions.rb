@@ -4,6 +4,8 @@ require 'travis/conditions/parser'
 
 module Travis
   module Conditions
+    ParseError = Class.new(StandardError)
+
     class << self
       def eval(str, data)
         Eval.new(parse(str, keys: data.keys), Data.new(data)).apply
@@ -12,6 +14,8 @@ module Travis
       def parse(str, opts = {})
         tree = parser(opts).parse(str)
         Transform.new.apply(tree)
+      rescue Parslet::ParseFailed
+        raise ParseError
       end
 
       def parser(opts)
