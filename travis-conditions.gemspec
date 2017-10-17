@@ -11,10 +11,11 @@ Gem::Specification.new do |s|
   s.email        = "contact@travis-ci.org"
   s.homepage     = "https://github.com/travis-ci/travis-conditions"
   s.summary      = "Boolean language for conditional builds, stages, jobs"
+  s.licenses     = ['MIT']
 
   s.files        = Dir['{lib/**/*,spec/**/*,[A-Z]*}']
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
 
-  s.add_dependency 'parslet'
+  s.add_dependency 'parslet', '~> 1.8'
 end
