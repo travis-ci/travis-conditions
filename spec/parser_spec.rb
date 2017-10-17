@@ -37,6 +37,11 @@ describe Travis::Conditions do
       let(:str) { 'env(foo) = "bar baz"' }
       it { should eq [:eq, [:env, 'foo'], 'bar baz'] }
     end
+
+    context do
+      let(:str) { 'foo = true' }
+      it { should eq [:eq, 'foo', 'true'] }
+    end
   end
 
   describe 'not eq' do

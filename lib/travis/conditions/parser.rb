@@ -4,7 +4,6 @@ module Travis
   module Conditions
     class Parser < Struct.new(:opts)
       FUNCS    = %w(env)
-      KEYWORDS = %w(branch tag type sender)
       PRESENCE = %w(present blank)
 
       def parse(str)
