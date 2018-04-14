@@ -11,7 +11,7 @@ describe Travis::Conditions::V1::Parser, 'call' do
   end
 
   it 'env(type)' do
-    should eq [:call, :env, [[:var, 'type']]]
+    should eq [:call, :env, [[:var, :type]]]
   end
 
   it 'env(env(foo))' do

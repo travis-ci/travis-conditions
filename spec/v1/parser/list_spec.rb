@@ -27,7 +27,7 @@ describe Travis::Conditions::V1::Parser, 'list' do
   end
 
   it 'type' do
-    should eq [[:var, 'type']]
+    should eq [[:var, :type]]
   end
 
   it 'env(foo)' do

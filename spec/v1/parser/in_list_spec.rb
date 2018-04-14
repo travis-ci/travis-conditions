@@ -7,7 +7,7 @@ describe Travis::Conditions::V1::Parser, 'in_list' do
   end
 
   it 'in (type)' do
-    should eq [:in, 'foo', [[:var, 'type']]]
+    should eq [:in, 'foo', [[:var, :type]]]
   end
 
   it 'in (env(foo))' do

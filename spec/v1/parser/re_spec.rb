@@ -3,7 +3,7 @@ describe Travis::Conditions::V1::Parser, 'operand' do
   let(:subject) { described_class.new(str).operand }
 
   it 'type' do
-    should eq [:var, 'type']
+    should eq [:var, :type]
   end
 
   it 'foo' do

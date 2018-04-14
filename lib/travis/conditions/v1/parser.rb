@@ -53,8 +53,8 @@ module Travis
         extend Forwardable
         include Boolean, Helper
 
-        VAR   = /\b(type|repo|head_repo|os|dist|group|sudo|language|sender|fork|
-                branch|head_branch|tag|commit_message)\b/ix
+        VAR   = /type|repo|head_repo|os|dist|group|sudo|language|sender|fork|
+                 branch|head_branch|tag|commit_message/ix
 
         PRED  = /present|blank|true|false/i
         FUNC  = /env/i
@@ -123,7 +123,17 @@ module Travis
         end
 
         def var
-          var = scan(VAR) and [:var, var.downcase]
+          pos = str.pos
+          var = scan(VAR)
+          return [:var, var.downcase.to_sym] if var && boundary?
+          str.pos = pos
+          nil
+        end
+
+        BOUND = /[\s=)|]/
+
+        def boundary?
+          peek(1) =~ BOUND || str.eos?
         end
 
         def call
