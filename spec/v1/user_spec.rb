@@ -87,6 +87,7 @@ describe Travis::Conditions::V1, 'real conditions' do
   strs
 
   fixed = <<~strs.split("\n").reject(&:empty?)
+    true
     1=1
     ( branch NOT IN (master) OR fork = true ) AND type IN (push, api, pull_request)
     (((type != pull_request) AND (branch = master)) OR (tag =~ ^\\d+\\.\\d+\\.\\d+$))
@@ -147,66 +148,58 @@ describe Travis::Conditions::V1, 'real conditions' do
     env(REBUILD) ~= ^true$ OR env(FORCE_REBUILD) ~= ^true$ OR (branch = master AND type = push)
     type = cron OR env(TEST_SQLITE) ~= ^true$
     ( env($TAG_ENABLE)=True ) AND ( env($BUILD_TYPE) IN (patch, minor, major ) ) AND branch IN (master, VER3-252_buildProcess)
-  strs
 
-  kaputt = <<~strs.split("\n")
-    (branch = dev) AND (type IS cron)
-    (branch = dev) AND (type IS cron)
-    (repo IS 2m/sssio) AND (tag =~ ^v)
-    (repo IS pika/pika) AND (NOT (type IS pull_request))
-    (type = pull_request) AND (branch IN dev)
-    branch = IN (master, dev_package)
-    branch = IN (master, dev_package)
-    branch = master AND ( tag =~ ^deploy/ OR )
     branch = master AND tag is blank AND fork is false AND repo = head_repo AND type != pull_request
-    branch = master AND type NON IN (pull_request)
-    branch = master NOT type = pull_request
-    branch = type = pull_request
-    branch IS master
-    branch IS release
-    repo IS 2m/sssio
-    repo IS pika/pika
-    repo IS pika/pika
-    repo IS pika/pika AND (NOT type IS pull_request)
-    tag IS present mvn clean package
-    tag NOT present
     tags IS blank
-    type = cron OR (env(TEST_SQLITE) IS true)
-    type = cron OR env(TEST_SQLITE)
     type = cron OR env(TEST_SQLITE) IS true
-    type IS pull_request
-    type IS push
-    type is push
-    env(FORCE_JOBS) IS blank && (branch = ${MASTER_BRANCH} OR type = pull_request)
+    tag !~ \\\n ^v-
 
-    # pity we can't express this
-    true
-
-    # assumption about multi-line strings with backslashes?
-    # also ppl are using !=~ quite often ...
-    env(PRIOR_VERSION) != \
-    branch != l10n-crowdin AND tag !=~ \
-    env(PRIOR_VERSION) IS \
-    tag !=~ \
-    tag IS present AND tag !=~ \
-    branch = master or branch !=~ ^renovate/
-
-    # needs predicate IS present, can we support this?
     env(REBUILD) OR env(FORCE_REBUILD) OR branch = master
     env(DOCKER_BUILD)
     env(DOCKER_PASSWORD)
+    type = cron OR env(TEST_SQLITE)
+  strs
+
+  kaputt = <<~strs.split("\n")
+    # IS used for comparison
+    (branch = dev) AND (type IS cron)
+    (repo IS 2m/sssio) AND (tag =~ ^v)
+    branch IS master
+    type IS push
+
+    # broken IN list
+    (type = pull_request) AND (branch IN dev)
+
+    # = followed by IN
+    branch = IN (master, dev_package)
+
+    # missing boolean operand
+    branch = master AND ( tag =~ ^deploy/ OR )
+
+    # NON instead of NOT
+    branch = master AND type NON IN (pull_request)
+
+    # missing AND or OR
+    branch = master NOT type = pull_request
+
+    # triple operator
+    branch = type = pull_request
+
+    # missing IS
+    tag NOT present
+
+    # bash code
+    env(FORCE_JOBS) IS blank && (branch = ${MASTER_BRANCH} OR type = pull_request)
+
+    # operator !=~
+    branch = master or branch !=~ ^renovate/
 
     # needs /.../ around the pattern
     env(TRAVIS_COMMIT_MESSAGE) =~ ^Replace Conditionalaaa$
 
     # missing quotes
     env(TRAVIS_COMMIT_MESSAGE) IN (Replace Conditional)
-    env(TRAVIS_COMMIT_MESSAGE) IN (Replace Conditionalaaa)
-    env(TRAVIS_COMMIT_MESSAGE) = Replace a
     env(TRAVIS_COMMIT_MESSAGE) = Replace conditional
-    env(TRAVIS_COMMIT_MESSAGE) = Replace conditionala
-    env(TRAVIS_COMMIT_MESSAGE) = Replace conditionalasdasdas
-    env(TRAVIS_COMMIT_MESSAGE) = Replace\\ a
   strs
 
   strs = used + fixed

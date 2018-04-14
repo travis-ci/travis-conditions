@@ -14,6 +14,11 @@ Major parser rewrite, removing Parslet
 - Better boolean language parsing of:
 
     ```
+    # evaluate individual terms (no operator)
+    true
+    false
+    env(FOO)
+
     # compare values
     1 = 1
 
@@ -32,6 +37,13 @@ Major parser rewrite, removing Parslet
     # parenthesis
     (tag =~ ^v) AND (branch = master)
     ```
+
+### Changed
+- All values continue to be treated as strings, except `true` and `false`
+  which are now treated like Ruby's types.
+- Individual terms such as `true` or `env(FOO)` will now evaluate according
+  to Ruby's concept of truthiness: everything is true except for `false`
+  and absent values.
 
 ## v0.2.0
 ### Changed

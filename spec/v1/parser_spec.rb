@@ -2,6 +2,28 @@ describe Travis::Conditions::V1::Parser do
   let(:str)     { |e| e.description }
   let(:subject) { described_class.new(str).parse }
 
+  # single term
+
+  it '1' do
+    should eq \
+      [:val, '1']
+  end
+
+  it 'true' do
+    should eq \
+      [:val, 'true']
+  end
+
+  it 'type' do
+    should eq \
+      [:var, 'type']
+  end
+
+  it 'env(FOO)' do
+    should eq \
+      [:call, :env, [[:val, 'FOO']]]
+  end
+
   # one operand
 
   it '1=1' do

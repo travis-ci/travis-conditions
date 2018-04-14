@@ -17,7 +17,7 @@ class BooleanParser
   end
 end
 
-describe BooleanParser, 'call' do
+describe BooleanParser, 'expr' do
   let(:str)     { |e| e.description }
   let(:subject) { described_class.new(str).expr }
 

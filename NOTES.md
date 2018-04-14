@@ -48,21 +48,23 @@ if: |
 
 ### Proper boolean language parsing:
 
-Previously it was not possible to compare, say, a value (string) to another,
-one environment variable (function call) to another, or compare function calls
-to variables (such as `type` or `branch`).
+Previously it was not possible to:
 
-It also was not possible to nest function calls, or include things other than
-strings in lists.
-
-Also, enclosing statements in parenthesis often did not work the way one would
-expect (even though not documented).
+* evaluate individual terms (such as `true`)
+* compare, say, a value (string) to another, one environment variable (function call) to another, or compare function calls to variables (such as `type` or `branch`).
+* nest function calls, or include things other than strings in lists.
+* enclose statements in parenthesis the way one would expect in some places (even though not documented).
 
 The following statements now parse and evaluate as expected:
 
 ```
+# individual terms
+true
+false
+
 # compare values
 1 = 1
+true != false
 
 # compare function calls
 env(FOO) = env(BAR)

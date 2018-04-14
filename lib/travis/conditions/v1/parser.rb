@@ -37,7 +37,8 @@ require 'travis/conditions/v1/helper'
 # term = oprd is pred
 #      | oprd in '(' list ')'
 #      | oprd re regx
-#      | oprd eq oprd;
+#      | oprd eq oprd
+#      | oprd;
 #
 # expr = expr or expr
 #      | expr and expr
@@ -52,8 +53,8 @@ module Travis
         extend Forwardable
         include Boolean, Helper
 
-        VAR   = /type|repo|os|dist|group|sudo|language|sender|fork|
-                 branch|tag|head_repo|head_branch|commit_message/ix
+        VAR   = /\b(type|repo|os|dist|group|sudo|language|sender|fork|
+                branch|tag|head_repo|head_branch|commit_message)\b/ix
 
         PRED  = /present|blank|true|false/i
         FUNC  = /env/i
@@ -95,14 +96,12 @@ module Travis
         end
 
         def term
-          pos = self.pos
           lft = operand
           lst = in_list(lft) and return lst
           prd = is_pred(lft) and return prd
           op  = re and return [op, lft, regex]
           op  = eq and return [op, lft, operand]
-          str.pos = pos
-          nil
+          lft
         end
 
         def operand

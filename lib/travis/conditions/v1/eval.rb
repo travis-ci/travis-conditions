@@ -8,8 +8,8 @@ module Travis
 
         private
 
-          def evl(value)
-            send(*value)
+          def evl(expr)
+            cast(send(*expr))
           end
 
           def not(lft)
@@ -83,6 +83,17 @@ module Travis
 
           def false(value)
             !value
+          end
+
+          def cast(obj)
+            case obj.to_s.downcase
+            when 'false'
+              false
+            when 'true'
+              true
+            else
+              obj
+            end
           end
       end
     end

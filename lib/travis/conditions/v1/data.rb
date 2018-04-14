@@ -28,7 +28,8 @@ module Travis
           end
 
           def split(str)
-            str.split('=', 2)
+            lft, rgt = str.split('=', 2)
+            [lft, cast(rgt)]
           end
 
           def symbolize(obj)
@@ -37,6 +38,17 @@ module Travis
               obj.map { |key, value| [key.to_sym, symbolize(value)] }.to_h
             when Array
               obj.map { |obj| symbolize(obj) }
+            else
+              obj
+            end
+          end
+
+          def cast(obj)
+            case obj.to_s.downcase
+            when 'false'
+              false
+            when 'true'
+              true
             else
               obj
             end

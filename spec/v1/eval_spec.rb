@@ -1,7 +1,44 @@
 describe Travis::Conditions::V1, 'eval' do
   let(:tag)  { nil }
-  let(:data) { { branch: 'master', tag: tag, env: { foo: 'foo' } } }
+  let(:data) { { branch: 'master', tag: tag, env: { foo: 'foo', bar: false } } }
   subject { described_class.eval(str, data) }
+
+  context do
+    context do
+      let(:str) { '1' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { '0' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { '""' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'true' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'TRUE' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'false' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'FALSE' }
+      it { should be false }
+    end
+  end
 
   describe 'expressions' do
     context do
@@ -25,6 +62,11 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
+      let(:str) { 'env(bar) = true' }
+      it { should be false }
+    end
+
+    context do
       let(:tag) { '0.0.1' }
       let(:str) { 'tag =~ /^(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?(?:\.(0|[1-9]\d*))?(?:-([\w.-]+))?(?:\+([\w.-]+))?$ AND type IN (push, api)/' }
       it { should be false }
@@ -32,6 +74,16 @@ describe Travis::Conditions::V1, 'eval' do
   end
 
   describe 'eq' do
+    context do
+      let(:str) { '1 = 1' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'true = true' }
+      it { should be true }
+    end
+
     context do
       let(:str) { 'branch = master' }
       it { should be true }
