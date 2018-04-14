@@ -5,6 +5,7 @@ require 'travis/conditions/v1/helper'
 
 # var  = 'type'
 #      | 'repo'
+#      | 'head_repo'
 #      | 'os'
 #      | 'dist'
 #      | 'group'
@@ -13,11 +14,10 @@ require 'travis/conditions/v1/helper'
 #      | 'sender'
 #      | 'fork'
 #      | 'branch'
-#      | 'tag'
-#      | 'head_repo'
 #      | 'head_branch'
+#      | 'tag'
 #      | 'commit_message';
-
+#
 # func = 'env';
 # pred = 'present' | 'blank';
 #
@@ -53,8 +53,8 @@ module Travis
         extend Forwardable
         include Boolean, Helper
 
-        VAR   = /\b(type|repo|os|dist|group|sudo|language|sender|fork|
-                branch|tag|head_repo|head_branch|commit_message)\b/ix
+        VAR   = /\b(type|repo|head_repo|os|dist|group|sudo|language|sender|fork|
+                branch|head_branch|tag|commit_message)\b/ix
 
         PRED  = /present|blank|true|false/i
         FUNC  = /env/i

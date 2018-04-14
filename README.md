@@ -124,38 +124,46 @@ fork IS NOT false
 ## EBNF
 
 ```
-expr = expr or expr
-     | expr and expr
-     | not expr
-     | '(' expr ')'
-     | term;
+var  = 'type'
+     | 'repo'
+     | 'head_repo'
+     | 'os'
+     | 'dist'
+     | 'group'
+     | 'sudo'
+     | 'language'
+     | 'sender'
+     | 'fork'
+     | 'branch'
+     | 'head_branch'
+     | 'tag'
+     | 'commit_message';
 
-term = oprd is pred
-     | oprd in '(' list ')'
-     | oprd re regx
-     | oprd eq oprd;
-
-oprd = var | val | call;
-
-list = word | word ',' list;
-call = func '(' list ')';
-val  = word | quoted;
+func = 'env';
+pred = 'present' | 'blank';
 
 eq   = '=' | '==' | '!=';
-re   = '=~' | '!~';
+re   = '=~' | '~=` | '!~';
 in   = 'in' | 'not in' | 'IN' | 'NOT IN';
 is   = 'is' | 'is not' | 'IS' | 'IS NOT';
 or   = 'or' | 'OR';
 and  = 'and' | 'AND';
 
-var  = 'type'
-     | 'repo'
-     | 'branch'
-     | 'tag'
-     | 'sender'
-     | 'fork'
-     | 'head_repo'
-     | 'head_branch';
-func = 'env';
-pred = 'present' | 'blank';
+list = oprd | oprd ',' list;
+call = func '(' list ')';
+val  = word | quoted;
+
+oprd = var | val | call;
+
+term = oprd is pred
+     | oprd in '(' list ')'
+     | oprd re regx
+     | oprd eq oprd
+     | oprd;
+
+expr = expr or expr
+     | expr and expr
+     | not expr
+     | '(' expr ')'
+     | term
 ```

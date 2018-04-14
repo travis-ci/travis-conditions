@@ -7,8 +7,15 @@ module Travis
 
     class << self
       def eval(str, data, opts = {})
-        const = opts[:version] == :v0 ? V0 : V1
-        const.eval(str, data)
+        const(opts).eval(str, data)
+      end
+
+      def parse(str, opts = {})
+        const(opts).parse(str, opts)
+      end
+
+      def const(opts)
+        opts[:version] == :v0 ? V0 : V1
       end
     end
   end

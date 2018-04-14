@@ -10,7 +10,7 @@ module Travis
           Eval.new(parse(str), Data.new(data)).apply
         end
 
-        def parse(str)
+        def parse(str, _ = nil)
           Parser.new(str).parse
         end
       end
