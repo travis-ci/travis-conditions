@@ -55,6 +55,6 @@ describe Travis::Conditions::V1::Parser, 'in_list' do
   end
 
   it 'in ()' do
-    expect { subject }.to raise_error Travis::Conditions::V1::ParseError, 'expected a list of values at position 4 in: "in ()"'
+    expect { subject }.to raise_error Travis::Conditions::ParseError, 'expected a list of values at position 4 in: "in ()"'
   end
 end

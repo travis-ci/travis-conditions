@@ -5,8 +5,6 @@ require 'travis/conditions/v1/parser'
 module Travis
   module Conditions
     module V1
-      ParseError = Class.new(StandardError)
-
       class << self
         def eval(str, data)
           Eval.new(parse(str), Data.new(data)).apply

@@ -1,4 +1,4 @@
-describe Travis::Conditions::Data do
+describe Travis::Conditions::V0::Data do
   let(:env)  { nil }
   let(:data) { { branch: 'branch', env: env } }
   subject { described_class.new(data) }

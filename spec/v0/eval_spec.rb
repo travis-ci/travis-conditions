@@ -1,4 +1,4 @@
-describe Travis::Conditions, 'eval' do
+describe Travis::Conditions::V0, 'eval' do
   let(:tag)  { nil }
   let(:data) { { branch: 'master', tag: tag, env: { foo: 'foo' } } }
   subject { described_class.eval(str, data) }
