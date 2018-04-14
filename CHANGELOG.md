@@ -4,7 +4,7 @@
 
 ## v1.0.0-dev.1
 
-Major parser rewrite, removing Parselet
+Major parser rewrite, removing Parslet
 
 ### Added
 - Variables `os`, `dist`, `group`, `sudo`, `language`, `commit_message`
