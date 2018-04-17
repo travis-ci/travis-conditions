@@ -158,6 +158,10 @@ describe Travis::Conditions::V1, 'real conditions' do
     env(DOCKER_BUILD)
     env(DOCKER_PASSWORD)
     type = cron OR env(TEST_SQLITE)
+
+    type != pull_request AND ( branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$ )
+    type != pull_request AND (branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$)
+    (branch = master) OR (branch =~ ^release/) OR (tag is present)
   strs
 
   kaputt = <<~strs.split("\n")
@@ -209,5 +213,16 @@ describe Travis::Conditions::V1, 'real conditions' do
       let(:subject) { described_class.parse(str) }
       it(str) { expect { subject }.to_not raise_error }
     end
+  end
+
+  context do
+    let(:str) do
+      %(
+        repo = iribeyri/travis-experiments
+        AND type != pull_request
+        AND (branch = master OR tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+.*$)
+      )
+    end
+    it { expect { described_class.parse(str) }.to_not raise_error }
   end
 end
