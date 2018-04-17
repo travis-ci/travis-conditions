@@ -23,6 +23,20 @@ For the same reason we've added the following operator aliases:
 * `==` (alias to `=`)
 * `~=` (alias to `=~`)
 
+### Negated `IN` and `IS` operators:
+
+The operators `IN` and `IS` could not be negated the way users expected.
+We allowed the following:
+
+```
+NOT branch IN (master, dev) # worked, and continues to work
+branch NOT IN (master, dev) # did not work, and now does
+
+NOT env(foo) IS present # worked, and continues to work
+env(foo) IS NOT present # did not work, and now does
+env(foo) IS blank       # (btw this is the same)
+```
+
 ### Line continuation (multiline conditions):
 
 We were surprised to see users to expect line continuation using `\` to work,

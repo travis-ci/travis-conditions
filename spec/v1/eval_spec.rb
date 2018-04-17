@@ -171,6 +171,28 @@ describe Travis::Conditions::V1, 'eval' do
     end
   end
 
+  describe 'not in' do
+    context do
+      let(:str) { 'branch NOT IN (foo, master, bar)' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'branch NOT IN (foo, bar)' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(foo) NOT IN (foo, bar, baz)' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(foo) NOT IN (bar, baz)' }
+      it { should be true }
+    end
+  end
+
   describe 'is' do
     context do
       let(:str) { 'branch IS present' }
@@ -200,6 +222,88 @@ describe Travis::Conditions::V1, 'eval' do
     context do
       let(:str) { 'env(bar) IS blank' }
       it { should be true }
+    end
+  end
+
+  describe 'is not' do
+    context do
+      let(:str) { 'branch IS NOT present' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'tag IS NOT present' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'branch IS NOT blank' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'tag IS NOT blank' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(foo) IS NOT present' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(bar) IS NOT blank' }
+      it { should be false }
+    end
+  end
+
+  describe 'booleans' do
+    describe 'given a string' do
+      let(:data) { { sudo: 'true' } }
+
+      context do
+        let(:str) { 'sudo = true' }
+        it { should be true }
+      end
+
+      context do
+        let(:str) { 'sudo != false' }
+        it { should be true }
+      end
+
+      context do
+        let(:str) { 'sudo IS true' }
+        it { should be true }
+      end
+
+      context do
+        let(:str) { 'sudo IS NOT false' }
+        it { should be true }
+      end
+    end
+
+    describe 'given a boolean' do
+      let(:data) { { sudo: 'true' } }
+
+      context do
+        let(:str) { 'sudo = true' }
+        it { should be true }
+      end
+
+      context do
+        let(:str) { 'sudo != false' }
+        it { should be true }
+      end
+
+      context do
+        let(:str) { 'sudo IS true' }
+        it { should be true }
+      end
+
+      context do
+        let(:str) { 'sudo IS NOT false' }
+        it { should be true }
+      end
     end
   end
 end

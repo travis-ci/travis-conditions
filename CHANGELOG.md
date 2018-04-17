@@ -11,8 +11,16 @@ Major parser rewrite, removing Parslet
 - Predicates `true`, `false`
 - Operator aliases `==` (alias to `=`), `~=` (alias to `=~`)
 - Line continuation using `\`
-- Better boolean language parsing of:
+- Negated `IN` and `IS` operators:
+    ```
+    NOT branch IN (master, dev) # this worked, and continues to work
+    branch NOT IN (master, dev) # this did not work, and now does
 
+    NOT env(foo) IS present # this worked, and continues to work
+    env(foo) IS NOT present # this did not work, and now does
+    env(foo) IS blank       # btw this is the same
+    ```
+- Better boolean language parsing of:
     ```
     # evaluate individual terms (no operator)
     true

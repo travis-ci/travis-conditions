@@ -45,8 +45,16 @@ module Travis
             rgt.include?(evl(lft))
           end
 
+          def not_in(lft, rgt)
+            not evl([:in, lft, rgt])
+          end
+
           def is(lft, rgt)
             send(rgt, evl(lft))
+          end
+
+          def is_not(lft, rgt)
+            not evl([:is, lft, rgt])
           end
 
           def val(str)
