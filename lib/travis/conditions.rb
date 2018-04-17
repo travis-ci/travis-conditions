@@ -15,7 +15,7 @@ module Travis
       end
 
       def const(opts)
-        opts[:version] == :v0 ? V0 : V1
+        opts[:version] == :v1 ? V1 : V0
       end
     end
   end
