@@ -3,6 +3,7 @@ require 'travis/conditions/v1'
 
 module Travis
   module Conditions
+    ArgumentError = Class.new(::ArgumentError)
     ParseError = Class.new(StandardError)
 
     class << self

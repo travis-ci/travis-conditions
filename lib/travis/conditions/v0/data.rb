@@ -3,9 +3,7 @@ module Travis
     module V0
       class Data < Struct.new(:data)
         def initialize(data)
-          data = symbolize(data)
-          data[:env] = symbolize(to_h(data[:env] || {}))
-          super(data)
+          super(normalize(data))
         end
 
         def [](key)
@@ -17,15 +15,6 @@ module Travis
         end
 
         private
-
-          def to_h(obj)
-            case obj
-            when Hash
-              obj
-            else
-              Array(obj).map { |value| split(value.to_s) }.to_h
-            end
-          end
 
           def split(str)
             str.split('=', 2)
@@ -39,6 +28,27 @@ module Travis
               value.map { |value| symbolize(value) }
             else
               value
+            end
+          end
+
+          def normalize(data)
+            data = symbolize(data)
+            data[:env] = normalize_env(data[:env])
+            data
+          end
+
+          def normalize_env(env)
+            symbolize(to_h(env || {}))
+          rescue ::ArgumentError
+            raise ArgumentError.new("Cannot normalize data[:env] (#{env.inspect} given)")
+          end
+
+          def to_h(obj)
+            case obj
+            when Hash
+              obj
+            else
+              Array(obj).map { |obj| split(obj.to_s) }.to_h
             end
           end
       end
