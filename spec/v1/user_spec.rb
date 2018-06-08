@@ -94,7 +94,6 @@ describe Travis::Conditions::V1, 'real conditions' do
     ((branch = master) OR (tag =~ ^\\d+\\.\\d+\\.\\d+$))
     (branch = master AND type != pull_request) AND (NOT tag =~ ^v)
     (branch = master AND type != pull_request) OR (tag =~ ^v)
-    (branch = master AND type = push) AND env($TRAVIS_TAG) IS present
     (branch = master OR branch =~ ^infra/$) AND type = push
     (branch = master OR tag =~ ^deploy/) AND (type != pull_request)
     (branch = master) AND (NOT (tag =~prod_))
@@ -112,9 +111,6 @@ describe Travis::Conditions::V1, 'real conditions' do
     branch = master AND tag is blank AND fork is false AND repo = head_repo AND type != pull_request
     branch = master AND tag is blank AND fork is false AND type != pull_request
     branch = master AND type = push
-    branch = master AND type = push AND $TRAVIS_TAG is present
-    branch = master AND type = push AND env($TRAVIS_TAG) IS present
-    branch = master AND type = push AND env($TRAVIS_TAG) is present
     branch = master AND type == pull_request
     branch IN (master, dev_package)
     branch NOT IN (master) OR fork = true
@@ -147,7 +143,6 @@ describe Travis::Conditions::V1, 'real conditions' do
     env(FORCE_REBUILD) ~= ^true$
     env(REBUILD) ~= ^true$ OR env(FORCE_REBUILD) ~= ^true$ OR (branch = master AND type = push)
     type = cron OR env(TEST_SQLITE) ~= ^true$
-    ( env($TAG_ENABLE)=True ) AND ( env($BUILD_TYPE) IN (patch, minor, major ) ) AND branch IN (master, VER3-252_buildProcess)
 
     branch = master AND tag is blank AND fork is false AND repo = head_repo AND type != pull_request
     tags IS blank

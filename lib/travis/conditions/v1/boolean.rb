@@ -3,8 +3,8 @@
 # term = 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
 #
 # not  = 'not' | 'NOT';
-# and  = 'and' | 'AND';
-# or   = 'or'  | 'OR';
+# and  = 'and' | 'AND' | '&&';
+# or   = 'or'  | 'OR' | '||';
 #
 # expr = expr or expr
 #      | expr and expr
@@ -24,13 +24,15 @@ module Travis
   module Conditions
     module V1
       module Boolean
-        NOT   = /not/i
-        AND   = /and/i
-        OR    = /or/i
+        AND   = /(and|&&)/i
+        OR    = /(or|\|\|)/i
+        NOT   = /(not|!)/i
 
         BOP = {
-          'or'  => :or,
           'and' => :and,
+          '&&'  => :and,
+          'or'  => :or,
+          '||'  => :and,
           'not' => :not
         }
 

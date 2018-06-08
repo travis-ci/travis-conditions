@@ -8,8 +8,9 @@ Major parser rewrite, removing Parslet
 
 ### Added
 - Variables `os`, `dist`, `group`, `sudo`, `language`, `commit_message`
-- Predicates `true`, `false`
+- Boolean aliases `&&` (alias to `AND`), `||` (alias to `OR`)
 - Operator aliases `==` (alias to `=`), `~=` (alias to `=~`)
+- Predicates `true`, `false`
 - Line continuation using `\`
 - Negated `IN` and `IS` operators:
     ```

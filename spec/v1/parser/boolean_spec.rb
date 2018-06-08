@@ -43,6 +43,22 @@ describe BooleanParser, 'expr' do
     should eq [:not, 'A']
   end
 
+  it '!A' do
+    should eq [:not, 'A']
+  end
+
+  it '! A' do
+    should eq [:not, 'A']
+  end
+
+  it '!(A)' do
+    should eq [:not, 'A']
+  end
+
+  it '! (A)' do
+    should eq [:not, 'A']
+  end
+
   # two terms
 
   it 'A and B' do
@@ -118,6 +134,10 @@ describe BooleanParser, 'expr' do
   end
 
   it '(not A) and (not B)' do
+    should eq [:and, [:not, 'A'], [:not, 'B']]
+  end
+
+  it '(! A) && !B' do
     should eq [:and, [:not, 'A'], [:not, 'B']]
   end
 

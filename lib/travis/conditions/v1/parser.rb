@@ -25,8 +25,8 @@ require 'travis/conditions/v1/helper'
 # re   = '=~' | '~=` | '!~';
 # in   = 'in' | 'not in' | 'IN' | 'NOT IN';
 # is   = 'is' | 'is not' | 'IS' | 'IS NOT';
-# or   = 'or' | 'OR';
-# and  = 'and' | 'AND';
+# or   = 'or' | 'OR' | '||';
+# and  = 'and' | 'AND' | '&&';
 #
 # list = oprd | oprd ',' list;
 # call = func '(' list ')';
@@ -78,6 +78,11 @@ module Travis
           '!~'  => :not_match
         }
 
+        MSGS = {
+          parse_error: 'Could not parse %s',
+          shell_code:  'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
+        }
+
         def_delegators :str, :scan, :skip, :string, :pos, :peek
         attr_reader :str
 
@@ -91,7 +96,7 @@ module Travis
 
         def parse
           res = expr
-          raise ParseError, "Could not parse #{string.inspect}" unless res && !str.rest?
+          raise ParseError, MSGS[:parse_error] % string.inspect unless res && !str.rest?
           res
         end
 
@@ -181,7 +186,9 @@ module Travis
         end
 
         def word
-          space { scan(WORD) }
+          str = space { scan(WORD) }
+          raise ParseError, MSGS[:shell_code] if str && str[0] == '$'
+          str
         end
 
         def in
