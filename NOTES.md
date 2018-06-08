@@ -95,3 +95,10 @@ repo IN (env(ONE), env(OTHER))
 # parenthesis
 (tag =~ ^v) AND (branch = master)
 ```
+
+### No bash code, please
+
+Variable names and unquoted strings starting with a dollar char `$` now raise a
+parse error. Bash code is not available, and these expressions will never evaluate
+as the user expects, so it is better to raise an error instead. Quoted strings
+still can start with a dollar char.

@@ -53,6 +53,9 @@ Major parser rewrite, removing Parslet
 - Individual terms such as `true` or `env(FOO)` will now evaluate according
   to Ruby's concept of truthiness: everything is true except for `false`
   and absent values.
+- Var names and unquoted strings starting with a dollar char `$` now raise
+  a parse error. Bash code is not available. Quoted strings still can start
+  with a dollar char.
 
 ## v0.2.0
 ### Changed

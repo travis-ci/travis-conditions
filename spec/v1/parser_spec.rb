@@ -475,4 +475,12 @@ describe Travis::Conditions::V1::Parser do
         [:not,
           [:eq, [:var, :type], [:val, 'buz']]]]
   end
+
+  it 'branch = $FOO' do
+    expect { subject }.to raise_error(Travis::Conditions::ParseError)
+  end
+
+  it '$FOO = bar' do
+    expect { subject }.to raise_error(Travis::Conditions::ParseError)
+  end
 end

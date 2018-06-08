@@ -80,7 +80,8 @@ module Travis
 
         MSGS = {
           parse_error: 'Could not parse %s',
-          shell_code:  'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
+          shell_var:   'Variable names cannot start with a dollar (shell code does not work). If you are trying to compare to an env var, please use env("name")',
+          shell_str:   'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
         }
 
         def_delegators :str, :scan, :skip, :string, :pos, :peek
@@ -96,7 +97,7 @@ module Travis
 
         def parse
           res = expr
-          raise ParseError, MSGS[:parse_error] % string.inspect unless res && !str.rest?
+          error(:parse_error, string.inspect) unless res && !str.rest?
           res
         end
 
@@ -132,6 +133,7 @@ module Travis
         def var
           pos = str.pos
           var = scan(VAR)
+          error(:shell_var) if var && var[0] == '$'
           return [:var, var.downcase.to_sym] if var && boundary?
           str.pos = pos
           nil
@@ -187,7 +189,7 @@ module Travis
 
         def word
           str = space { scan(WORD) }
-          raise ParseError, MSGS[:shell_code] if str && str[0] == '$'
+          error(:shell_str) if str && str[0] == '$'
           str
         end
 
@@ -201,6 +203,10 @@ module Travis
 
         def comma
           space { scan(COMMA) }
+        end
+
+        def error(key, *vals)
+          raise ParseError, MSGS[key] % vals
         end
       end
     end
