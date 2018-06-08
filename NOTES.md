@@ -22,6 +22,9 @@ For the same reason we've added the following operator aliases:
 
 * `==` (alias to `=`)
 * `~=` (alias to `=~`)
+* `&&` (alias to `AND`)
+* `||` (alias to `OR`)
+* `!` (alias to `NOT`)
 
 ### Negated `IN` and `IS` operators:
 
