@@ -52,12 +52,12 @@ The function `env` currently only supports environment variables that are given 
 
 #### Values
 
-Values are strings that are given without quotes, not containing any whitespace, or single or double quoted strings:
+Values are strings that are given without quotes, not containing any whitespace or special characters, or single or double quoted strings:
 
 ```
-a_word
 "a word"
 'a word'
+a_word
 ```
 
 ### Operations
