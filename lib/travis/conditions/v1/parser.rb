@@ -110,6 +110,8 @@ module Travis
         end
 
         def regex
+          val = call
+          return [:reg, val] if val
           reg = space { scan(REGEX) }
           [:reg, reg.gsub(/^\/|\/$/, '')] or err('an operand')
         end

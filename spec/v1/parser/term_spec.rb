@@ -38,6 +38,18 @@ describe Travis::Conditions::V1::Parser, 'term' do
     should eq [:eq, [:call, :env, [[:val, 'foo']]], [:call, :env, [[:val, 'bar']]]]
   end
 
+  it 'tag =~ foo' do
+    should eq [:match, [:var, :tag], [:reg, 'foo']]
+  end
+
+  it 'tag =~ /foo/' do
+    should eq [:match, [:var, :tag], [:reg, 'foo']]
+  end
+
+  it 'tag =~ env(foo)' do
+    should eq [:match, [:var, :tag], [:reg, [:call, :env, [[:val, 'foo']]]]]
+  end
+
   it 'type IN (foo)' do
     should eq [:in, [:var, :type], [[:val, 'foo']]]
   end
