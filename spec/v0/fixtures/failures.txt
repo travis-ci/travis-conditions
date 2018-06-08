@@ -1,0 +1,342 @@
+$COVERALLS_REPO_TOKEN != '' AND branch =~ ^v[0-9]+\.x\.x$ AND repo = 'sociomantic-tsunami/libdrizzle-redux' AND
+$COVERALLS_REPO_TOKEN != '' AND branch =~ ^v[0-9]+\.x\.x$ AND repo = 'sociomantic-tsunami/libdrizzle-redux' AND type IS cron
+$COVERALLS_REPO_TOKEN) != '' AND branch =~ ^v[0-9]+\.x\.x$ AND repo = 'sociomantic-tsunami/libdrizzle-redux'
+$COVERALLS_REPO_TOKEN) != '' AND branch =~ ^v[0-9]+\.x\.x$ and repo = 'sociomantic-tsunami/libdrizzle-redux'
+$TRAVIS_BRANCH =~ ^v[0-9]+\.x\.x$ && $TRAVIS_REPO_SLUG = 'sociomantic-tsunami/libdrizzle-redux'
+$TRAVIS_COMMIT_MESSAGE = *[ci builders]*
+$TRAVIS_COMMIT_MESSAGE =~ ^((?!\[tests skip\]).)*$
+$TRAVIS_COMMIT_MESSAGE =~ ^(\[magento tests skip\])
+$TRAVIS_COMMIT_MESSAGE =~ ^(\[tests skip\])
+$TRAVIS_COMMIT_MESSAGE =~ ^(\[woocommerce tests skip\])
+$TRAVIS_OS_NAME = 'linux' && env(DIST_NAME) = 'ubuntu' && env(DIST_VERSION) = 'xenial' && env(COVERALLS_REPO_TOKEN) != ''
+$TRAVIS_OS_NAME = linux && $DIST_NAME = centos && $DIST_VERSION = 7
+$TRAVIS_PULL_REQUEST = "false" && $TRAVIS_BRANCH != "rival_stage"
+$TRAVIS_PULL_REQUEST NOT false
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/.* && $TRAVIS_PULL_REQUEST
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/.* && $TRAVIS_PULL_REQUEST == "false"
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/.* && $TRAVIS_PULL_REQUEST == false
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/.* && $TRAVIS_PULL_REQUEST == false"
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/major/.* && "$TRAVIS_PULL_REQUEST" == "false"
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/major/.* && $TRAVIS_PULL_REQUEST == "false"
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/major/.* && $TRAVIS_PULL_REQUEST == false
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/major/.* || "$TRAVIS_PULL_REQUEST" == "false"
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/minor/.* && $TRAVIS_PULL_REQUEST == "false"
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/minor/.* && $TRAVIS_PULL_REQUEST == false
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/minor/.* || $TRAVIS_PULL_REQUEST == false
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/patch/.* && $TRAVIS_PULL_REQUEST == false
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/patch/.* || !$TRAVIS_PULL_REQUEST
+$TRAVIS_PULL_REQUEST_BRANCH =~ ^release/patch/.* || $TRAVIS_PULL_REQUEST == false
+$TRAVIS_TAG != '' && $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+ && $BINTRAY_USER != '' && $BINTRAY_KEY != ''
+${tag,,} =~ beta
+(($TRAVIS_BRANCH = "master") AND (NOT ($TRAVIS_TAG = NULL OR $TRAVIS_TAG = ""))
+((( branch = master OR branch =~ ^rough.$ ) AND ( repo = lifeonairteam/stella ))
+((NOT (env(FRONTEND_FILES_CHANGED) = "") OR (NOT env(ANY_SERVICES_FILES_CHANGED) = "")) AND (NOT (branch IN (master, alpha, staging, prod)))
+((branch = travis-try) AND (tag IS present)
+((sender != 'Travis CI User') AND (branch = travisdeploy)
+((sender != Travis CI User) AND (branch = travisdeploy))
+((type IN (api, pull_request, push) AND branch = master)
+((type IN (api, pull_request, push) AND branch = master) OR (tag =~ ^.+$)
+(NOT (env(FRONTEND_FILES_CHANGED) = "" OR NOT env(ANY_SERVICES_FILES_CHANGED) = "") AND NOT (branch IN (master, dev))
+(NOT (env(FRONTEND_FILES_CHANGED) = "" OR NOT env(ANY_SERVICES_FILES_CHANGED) = "") AND NOT branch IN (master, dev)
+(NOT (repo IS conda-forge/staged-recipes)) OR (type IN (pull_request))
+(NOT type = pull_request) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(NOT type = push) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(NOT type IN (pull_request) AND ((branch = master) OR (branch =~ ^enterprise-.*))
+(NOT type IN (pull_request)) AND (branch IS master)
+(NOT type in (pull_request)) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(branch = dev) AND (type IS cron)
+(branch = master AND (type NOT pull_request))
+(branch = master AND NOT type = pull_request) OR tag =~ env(SEMVER_REGEX)
+(branch = master AND type = push) AND env(PEPE) IS pepo
+(branch = master AND type = push) or (head_branch = weight-and-kubernetes type = pull_request)
+(branch = master OR tag =~ env(SEMVER_REGEX)) AND NOT type = pull_request
+(branch = master) AND (env(TRAVIS_TAG) NOT blank)
+(branch = master) AND (tag NOT blank)
+(branch = master) AND (tag NOT blank) AND (type IS push)
+(branch = master) AND (type IS NOT pull_request)
+(branch = master) AND (type IS push)
+(branch = master) AND (type NOT pull_request)
+(branch = master) AND (type NOT pull_request) AND (fork IS false)
+(branch = master) AND NOT (type = pull_request) - k8s/deploy/deploy_to_cluster.sh ${TRAVIS_BUILD_NUMBER} data-eng-apps.k8s.local
+(branch = master) AND env(TRAVIS_TAG) NOT blank
+(branch = master) OR (branch =~ release/.*) tag IS present
+(branch = master) OR (tag =~ ^\d+\.\d+\.\d+$))
+(branch =~ ^develop/travis/.*) OR ($NOT branch =~ ^develop/.*$)
+(branch NOT IN (staging, develop, master)) AND (tag ~= ^(web|vice))
+(env(TRAVIS_PULL_REQUEST_BRANCH) IS blank) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(env.global(TAG_BRANCH) = build-with-stages) AND (env.global(TRAVIS_TAG) != env.global(TAG_BRANCH))
+(fork IS (false)) AND (NOT (type IN (pull_request)))
+(fork IS (true)) OR (type IN (pull_request))
+(repo IS 2m/sssio) AND (tag =~ ^v)
+(repo IS conda-forge/staged-recipes) AND (NOT (type IN (pull_request)))
+(repo IS conda-forge/staged-recipes) OR (type IN (pull_request))
+(repo NOT conda-forge/staged-recipes) AND (NOT (type IN (pull_request)))
+(repo NOT conda-forge/staged-recipes) OR (type IN (pull_request))
+(type != pull_request) && (branch =~ ^release/.*)
+(type != pull_request) && (branch =~ ^release/major/.*)
+(type != pull_request) && (branch =~ ^release/minor/.*)
+(type != pull_request) && (branch =~ ^release/patch/.*)
+(type = (pull_request)) OR NOT (repo = isuruf/staged-recipes)
+(type = pull_request AND (NOT branch IN (master)) OR (type = tag AND branch = master AND tag =~ ^v\d+\.\d+$)
+(type = pull_request AND (NOT branch IN (master)) OR (type = tag AND branch = master AND tag =~ ^v\d+\.\d+\.\d+$)
+(type = pull_request AND (NOT branch IN (master)) OR (type = tag AND branch = master)
+(type IN (pull_request)) OR (branch IS blank AND $LAST_COMMIT_MESSAGE =~ Update application and assets version*)
+(type IN (pull_request)) OR (env.global(LAST_COMMIT_MESSAGE) =~ ^toto$)
+(type IN (pull_request)) OR env(TRAVIS_COMMIT_MESSAGE) =~ ^Update application and assets version to
+(type IN pull_request) OR ((type IN (push)) AND branch != develop)
+(type IN pull_request) OR ((type IN push) AND branch != develop)
+- MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+- cd ${REPO}
+- cp -R ${FILES} ${REPO}
+- git add .
+- git clone git://${GH_REPO}
+- git commit -m $TRAVIS_BUILD_NUMBER
+- git config user.email ${EMAIL}
+- git config user.name ${USER}
+- git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1
+- git remote
+-z "$TRAVIS_TAG"
+-z $TRAVIS_TAG || $TRAVIS_TAG =~ ^*-linux$
+-z '${SLACK_CHANNEL}'
+AND repo = camptocamp/c2cgeoportal
+NOT (((env(FRONTEND_FILES_CHANGED) IS blank AND env(ANY_SERVICES_FILES_CHANGED) IS blank) AND branch IN (master, alpha, staging, prod))
+NOT (env(TRAVIS_COMMIT_MESSAGE) =~ env(FRONTEND_EXCLUSION))
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ "no docs"
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ env(BACKEND_EXLUSION)
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ env(FRONTEND_EXCLUSION)
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ env(FRONTEND_EXLUSION)
+NOT type IS pull_request
+OR branch = auto
+["$TRAVIS_OS_NAME = 'linux' AND env(DIST_NAME) = 'ubuntu' AND env(DIST_VERSION) = 'xenial' AND tag IS present AND tag =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+"]
+["$WITH_OSX == \"y\""]
+["$WITH_OSX == y"]
+["branch = master AND type = push AND sender = pmario"]
+["branch = master type = push sender = pmario"]
+["branch = master", "..or deploy-tag"]
+["branch = master", "NOT type = pull_request"]
+["branch = master", "NOT type IN (cron)"]
+["branch = master", "type != pull_request"]
+["branch = master", "type = push", "sender = pmario"]
+["branch = master", "type = push"]
+["branch = master", "type IN (cron)"]
+["branch = master", "type IN (push)"]
+["branch = master", "type IS push"]
+["branch = master"]
+["branch = rhialto"]
+["env(PRE_COMMIT_MESSAGE) =~ ^.*build-ios.*$\n"]
+["env(PRE_COMMIT_MESSAGE) =~ build-android\n"]
+["env(PRE_COMMIT_MESSAGE) =~ build-ios OR env(PRE_COMMIT_MESSAGE) =~ build-mobile\n"]
+["repo = gzm55/parent-repositories-maven-extension", "branch = master", "type != pull_request"]
+["repo = gzm55/parent-repositories-maven-extension", "tag IS present"]
+["tag =~ ^v2", "branch = master"]
+["tag IS present AND repo = andreas-bok-sociomantic/libdrizzle-redux"]
+["tag IS present AND repo = sociomantic-tsunami/libdrizzle-redux AND env(TRAVIS_OS_NAME) = 'linux' AND env(DIST_NAME) = 'ubuntu' AND env(DIST_VERSION) = 'xenial' AND env(CC) = 'gcc' AND env(MAKE_TARGET) =~ 'deb' AND env(DEPLOY_PACKAGE) = 'true'"]
+["tag IS present", "branch = master"]
+["type = pull_request\n"]
+["type IN (pull_request)\n"]
+["“$TRAVIS_BRANCH” = “master”"]
+[{"env": ["PROJECT_ID=bae-mingo-production"], "branch": "master"}, {"env": ["PROJECT_ID=bae-mingo-development"], "branch": "develop"}, {"env": ["PROJECT_ID=bae-mingo-testing"], "branch": "feature/travis_deploy"}]
+branch != l10n-crowdin AND tag !=~ "-fdroid$"
+branch != l10n-crowdin AND tag !=~ "-fdroid$" AND tag IS present
+branch = ^(master)$
+branch = ^(preview-(.*)|develop)$
+branch = ^(preview-(.*)|develop|rc)$
+branch = ^(rc)$
+branch = ^(rc|master)$
+branch = ^preview-(.*)$
+branch = ^preview-(.*)$ AND type = push
+branch = dev AND type IS cron
+branch = development OR type pull_request
+branch = docker-builds || branch = master || branch = code-freeze-2017
+branch = fix/stage-builds type = push AND tag IS present
+branch = master && type != pull_request
+branch = master && type != pull_request && type != tag
+branch = master - ECS_CLUSTER_NAME=prod-datascience - TARGET_GROUP_ARN=arn:aws:elasticloadbalancing:us-east-1:866983576462:targetgroup/prod-prediction-service/5846507087bf1d1b
+branch = master AND $PEPE IS pepo
+branch = master AND ($PEPE IS pepo)
+branch = master AND (env(PEPE) IS pepo)
+branch = master AND (type IN pull_request)
+branch = master AND type IN (push) AND tag IS present AND sender IS rit-bikeshare-travis
+branch = master AND type IS push
+branch = master AND type IS push AND tag !~ ^v
+branch = master AND type IS push AND tag NOT blank
+branch = master AND type NON IN (pull_request)
+branch = master AND type NOT pull_request
+branch = master NOT type = pull_request
+branch = master OR env(RUN_QA) IS present OR env(TRAVIS_COMMIT_MESSAGE) =~ ^\[test qa\]
+branch = master OR tag =~ env(SEMVER_REGEX)
+branch = master OR type IS pull-request
+branch = master firebase deploy --only hosting --token="$FIREBASE_PUBLISHING_TOKEN"
+branch = master gcloud app deploy
+branch = master or branch !=~ ^renovate/
+branch = master || branch = code-freeze-2017
+branch = master || branch = emergent_qa
+branch = master, /^(?i:epic)/major.*$/, /^(?i:epic)/feature.*$/, /^(?i:epic)/bugfix.*$/
+branch = master; then firebase deploy --only hosting --token="$FIREBASE_PUBLISHING_TOKEN"
+branch = master; then firebase deploy --only hosting --token="$FIREBASE_PUBLISHING_TOKEN"; fi
+branch = release-staging type = push AND tag IS present
+branch = stable - docker-compose build
+branch = type IN (pull_request)
+branch = unstable - docker-compose build
+branch =~ (\bmaster\b|archiidev\/issue#[0-9]+(\/.*)?)
+branch =~ (\bmaster\b|release\/.*|archiidev\/issue#[0-9]+(\/.*)?)
+branch =~ (^release$ OR ^release-(\d).(\d).(\d)$)
+branch =~ (^release.*)|(^master)
+branch =~ ^(staging_|master)
+branch =~ ^master AND ["$TRAVIS_PULL_REQUEST" = "false"]
+branch =~ ^master AND [[$TRAVIS_PULL_REQUEST == 'false']]
+branch =~ ^master$ && $TRAVIS_PULL_REQUEST == "false"
+branch =~ ^master$ && TRAVIS_PULL_REQUEST == "false"
+branch =~ ^master$ && pull_request == "false"
+branch =~ ^staging*$ && $TRAVIS_PULL_REQUEST == "false"
+branch =~ ^staging*$ && TRAVIS_PULL_REQUEST == "false"
+branch =~ ^test- OR type IN pull_request
+branch IN ("raees/travisFix", master, alpha, staging, prod) AND ((NOT env(FRONTEND_FILES_CHANGED IS blank) OR (NOT env(SENSITIVE_FILES_CHANGED) IS blank))
+branch IN (dev, acc, stage, prod) AND
+branch IN (master) AND type NOT pull_request
+branch IN (master, develop, feature/travis_deploy) env(PROJECT_ID) IN (bar1, baz2, gaz3)
+branch IN (qa, staging production)
+branch IN (v.0.9.2.1, master) echo branch echo head_branch
+branch IN *appstore
+branch IN *hockeyapp
+branch IN master AND type = push
+branch IS master
+branch IS master AND (env(rebuild-ios) = true OR tag = Rebuild ios)
+branch IS master AND tag = Rebuild ios
+branch IS master AND tag IS blank
+branch IS master AND type NOT api AND tag IS blank
+branch IS prod
+branch IS release
+branch IS unstable - docker-compose build
+branch NOT (IN ("raees/settingsPage", master))
+branch NOT (IN (master, alpha, staging, prod))
+branch NOT (IN (raees/settingsPage, master))
+branch NOT master
+branch is master
+branch is master and tag is prod
+branch=master AND tag=Rebuild ios
+env($TRAVIS_TAG) =
+env(COMMIT_MESSAGE) =~ *\[maven-release-plugin\] prepare release*
+env(COVERITY_SCAN_TOKEN) IS present branch = master and head_branch = develop
+env(FORCE_JOBS) IS blank && (branch = ${MASTER_BRANCH} OR type = pull_request)
+env(GH_TOKEN) NOT present
+env(PEPE) IS pepo
+env(PRE_COMMIT_MESSAGE) =~ build-ios type = push
+env(PRIOR_VERSION) != "1.00
+env(PRIOR_VERSION) IS "1.00"
+env(SERVICE) NOT "lint"
+env(SERVICE) is not lint
+env(SERVICE) not lint
+env(TEST_TYPE) IN build
+env(TRAVIS_COMMIT_MESSAGE) != Deploy AdguardTeam/FiltersRegistry to github.com/AdguardTeam/FiltersRegistry.git:test
+env(TRAVIS_COMMIT_MESSAGE) !=~ backend
+env(TRAVIS_COMMIT_MESSAGE) !~ "no docs"
+env(TRAVIS_COMMIT_MESSAGE) -~ "no docs"
+env(TRAVIS_COMMIT_MESSAGE) = Replace a
+env(TRAVIS_COMMIT_MESSAGE) = Replace conditional
+env(TRAVIS_COMMIT_MESSAGE) = Replace conditionala
+env(TRAVIS_COMMIT_MESSAGE) = Replace conditionalasdasdas
+env(TRAVIS_COMMIT_MESSAGE) = Replace\ a
+env(TRAVIS_COMMIT_MESSAGE) =~ 'expensive tests'
+env(TRAVIS_COMMIT_MESSAGE) =~ 'expensive testsx'
+env(TRAVIS_COMMIT_MESSAGE) =~ 'osx tests'
+env(TRAVIS_COMMIT_MESSAGE) =~ *\[maven-release-plugin\] prepare release*
+env(TRAVIS_COMMIT_MESSAGE) =~ \[build pkg.*\]
+env(TRAVIS_COMMIT_MESSAGE) =~ ^((?!\[build pkg\]).)*$ AND (NOT tag =~ ^(?!$)(?:v[0-9]+\.[0-9]+\.[0-9]+_?[^\W]*)?$)
+env(TRAVIS_COMMIT_MESSAGE) =~ ^((?!\[tests skip\]).)*$
+env(TRAVIS_COMMIT_MESSAGE) =~ ^Replace Conditionalaaa$
+env(TRAVIS_COMMIT_MESSAGE) =~ ^\[test qa\]
+env(TRAVIS_COMMIT_MESSAGE) =~ expensive tests
+env(TRAVIS_COMMIT_MESSAGE) IN (Replace Conditional)
+env(TRAVIS_COMMIT_MESSAGE) IN (Replace Conditionalaaa)
+env(TRAVIS_COMMIT_MESSAGE) ~= ^(?!AUTO-CREATED)
+env(TRAVIS_OS_NAME) = 'linux' && env(DIST_NAME) = 'ubuntu' && env(DIST_VERSION) = 'xenial' && env(CC) = 'gcc' && env(MAKE_TARGET) =~ 'deb' && env(DEPLOY_PACKAGE) = 'true'
+env(TRAVIS_PULL_REQUEST_BRANCH) IS blank AND (branch = master OR tag =~ env(SEMVER_REGEX))
+env(TRAVIS_TAG) =
+env(TRAVIS_TAG) NOT present
+env.global(TAG_BRANCH) = build-with-stages AND env(TRAVIS_TAG) != ""
+env.global(TAG_BRANCH) = build-with-stages AND env(TRAVIS_TAG) != build-with-stages
+env.global(TAG_BRANCH) = build-with-stages AND env(TRAVIS_TAG) =~ \d+
+env.global(TAG_BRANCH) = build-with-stages AND env(TRAVIS_TAG) IS present
+env.global(TAG_BRANCH) = build-with-stages AND tag IS present
+env.matrix(TEST_TYPE) = build
+env.matrix(TEST_TYPE) IN (small, medium, large)
+fork IS (true)
+head_branch =~ ^release.* || branch =~ ^release.*
+head_branch =~ ^release/.* || branch =~ ^release/.*
+head_branch NOT present
+head_repo = boostorg/uuid && head_branch = master
+is deploy tag
+master AND ((env(rebuild-android) = true OR tag = Rebuild android) OR (env(rebuild-ios) = true OR tag = Rebuild ios))
+master AND (env(rebuild-android) = true OR tag = Rebuild android) OR (env(rebuild-ios) = true OR tag = Rebuild ios)
+repo = 'sociomantic-tsunami/libdrizzle-redux' AND branch = =~ ^v[0-9]+\.x\.x$
+repo = 'sociomantic-tsunami/libdrizzle-redux' AND tag = =~ ^v[0-9]+\.x\.x$
+repo IS 2m/sssio
+repo IS conda-forge/staged-recipes
+repo IS gmr/consulate
+repo IS gmr/flatdict
+repo IS gmr/rejected
+sender != Deployment Bot (from Travis CI)
+sender =~ "Raghu Simha"
+sender IS rit-bikeshare-travis AND tag IS present
+tag != ^v\d+\.\d+(\.\d+)?(-\S*)?$
+tag !=~ "-fdroid$"
+tag =! ^v
+tag =~ ^v\d+$ AND branch = master AND type NOT pull_request
+tag =~ tag =~ ^v?([0-9])*\.[0-9]*\.[0-9]*-\w+$
+tag IS exist
+tag IS pesent
+tag IS present && tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+ && $BINTRAY_USER != '' && $BINTRAY_KEY != ''
+tag IS present AND tag !=~ "-fdroid$"
+tag IS present AND tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+ $BINTRAY_USER != '' AND $BINTRAY_KEY != ''
+tag IS present AND tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+ AND
+tag IS present OR ( branch = master TRAVIS_EVENT_TYPE != pull_request )
+tag IS present OR type IS api
+tag IS present mvn clean package
+tag IS presents
+tag NOT blank
+tag NOT present
+test $BUILD_DPDK = 0 AND type != pull_request
+test $BUILD_DPDK = 0 AND type = pull_request
+true || "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" && "$DO_RELEASE" == "true"
+type != pull_request AND (branch = master OR tag =~ env(SEMVER_REGEX))
+type != pull_request and branch ~= ^(v1\.\d\.x|master)
+type = (api OR push) AND branch = master
+type = (pull_request)
+type = (push OR api) AND branch = master
+type = pull_request OR env(PRE_COMMIT_MESSAGE) =~ build-android OR env(PRE_COMMIT_MESSAGE)# =~ build-mobile
+type = pull_request OR env(PRE_COMMIT_MESSAGE)# =~ build-(android|mobile)
+type = pull_request OR env(PRE_COMMIT_MESSAGE)# =~ build-web
+type = push - ./phpunit.sh -c phpunit.xml -g App
+type = push - TOX_ENV=py35-functional-batch1
+type = push AND (env(PRE_COMMIT_MESSAGE)# =~ build-ios OR env(PRE_COMMIT_MESSAGE)# =~ build-mobile)
+type = push AND (tag =~ ^v8 OR branch IN (master, neon, argon)
+type = push AND env(PEPE) IS pepo
+type = push AND env(PRE_COMMIT_MESSAGE)# =~ build-(ios|mobile)
+type = push AND env(PRE_COMMIT_MESSAGE)# =~ build-ios
+type = tag IS present
+type IN (push pull_request)
+type IN (push) - yarn run build; - yarn run deploy;
+type IN (push) AND (NOT IN (pull_request) OR branch IN (master, development))
+type IN pull_request
+type IN pull_request OR ((type IN (push)) AND branch != develop)
+type IN pull_request OR ((type IN push AND) branch != develop)
+type IN pull_request OR ((type IN push) AND branch != develop)
+type IN pull_request OR (type IN push AND branch != develop)
+type IN push
+type IS NOT pull_request
+type IS cron
+type IS cron OR branch IS feat-optimize-travis
+type IS pull_request
+type IS push
+type NOT (pull_request)
+type NOT (push, pull_request)
+type NOT IN cron
+type NOT IN pull
+type NOT IN pull_request
+type NOT IS pull_request
+type NOT pull_request
+type NOT pull_request AND branch IN (master)
+type NOT pull_request AND head_branch =~ ^release.*
+type branch IN(master)
+type is push
