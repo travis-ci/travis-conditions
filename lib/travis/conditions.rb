@@ -3,8 +3,9 @@ require 'travis/conditions/v1'
 
 module Travis
   module Conditions
-    ArgumentError = Class.new(::ArgumentError)
-    ParseError = Class.new(StandardError)
+    Error = Class.new(::ArgumentError)
+    ArgumentError = Class.new(Error)
+    ParseError = Class.new(Error)
 
     class << self
       def eval(str, data, opts = {})
