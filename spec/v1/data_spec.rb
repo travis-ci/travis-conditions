@@ -18,8 +18,13 @@ describe Travis::Conditions::V1::Data do
     it { expect(subject.env('foo')).to eq 'FOO' }
   end
 
-  describe 'given an empty string it raises ArgumentError' do
+  describe 'given a string without an = it raises an ArgumentError' do
+    let(:env) { 'foo' }
+    it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("foo" given)' }
+  end
+
+  describe 'given an empty string it raises an ArgumentError' do
     let(:env) { '' }
-    it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Cannot normalize data[:env] ("" given)' }
+    it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("" given)' }
   end
 end

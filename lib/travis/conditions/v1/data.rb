@@ -47,7 +47,7 @@ module Travis
           def normalize_env(env)
             symbolize(to_h(env || {}))
           rescue TypeError
-            raise ArgumentError.new("Cannot normalize data[:env] (#{env.inspect} given)")
+            raise arg_error(env)
           end
 
           def to_h(obj)
@@ -60,9 +60,14 @@ module Travis
           end
 
           def split(str)
-            return if str.strip.empty?
+            str = str.strip
+            raise arg_error(str) if str.empty? || !str.include?("=")
             lft, rgt = str.split('=', 2)
             [lft, cast(rgt)]
+          end
+
+          def arg_error(arg)
+            ArgumentError.new("Invalid env data (#{arg.inspect} given)")
           end
       end
     end
