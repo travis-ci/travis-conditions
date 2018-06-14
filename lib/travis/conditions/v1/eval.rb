@@ -77,6 +77,10 @@ module Travis
             data.env(key)
           end
 
+          def concat(*args)
+            args.inject('') { |str, arg| str + arg.to_s }
+          end
+
           def present(value)
             value.respond_to?(:empty?) && !value.empty?
           end

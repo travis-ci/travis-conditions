@@ -67,6 +67,11 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
+      let(:str) { 'concat(foo, bar) = foobar' }
+      it { should be true }
+    end
+
+    context do
       let(:tag) { '0.0.1' }
       let(:str) { 'tag =~ /^(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?(?:\.(0|[1-9]\d*))?(?:-([\w.-]+))?(?:\+([\w.-]+))?$ AND type IN (push, api)/' }
       it { should be false }
