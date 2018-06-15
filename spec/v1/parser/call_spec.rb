@@ -58,6 +58,10 @@ describe Travis::Conditions::V1::Parser, 'call' do
     should eq [:call, :concat, [[:val, 'foo'], [:call, :env, [[:val, 'bar']]]]]
   end
 
+  it 'concat(branch, foo)' do
+    should eq [:call, :concat, [[:var, :branch], [:val, 'foo']]]
+  end
+
   it 'bar()' do
     should be_nil
   end

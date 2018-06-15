@@ -67,7 +67,12 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
-      let(:str) { 'concat(foo, bar) = foobar' }
+      let(:str) { 'concat(foo, -, bar) = foo-bar' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'concat(branch, -, env(foo), -, env(bar)) = master-foo-false' }
       it { should be true }
     end
 
