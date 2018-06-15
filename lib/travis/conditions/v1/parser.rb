@@ -139,7 +139,7 @@ module Travis
           nil
         end
 
-        BOUND = /[\s=)|]/
+        BOUND = /[\s,=)|]/
 
         def boundary?
           peek(1) =~ BOUND || str.eos?
