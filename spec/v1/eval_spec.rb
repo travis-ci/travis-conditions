@@ -215,6 +215,21 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
+      let(:str) { 'env(foo) IS present' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(bar) IS present' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(baz) IS present' }
+      it { should be false }
+    end
+
+    context do
       let(:str) { 'branch IS blank' }
       it { should be false }
     end
@@ -225,12 +240,17 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
-      let(:str) { 'env(foo) IS present' }
-      it { should be true }
+      let(:str) { 'env(foo) IS blank' }
+      it { should be false }
     end
 
     context do
       let(:str) { 'env(bar) IS blank' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(baz) IS blank' }
       it { should be true }
     end
   end
