@@ -13,9 +13,10 @@ Gem::Specification.new do |s|
   s.summary      = "Boolean language for conditional builds, stages, jobs"
   s.licenses     = ['MIT']
 
-  s.files        = Dir['{lib/**/*,spec/**/*,[A-Z]*}']
+  s.files        = Dir['{bin/**/*,lib/**/*,spec/**/*,[A-Z]*}']
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
+  s.executables << 'travis-conditions'
 
   s.add_dependency 'parslet', '~> 1.8'
 end
