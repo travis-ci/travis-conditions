@@ -67,6 +67,16 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
+      let(:str) { 'concat(foo, -, bar) = foo-bar' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'concat(branch, -, env(foo), -, env(bar)) = master-foo-false' }
+      it { should be true }
+    end
+
+    context do
       let(:tag) { '0.0.1' }
       let(:str) { 'tag =~ /^(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?(?:\.(0|[1-9]\d*))?(?:-([\w.-]+))?(?:\+([\w.-]+))?$ AND type IN (push, api)/' }
       it { should be false }
@@ -147,6 +157,16 @@ describe Travis::Conditions::V1, 'eval' do
       let(:str) { 'env(foo) =~ ^bar.*$' }
       it { should be false }
     end
+
+    context do
+      let(:str) { 'env(foo) =~ env(foo)' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(foo) =~ concat("^", env(foo), "$")' }
+      it { should be true }
+    end
   end
 
   describe 'in' do
@@ -205,6 +225,21 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
+      let(:str) { 'env(foo) IS present' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(bar) IS present' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(baz) IS present' }
+      it { should be false }
+    end
+
+    context do
       let(:str) { 'branch IS blank' }
       it { should be false }
     end
@@ -215,12 +250,17 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
-      let(:str) { 'env(foo) IS present' }
-      it { should be true }
+      let(:str) { 'env(foo) IS blank' }
+      it { should be false }
     end
 
     context do
       let(:str) { 'env(bar) IS blank' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'env(baz) IS blank' }
       it { should be true }
     end
   end

@@ -9,7 +9,8 @@ module Travis
         private
 
           def evl(expr)
-            cast(send(*expr))
+            expr = send(*expr) if expr.is_a?(Array)
+            cast(expr)
           end
 
           def not(lft)
@@ -61,8 +62,8 @@ module Travis
             str
           end
 
-          def reg(str)
-            Regexp.new(str)
+          def reg(expr)
+            Regexp.new(evl(expr))
           end
 
           def var(name)
@@ -75,6 +76,10 @@ module Travis
 
           def env(key)
             data.env(key)
+          end
+
+          def concat(*args)
+            args.inject('') { |str, arg| str + arg.to_s }
           end
 
           def present(value)

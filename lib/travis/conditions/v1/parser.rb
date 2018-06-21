@@ -18,7 +18,7 @@ require 'travis/conditions/v1/helper'
 #      | 'tag'
 #      | 'commit_message';
 #
-# func = 'env';
+# func = 'env' || 'concat';
 # pred = 'present' | 'blank';
 #
 # eq   = '=' | '==' | '!=';
@@ -57,7 +57,7 @@ module Travis
                  branch|head_branch|tag|commit_message/ix
 
         PRED  = /present|blank|true|false/i
-        FUNC  = /env/i
+        FUNC  = /env|concat/i
         IN    = /in|not in/i
         IS    = /is not|is/i
         EQ    = /==|=/
@@ -139,7 +139,7 @@ module Travis
           nil
         end
 
-        BOUND = /[\s=)|]/
+        BOUND = /[\s,=)|]/
 
         def boundary?
           peek(1) =~ BOUND || str.eos?
