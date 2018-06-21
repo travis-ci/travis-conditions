@@ -1,29 +1,23 @@
-require 'travis/conditions/data'
-require 'travis/conditions/eval'
-require 'travis/conditions/parser'
+require 'travis/conditions/v0'
+require 'travis/conditions/v1'
 
 module Travis
   module Conditions
-    ParseError = Class.new(StandardError)
+    Error = Class.new(::ArgumentError)
+    ArgumentError = Class.new(Error)
+    ParseError = Class.new(Error)
 
     class << self
-      def eval(str, data)
-        Eval.new(parse(str, keys: data.keys), Data.new(data)).apply
+      def eval(str, data, opts = {})
+        const(opts).eval(str, data)
       end
 
       def parse(str, opts = {})
-        tree = parser(opts).parse(str)
-        Transform.new.apply(tree)
-      rescue Parslet::ParseFailed
-        raise ParseError
+        const(opts).parse(str, opts)
       end
 
-      def parser(opts)
-        parsers[opts] ||= Parser.new(opts)
-      end
-
-      def parsers
-        @parsers ||= {}
+      def const(opts)
+        opts[:version] == :v1 ? V1 : V0
       end
     end
   end

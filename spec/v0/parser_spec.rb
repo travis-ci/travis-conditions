@@ -1,4 +1,4 @@
-describe Travis::Conditions do
+describe Travis::Conditions::V0 do
   let(:keys) { [:foo] }
   subject { described_class.parse(str, keys: keys) }
 

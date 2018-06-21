@@ -1,0 +1,1634 @@
+( (type = pull_request AND branch != master) ) OR ( (branch = master) AND (tag IS present) )
+( NOT (tag IS present)) AND (branch = master) AND (type != pull_request)
+( NOT (tag IS present)) AND (branch = travis-stages) AND (type != pull_request)
+( NOT type = pull_request ) AND ( branch = master OR branch =~ ^[0-9]\.[0-9]$ )
+( NOT type = pull_request ) AND ( branch = master OR branch =~ ^[0-9]\.[0-9]$ ) AND repo = camptocamp/c2cgeoportal
+( NOT type = pull_request ) AND repo = camptocamp/c2cgeoportal
+( branch = master OR branch =~ ^release-(\d).(\d).(\d)$ )
+( branch = master OR branch ~= ^[0-9]\.[0-9]$ )
+( branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$ )
+( branch =~ extraci ) OR (repo = percona/percona-server) AND (type = push)
+( repo = lifeonairteam/stella )
+(( branch = master OR branch =~ ^rough.$ ) AND ( repo = lifeonairteam/stella ))
+(((type != pull_request) AND (branch = master)) OR (tag =~ ^\d+\.\d+\.\d+$))
+((NOT branch =~ ^develop/.*$) OR (branch = develop/travis)) AND (tag IS blank)
+((branch != master AND branch != integration/develop) OR type = cron OR type = api)
+((branch = master AND type IN (push, pull_request)) OR branch = Docs)
+((branch = master) AND (type IN (push)))
+((branch = master) OR (tag =~ ^\d+\.\d+\.\d+$))
+((repo = boostorg/date_time) AND (branch IN (develop, master)) AND (type IN (cron, push))) OR ((repo = jeking3/date_time) AND (branch = develop) AND (type = pull_request))
+((repo = percona/percona-server) AND (type = push)) OR ( branch =~ extraci )
+((repo = percona/percona-server) AND (type = push)) OR (branch =~ ^inverted$)
+((repo = percona/percona-server) AND (type = push)) OR (branch =~ exptraci)
+((repo = percona/percona-server) AND (type = push)) OR (branch =~ inverted)
+((repo = percona/percona-server) AND (type = push)) OR branch =~ extraci
+((repo = percona/percona-server) AND (type = push)) OR branch =~ release
+((sender != 'Travis CI User') AND (branch = travisdeploy))
+((tag =~ \d\.\d\.\d) OR (branch = travis-stages)) AND (type != pull_request)
+((tag IS present) OR (branch = master)) AND (type != pull_request)
+((tag IS present) OR (branch = travis-stages)) AND (type != pull_request)
+((type != pull_request) AND (branch = master)) OR (tag =~ ^\d+\.\d+\.\d+$)
+((type = pull_request) and (branch =~ ^greenkeeper\/.*-.*$))
+((type = push) AND (branch = master)) OR type = pull_request
+((type IN (api, pull_request, push) AND branch IN (master)) OR (tag =~ ^\d+\.\d+\.\d+$))
+((type IN (api, push) AND branch IN (master)) OR (tag =~ ^\d+\.\d+\.\d+$))
+(NOT (branch = master)) AND (type IN (push, pull-request))
+(NOT (env(AUTHOR_NAME) =~ ^Travis$) AND (branch = travisdeploy))
+(NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "")) AND NOT (branch IN (master, dev))
+(NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "")) AND NOT branch IN (master, dev)
+(NOT (tag ~= ^v[0-9]))
+(NOT branch = develop) AND (type IN (push, pull_request))
+(NOT branch = master)
+(NOT branch = master) AND (type IN (push, pull_request))
+(NOT branch = master) AND type IN (push)
+(NOT branch = master) AND type IN (push, pull_request)
+(NOT branch =~ ^develop/.*$) AND (tag IS blank)
+(NOT branch IN (master, alpha, staging, prod)) AND (NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = ""))
+(NOT branch IN (master, alpha, staging, prod)) AND (env(FRONTEND_FILES_CHANGED) IS blank AND env(ANY_SERVICES_FILES_CHANGED) IS blank)
+(NOT branch IN (master, alpha, staging, prod)) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+(NOT branch IN (master, alpha, staging, prod)) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "")
+(NOT branch IN (master, alpha, staging, prod)) AND NOT (env(FRONTEND_FILES_CHANGED) = "")
+(NOT env(AUTHOR_NAME) =~ ^Travis AND (branch = development))
+(NOT env(AUTHOR_NAME) =~ ^Travis AND (branch = travisdeploy))
+(NOT env(AUTHOR_NAME) =~ ^Travis$ AND (branch = travisdeploy))
+(NOT env(FRONTEND_FILES_CHANGED) = "") AND (NOT env(ANY_SERVICES_FILES_CHANGED) = "") AND (NOT env(SENSITIVE_FILES_CHANGED) = "")
+(NOT env(FRONTEND_FILES_CHANGED) = "") OR (NOT env(ANY_SERVICES_FILES_CHANGED) = "") OR (NOT env(SENSITIVE_FILES_CHANGED) = "")
+(NOT env(FRONTEND_FILES_CHANGED) IS blank OR env(ANY_SERVICES_FILES_CHANGED) IS blank OR env(SENSITIVE_FILES_CHANGED) IS blank)
+(NOT fork) AND (type NOT IN (pull_request))
+(NOT repo =~ ^vscode-icons OR (branch != master AND NOT tag IS present) OR type = pull_request) AND NOT env(VSI_TAG) IS present
+(NOT repo =~ ^vscode-icons OR branch != master OR type = pull_request) AND NOT env(VSI_TAG) IS present AND NOT tag IS present
+(NOT tag IS present)
+(NOT tag IS present) AND (NOT branch = master) AND (type = push)
+(NOT tag IS present) OR (tag =~ ^*-linux$)
+(NOT tag IS present) OR (tag ~= ^*-linux$)
+(NOT tag IS present) OR (tag ~= ^*-linux)
+(NOT tag ~= ^v[0-9])
+(NOT tag ~= ^v[0-9]) AND (NOT tag =~ ^[0-9])
+(NOT type = pull_request)
+(NOT type = pull_request) AND (branch = master OR branch =~ ^[0-9]\.[0-9]$)
+(NOT type = pull_request) AND (branch = master OR branch =~ ^[0-9]\.[0-9]$) AND repo = camptocamp/c2cgeoportal
+(NOT type = pull_request) AND (branch = master OR branch ~= ^[0-9]\.[0-9]$)
+(NOT type = pull_request) AND (branch = master OR branch ~= ^[0-9]\.[0-9]$) AND repo = camptocamp/c2cgeoportal
+(NOT type = pull_request) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(NOT type = pull_request) AND branch = master
+(NOT type = pull_request) AND repo = camptocamp/c2cgeoportal
+(NOT type = push) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(NOT type IN (pull_request) AND (branch = travistag))
+(NOT type IN (pull_request) OR (type in (pull_request) AND (head_branch == not_a_real_branch)))
+(NOT type IN (pull_request)) AND (branch = master)
+(NOT type IN (pull_request)) AND (branch = master) OR (tag IS present)
+(NOT type IN (pull_request)) AND (repo = isuruf/staged-recipes)
+(NOT type in (pull_request)) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(branch != development AND branch != master) OR type = pull
+(branch != master AND NOT tag IS present) OR type = pull_request OR NOT repo =~ ^vscode-icons
+(branch != master AND branch != development)
+(branch != master AND tag IS blank) OR (type IN (pull_request))
+(branch != master OR branch != run-visual-test-with-cron-job) OR type = cron
+(branch != master OR type = cron OR type = api)
+(branch != master OR type = cron)
+(branch != master)
+(branch != run-visual-test-with-cron-job OR type = cron)
+(branch = acc) AND (fork = false)
+(branch = deploy) AND ((env(TRAVIS_PULL_REQUEST) = false) OR (env(TRAVIS_PULL_REQUEST) IS blank))
+(branch = deploy) AND NOT(type = pull_request)
+(branch = develop) AND (NOT (type = pull_request))
+(branch = develop) AND (NOT pull_request)
+(branch = develop) AND (NOT(type IN (push, pull_request)))
+(branch = develop) AND (type != pull_request)
+(branch = develop) AND type IN (push)
+(branch = develop/travis) AND (tag IS blank)
+(branch = development) AND (NOT (type IN (pull_request)))
+(branch = development) OR (branch =~ ^release/)
+(branch = development) OR (branch =~ ^release/) OR (tag is present)
+(branch = master AND NOT env(RELEASE_ENVIRONMENT) IS present)
+(branch = master AND NOT type = pull_request) OR env(TRAVIS_TAG) IS NOT blank
+(branch = master AND NOT type = pull_request) OR env(TRAVIS_TAG) IS present
+(branch = master AND NOT type = pull_request) OR tag =~ ^v?([0-9]*)\.([0-9]*)\.([0-9]*)$
+(branch = master AND NOT type = pull_request) OR tag =~ env(SEMVER_REGEX)
+(branch = master AND NOT type = pull_request) OR tag IS NOT blank
+(branch = master AND NOT type = pull_request) OR tag IS present
+(branch = master AND env(RELEASE_ENVIRONMENT) NOT IN (production, staging, development))
+(branch = master AND type = push)
+(branch = master AND type = push) AND env(PEPA) IS NOT present
+(branch = master AND type = push) AND env(PEPA) IS blank
+(branch = master AND type = push) AND env(PEPE) IS blank
+(branch = master AND type = push) OR (NOT type = push)
+(branch = master AND type = push) OR (NOT type = push) OR (head_branch == feature/roger-ai)
+(branch = master AND type = push) OR (NOT type = push) or (head_branch = weight-and-kubernetes)
+(branch = master AND type = push) OR (branch = staging AND type = push) OR (NOT type = push)
+(branch = master AND type = push) OR (head_branch = feature/k8s-travis)
+(branch = master AND type = push) OR (head_branch = feature/roger-ai)
+(branch = master AND type = push) OR (head_branch = travis-ci AND type = pull_request)
+(branch = master AND type = push) OR (type = pull_request AND head_branch = travis-ci)
+(branch = master AND type = push) OR (type = pull_request)
+(branch = master AND type = push) OR type in ( pull_request, cron, api )
+(branch = master AND type = push) or (head_branch = "feature/PLEO-2026/weights-and-scores")
+(branch = master AND type = push) or (head_branch = "feature/PLEO-2026/weights-and-scores") or (branch = "feature/PLEO-2026/weights-and-scores" AND type = push)
+(branch = master AND type = push) or (head_branch = travis-ci)
+(branch = master AND type = push) or (head_branch = updateTrustlyClient)
+(branch = master AND type = push) or (head_branch = weight-and-kubernetes)
+(branch = master AND type IN (push, pull_request))
+(branch = master OR branch = dev OR branch = breaking-up-builds) AND type = push
+(branch = master OR branch = dev) AND type = push
+(branch = master OR branch = development)
+(branch = master OR branch = v3) AND (NOT type in (pull_request))
+(branch = master OR branch = v4) AND (NOT type in (pull_request))
+(branch = master OR branch =~ ^[0-9]\.[0-9]$)
+(branch = master OR branch =~ ^release) AND type = pull_request
+(branch = master OR branch ~= ^[0-9]\.[0-9]$)
+(branch = master OR tag =~ env(SEMVER_REGEX)) AND NOT type = pull_request
+(branch = master OR tag IS present)
+(branch = master OR tag IS present) AND type = push
+(branch = master)
+(branch = master) AND (NOT (tag =~prod_))
+(branch = master) AND (NOT (type = pull_request))
+(branch = master) AND (NOT (type IN (api, pull_request)))
+(branch = master) AND (NOT (type IN (api,pull_request)))
+(branch = master) AND (NOT (type IN (pull_request)))
+(branch = master) AND (NOT tag =~ ^\d+\.\d+\.\d+$)
+(branch = master) AND (NOT(type IN (api, pull_request)))
+(branch = master) AND (NOT(type IN (api,pull_request)))
+(branch = master) AND (NOT(type IN (push ,pull_request)))
+(branch = master) AND (NOT(type IN (push, pull_request)))
+(branch = master) AND (NOT(type IN (push,pull_request)))
+(branch = master) AND (env(TRAVIS_PULL_REQUEST) != false)
+(branch = master) AND (env(TRAVIS_TAG) IS blank)
+(branch = master) AND (pull_request IS false)
+(branch = master) AND (tag =~ ^\d+\.\d+\.\d+$)
+(branch = master) AND (tag IS blank)
+(branch = master) AND (type != pull_request)
+(branch = master) AND (type = push)
+(branch = master) AND (type = push) AND (sender = pmario)
+(branch = master) AND (type IN (push))
+(branch = master) AND (type IN (push, api, cron))
+(branch = master) AND NOT (type = pull_request)
+(branch = master) AND env(TRAVIS_TAG) IS blank
+(branch = master) AND type IN (push)
+(branch = master) OR (branch = develop) OR (branch =~ ^release\/.*$) OR (branch =~ ^hotfix\/.*$) OR (branch =~ ^bugfix\/.*$) OR (branch =~ ^support\/.*$) OR (tag IS present)
+(branch = master) OR (branch = develop) OR (branch =~ ^release\/.*$) OR (branch =~ ^hotfix\/.*$) OR (branch =~ ^bugfix\/.*$) OR (branch =~ ^support\/.*$) OR (tag IS present) OR (type IN (pull_request, api))
+(branch = master) OR (branch =~ ^enterprise-)
+(branch = master) OR (branch =~ ^release/) OR (tag IS present)
+(branch = master) OR (branch =~ ^release/) OR (tag is present)
+(branch = master) OR (branch =~ ^release\/.*) OR (tag IS present)
+(branch = master) OR (branch =~ release/.*) OR (tag IS present)
+(branch = master) OR (branch =~ release/.*) OR tag IS present
+(branch = master) OR (tag =~ ^\d+\.\d+\.\d+$)
+(branch = master) OR (tag IS present)
+(branch = master) OR (type = pull_request)
+(branch = master) and (type = pull_request)
+(branch = release OR branch =~ ^release-(\d).(\d).(\d)$) AND type IN (push)
+(branch = sign-it) AND (type = push) AND (sender = pmario)
+(branch = stable) and (not type in (pull_request, cron))
+(branch = stable) and (type = pull_request)
+(branch = staging AND type = push)
+(branch = task/TDB-57)
+(branch = travis-publish) OR (tag =~ ^\d+\.\d+\.\d+$)
+(branch = travis-stages)
+(branch = travis-stages) AND (type != pull_request)
+(branch =~ ^[0-9]\.[0-9]$)
+(branch =~ ^develop/travis/.*$) OR (NOT branch =~ ^develop/.*$)
+(branch =~ ^foo$ OR branch =~ ^foo-(\d).(\d).(\d)$)
+(branch =~ ^inverted$) OR ((repo = percona/percona-server) AND (type = push))
+(branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$) AND type != pull_request
+(branch =~ ^release$) OR ((repo = percona/percona-server) AND (type = pull_request))
+(branch =~ ^release\/) OR (branch = develop) OR tag IS present
+(branch =~ exptraci) OR (repo = percona/percona-server) AND (type = push)
+(branch =~ extraci OR repo = percona/percona-server) AND (type = push)
+(branch =~ inverted) OR ((repo = percona/percona-server) AND (type = pull_request))
+(branch =~ pulumi/.*)
+(branch =~ release) OR ((repo = percona/percona-server) AND (type = pull_request))
+(branch IN (develop, master)) AND (type IN (cron, push))
+(branch IN (develop, master)) AND (type NOT IN (pull_request))
+(branch IN (master)) AND (tag =~ ^v OR (type in (push, cron)))
+(branch IN (master)) AND (type IN (push, pull_request))
+(branch IN (master, Staging, Stable) AND type = push) OR (type = pull_request)
+(branch IN (master, bulk)) OR (type = pull_request) OR (fork = true)
+(branch IN (master, bulk)) OR (type = pull_request) OR (repo != bioconda/bioconda-recipes)
+(branch IN (master, staging) AND type = push) OR type in ( pull_request, cron )
+(branch in (staging,travisk8s) AND type = push)
+(env(APP_CARRIER) = ANTHEM_BLUE_CROSS) AND (branch = develop)
+(env(ASD) IS blank) OR (type IN (pull_request))
+(env(FRONTEND_FILES_CHANGED) != "" OR env(ANY_SERVICES_FILES_CHANGED) != "" OR env(SENSITIVE_FILES_CHANGED) != "" OR env(TRAVIS_CONFIG_CHANGED) != "")
+(env(FRONTEND_FILES_CHANGED) != "" OR env(ANY_SERVICES_FILES_CHANGED) != "" OR env(SENSITIVE_FILES_CHANGED) != "" OR env(TRAVIS_CONFIG_CHANGED) != "") AND (NOT branch IN(master, alpha, staging, prod))
+(env(GH_TOKEN) IS blank) OR (type IN (pull_request))
+(env(TRAVIS_PULL_REQUEST_BRANCH) IS blank) AND (branch = master OR tag =~ env(SEMVER_REGEX))
+(env(TRAVIS_TAG) IS present) AND (NOT (tag =~ \btest\b))
+(fork = false) AND (NOT (type IN (pull_request)))
+(fork IN (false)) AND (NOT (type IN (pull_request)))
+(fork IN (true)) OR (type IN (pull_request))
+(repo != conda-forge/staged-recipes) OR (type IN (pull_request))
+(repo != isuruf/staged-recipes) OR (type IN (pull_request))
+(repo != percona/percona-server)
+(repo != percona/percona-server) OR ((repo = percona/percona-server) AND (type = push))
+(repo = isuruf/staged-recipes) AND (type IN (pull_request))
+(repo = okramlabs/okramlabs.github.src) AND (type = push) AND (branch = master) AND (NOT tag IS present)
+(repo = okramlabs/okramlabs.github.src) AND (type = push) AND (tag IS present)
+(tag =~ \d\.\d\.\d)
+(tag =~ \d\.\d\.\d) AND (branch = travis-stages) AND (type != pull_request)
+(tag =~ ^*-macos$)
+(tag =~ ^prod_)
+(tag =~ ^v) AND (branch = master) AND (fork = false) AND (repo = holvonix-open/js-kitchen-sync)
+(tag =~ ^v) AND (branch = master) AND (fork = false) AND (repo = holvonix-open/json2array)
+(tag =~ ^v) AND (branch = master) AND (fork = false) AND (repo = holvonix-open/new-ball)
+(tag =~ ^v) AND (branch = testing)
+(tag =~ ^v1)
+(tag =~ ^v1) AND (branch = master) AND (NOT (type IN (push, pull_request)))
+(tag =~ ^v1) AND (branch = master) AND (NOT(type IN (push, pull_request)))
+(tag =~ ^v1) AND (branch = testing)
+(tag =~ ^v1) AND (branch = testing) AND (type IN (push))
+(tag =~ ^v\d)
+(tag IS present)
+(tag IS present) AND (type != pull_request)
+(tag IS present) OR (branch = master)
+(tag IS present) OR (tag ~= ^*-linux)
+(tag ~= ^*-macos$)
+(tag ~= ^*-macos)
+(tag ~= ^v[0-9])
+(tag) AND (branch = testing) AND (type IN (push))
+(type != cron)
+(type != cron) and (branch != ^greenkeeper\/.*$)
+(type != cron) and (branch = master)
+(type != cron) and (branch =~ ^greenkeeper\/.*$)
+(type != pull_request AND (branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$))
+(type != pull_request AND branch IN (master, develop)) OR branch = working
+(type != pull_request)
+(type != pull_request) && (branch =~ ^release/.*)
+(type != pull_request) && (branch =~ ^release/major/.*)
+(type != pull_request) && (branch =~ ^release/minor/.*)
+(type != pull_request) && (branch =~ ^release/patch/.*)
+(type != pull_request) AND (NOT tag =~ ^v\d+\.\d+\.\d+$)
+(type != pull_request) AND (branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$)
+(type != pull_request) AND (branch =~ ^release/.*)
+(type != pull_request) AND (branch =~ ^release/major/.*)
+(type != pull_request) AND (branch =~ ^release/minor/.*)
+(type != pull_request) AND (branch =~ ^release/patch/.*)
+(type != pull_request) AND (head_branch =~ ^release/.* OR branch =~ ^release/.*)
+(type != pull_request) AND (head_branch =~ ^release/major/.* OR branch =~ ^release/major/.*)
+(type != pull_request) AND (head_branch =~ ^release/minor/.* OR branch =~ ^release/minor/.*)
+(type != pull_request) AND (head_branch =~ ^release/patch/.* OR branch =~ ^release/patch/.*)
+(type != pull_request) OR (branch =~ ^[\w-.]*__TEST_HDFS__$)
+(type != pull_request) OR (branch =~ __TEST_HDFS__)
+(type != pull_request) OR (head_branch == not_a_real_branch)
+(type != pull_request) OR (head_branch =~ __TEST_HDFS__)
+(type != pull_request) OR (head_branch =~ not-the-branch-name)
+(type != pull_request) OR (type = pull_request AND branch = master)
+(type = api OR type = push) AND branch = master
+(type = cron) AND (branch = master)
+(type = cron) OR (tag IS present)
+(type = pr or branch = master) and (not branch =~ ^docs)
+(type = pr or branch = master) and NOT branch =~ ^docs
+(type = pull_request AND branch = staging) OR (type = push AND branch IN (staging, production))
+(type = pull_request)
+(type = pull_request) OR ((type = push) AND (NOT branch = master))
+(type = pull_request) OR (branch = develop) OR ( (branch = master) AND (tag IS present) )
+(type = pull_request) OR (branch = travis-conditionals-bug)
+(type = pull_request) OR (tag IS present)
+(type = pull_request) OR (tag IS present) OR (branch = master)
+(type = pull_request) and (branch =~ ^greenkeeper\/.*-.*$)
+(type = push AND NOT (branch = develop)) OR (type = cron)
+(type = push)
+(type = push) AND ((branch IN (master, bulk)) OR (fork = true))
+(type = push) AND ((branch IN (master, bulk)) OR (repo != bioconda/bioconda-recipes))
+(type = push) AND ((branch IN (master, bulk)) OR (repo != genouest/conda-training))
+(type = push) AND (NOT branch = master)
+(type = push) AND (branch = master)
+(type = push) AND (branch =~ master)
+(type = push) AND (env(SONAR_TOKEN) IS present)
+(type = push) AND (repo = sass/dart-sass) AND (tag =~ ^\d+\.\d+\.\d+([+-].*)?$)
+(type = push) AND (tag =~ /^v[1-9].[0-9].[0-9]/)
+(type = push) AND (tag =~ ^v1) AND (branch = testing)
+(type = push) AND (tag =~ ^v[0-9].[0-9].[0-9]$)
+(type = push) AND (tag =~ ^v[0-9].[0-9].[0-9]-)
+(type = push) AND (tag IS blank)
+(type == push)
+(type IN (api)) OR (tag = v1.0.0-ci-test-2)
+(type IN (api, pull_request, push) AND branch = master) OR (tag =~ ^.+$)
+(type IN (api, push) AND branch = master)
+(type IN (api, push) AND branch = master) OR (tag =~ ^.+$)
+(type IN (cron, api)) OR ((tag IS present) AND (tag =~ ^v))
+(type IN (cron, api)) OR (tag =~ ^v)
+(type IN (cron, api)) OR (tag =~ ^v?([0-9]+)\.([0-9]+)\.([0-9]+)(?:(?:\-|\+)([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)){0,2}$)
+(type IN (cron, api)) OR (tag IS present)
+(type IN (cron, pull_request)) OR (tag IS present)
+(type IN (pull_request)) AND (branch =~ ^greenkeeper\/.*$)
+(type IN (pull_request)) OR ((type IN (push)) AND branch != develop)
+(type IN (pull_request)) OR (env(IS_COMMIT_UPDATE_VERSION) = 'yes')
+(type IN (pull_request)) OR (env(IS_COMMIT_UPDATE_VERSION) = yes)
+(type IN (pull_request)) OR (env(IS_COMMIT_UPDATE_VERSION) == 'yes')
+(type IN (pull_request)) OR (env(LAST_COMMIT_MESSAGE) =~ ^toto$)
+(type IN (pull_request)) OR (env(TRAVIS_COMMIT_MESSAGE) =~ ^bar$)
+(type IN (pull_request)) OR (env(TRAVIS_COMMIT_MESSAGE) =~ ^toto$)
+(type IN (pull_request)) OR tag IS present
+(type IN (push, api)) AND (repo = sass/dart-sass) AND tag =~ ^\d+\.\d+\.\d+([+-].*)?$
+(type IN (push, api)) AND (tag =~ ^(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?(?:\.(0|[1-9]\d*))?(?:-([\w.-]+))?(?:\+([\w.-]+))?$)
+(type IN (push, pull_request))
+(type in (pull_request)) and (branch =~ ^greenkeeper\/.*$)
+0
+0 == 1
+1
+1=1
+1=2
+JOB_TYPE in (app)
+JOB_TYPE in (front_dashboard)
+JOB_TYPE in (front_survey)
+NOT ( env(VERSION) =~ /^pypy/ )
+NOT ( env(VERSION) =~ ^pypy )
+NOT (((env(FRONTEND_FILES_CHANGED) IS blank) AND (env(ANY_SERVICES_FILES_CHANGED) IS blank)) AND (branch IN (master, alpha, staging, prod)))
+NOT ((branch = TestSkipPrBuilds$) AND (type = pull_request))
+NOT ((branch = ^.*TestSkipPrBuilds$) AND (type = pull_request))
+NOT ((branch = ^greenkeeper/.*$) AND (type = pull_request))
+NOT ((branch =~ ^.*TestSkipPrBuilds$) AND (type = pull_request))
+NOT ((env(FRONTEND_FILES_CHANGED) IS blank AND env(ANY_SERVICES_FILES_CHANGED) IS blank AND env(SENSITIVE_FILES_CHANGED) IS blank) AND branch IN (master, alpha, staging, prod))
+NOT ((env(FRONTEND_FILES_CHANGED) IS blank AND env(ANY_SERVICES_FILES_CHANGED) IS blank) AND branch IN (master, alpha, staging, prod))
+NOT (branch = imageproxy)
+NOT (branch = master)
+NOT (branch =~ TestSkipPrBuilds)
+NOT (branch =~ ^bk-.*$)
+NOT (branch =~ ^foobar$)
+NOT (branch =~ imageproxy)
+NOT (branch IN (master, alpha, staging, prod)) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+NOT (env(FEEDSTOCKS) IN (yes))
+NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "" AND branch IN (master, alpha, staging, prod))
+NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "")
+NOT (env(SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+NOT (env(TRAVIS_COMMIT_MESSAGE) =~ env(FRONTEND_EXCLUSION))
+NOT (tag IS present)
+NOT (tag ~= ^v[0-9] OR tag =~ ^[0-9])
+NOT (type = cron)
+NOT (type = pull_request)
+NOT (type = pull_request) AND branch = master
+NOT (type = push AND branch = production)
+NOT (type IN (pull_request))
+NOT (type IN (pull_request, api)) AND branch IN (master, develop)
+NOT (type IN (pull_request, cron)) AND branch = master
+NOT branch = master
+NOT branch = master AND type IN (push, pull-request)
+NOT branch = master OR (type = pull_request)
+NOT branch =~ TestSkipPrBuilds OR type = push
+NOT branch =~ ^WIP.*$
+NOT branch =~ ^develop/.*$
+NOT branch =~ ^develop/.*$ OR branch =~ ^develop/travis/.*$
+NOT branch =~ ^staging*$ AND type IN (push, pull_request)
+NOT branch =~ ^staging.*$ AND type IN (push, pull_request)
+NOT branch =~ coverage
+NOT branch IN (master, alpha, staging, prod)
+NOT branch IN (master, alpha, staging, prod) AND (NOT env(FRONTEND_FILES_CHANGED) = "" OR NOT env(ANY_SERVICES_FILES_CHANGED) = "" OR NOT env(SENSITIVE_FILES_CHANGED) = "")
+NOT branch IN (master, alpha, staging, prod) AND (NOT env(FRONTEND_FILES_CHANGED) = "" OR env(ANY_SERVICES_FILES_CHANGED) = "" OR env(SENSITIVE_FILES_CHANGED) = "")
+NOT branch IN (master, alpha, staging, prod) AND (NOT env(FRONTEND_FILES_CHANGED) = "")
+NOT branch IN (master, alpha, staging, prod) AND (env(ANY_SERVICES_FILES_CHANGED) IS blank AND env(FRONTEND_FILES_CHANGED) IS blank)
+NOT branch IN (master, alpha, staging, prod) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+NOT branch IN (master, alpha, staging, prod) AND env(ANY_SERVICES_FILES_CHANGED) IS blank AND env(FRONTEND_FILES_CHANGED) IS blank
+NOT branch IN (master, alpha, staging, prod) AND env(ANY_SERVICES_FILES_CHANGED) IS blank AND env(FRONTEND_FILES_CHANGED) IS blank AND env(SENSITIVE_FILES_CHANGED) IS blank
+NOT branch IN (master, develop)
+NOT branch IN (master, staging, prod)
+NOT branch ~= imageproxy
+NOT env(COMMIT_MSG) =~ backend
+NOT env(COMMIT_MSG) =~ frontend
+NOT env(FRONTEND_FILES_CHANGED) = ""
+NOT env(GH_TOKEN)
+NOT env(TAG) IS present
+NOT env(TARGET) IS present
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ "\[backend\]"
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ [backend]
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ \[backend\]
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ backend
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ env(BACKEND_EXLUSION)
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ env(FRONTEND_EXCLUSION)
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ env(FRONTEND_EXLUSION)
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ frontend
+NOT env(TRAVIS_COMMIT_MESSAGE) =~ tuvwxy
+NOT env(VERSION) =~ ^pypy
+NOT fork
+NOT fork = true AND NOT type = pull_request
+NOT repo =~ ^JimiC OR (branch != master AND NOT tag IS present) OR type = pull_request OR NOT env(TARGET) IS present
+NOT repo =~ ^vscode-icons OR (branch != master AND NOT tag IS present) OR type = pull_request
+NOT repo =~ ^vscode-icons OR (branch != master AND NOT tag IS present) OR type = pull_request OR env(TARGET) != vsi
+NOT tag = "stable"
+NOT tag = /.*/
+NOT tag = stable
+NOT tag =~ +d2$ AND tag IS present
+NOT tag =~ +d2^
+NOT tag =~ +d2^ AND tag IS present
+NOT tag =~ \+d2$
+NOT tag =~ ^.*\+d2^
+NOT tag =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$
+NOT tag =~ ^v1
+NOT tag =~ ^v\d+\.\d+\.\d+$
+NOT tag =~ d2$
+NOT tag =~ d2^
+NOT tag =~ d2^ AND tag IS present
+NOT tag IS present
+NOT tag IS present AND type IN (push)
+NOT tag IS present OR tag =~ ^*-linux$
+NOT type = pull_request
+NOT type = pull_request AND (branch = master OR branch ~= ^[0-9]\.[0-9]$)
+NOT type = pull_request AND (branch = master OR branch ~= ^[0-9]\.[0-9]$) AND repo = camptocamp/c2cgeoportal
+NOT type = pull_request AND branch = master
+NOT type = pull_request AND branch = master AND repo = camptocamp/c2cgeoportal
+NOT type = pull_request AND repo = camptocamp/c2cgeoportal
+NOT type = push
+NOT type = tag
+NOT type IN (cron)
+NOT type IN (pull_request)
+NOT type IN (pull_request) AND (branch = master OR tag =~ ^[0-9])
+NOT type IN (pull_request) AND (branch = master OR tag =~ ^v[0-9])
+NOT type IN (pull_request) AND (branch = master OR tag =~ ^v[1-9])
+NOT type IN (pull_request) AND branch IN (dev)
+NOT type IN (pull_request) AND branch IN (master)
+NOT type IN (pull_request) AND branch IN (master, dev)
+NOT type IN (push, cron)
+NOT type in (pull_request)
+NOT(type = pull_request)
+REMOTE_DIR = olm_client
+TRAVIS_EVENT_TYPE = cron
+TRAVIS_PULL_REQUEST
+TRAVIS_PULL_REQUEST != "false"
+TRAVIS_PULL_REQUEST != false
+TRAVIS_PULL_REQUEST = "false"
+TRAVIS_PULL_REQUEST = false
+TRAVIS_PULL_REQUEST IS false
+TRAVIS_PULL_REQUEST IS present
+TRAVIS_TAG ~= .+
+after_success:
+ansible_changes = 0
+brahch = develop
+branch != "develop" OR type IN (pull_request, api, cron)
+branch != 'testflight'
+branch != *release
+branch != baked
+branch != coverity
+branch != coverity-scan
+branch != coverity_scan
+branch != docs
+branch != gh-pages
+branch != l10n-crowdin
+branch != l10n-crowdin AND tag != "-fdroid$"
+branch != l10n-crowdin AND tag != "-fdroid$" AND tag IS present
+branch != master
+branch != master AND NOT tag IS present
+branch != master AND type != pull_request
+branch != master AND type IN (push) AND fork = false
+branch != master AND type IN (push, api, cron) AND fork = false
+branch != master AND type IN (push, pull_request)
+branch != master OR NOT type IN (push, cron)
+branch != master OR tag =~ ^.*$
+branch != master OR type != push
+branch != master OR type = cron
+branch != master OR type = pull_request
+branch != master OR type IN (pull_request)
+branch != master and type != pull_request
+branch != production
+branch != release
+branch != rival_stage
+branch != rival_stage and type != pull_request
+branch != run-visual-test-with-cron-job OR type = cron
+branch != scan-coverity
+branch != staging OR type != push
+branch !~ TestSkipPrBuilds
+branch = "feature/base"
+branch = "master"
+branch = 'master'
+branch = 'speed-up-travis' OR branch = 'staging' OR tag IS present
+branch = 'staging' OR tag IS present
+branch = 'staging' OR tag IS present OR branch = 'profiles-update'
+branch = 10.0
+branch = 2.0
+branch = 2.x
+branch = 32-travis-ci
+branch = 32-travis-ci AND (NOT type = pull_request)
+branch = 45861-step-4-5-6-7-upload-test-result-and-remove-toolstate-toml
+branch = 45861-step-4-5-6-7-upload-test-result-and-remove-toolstate-toml AND type = push
+branch = QA_TEST_TRAVIS OR branch = TEST_TRAVIS
+branch = TEST_TRAVIS
+branch = TESTci
+branch = TESTstable and repo = diego-plan9/qiskit-sdk-py
+branch = acc
+branch = acc AND fork = false
+branch = adv-travis-config
+branch = atom/release
+branch = auto
+branch = auto OR branch = debug-48866
+branch = auto OR branch = try
+branch = auto OR type = pull_request
+branch = auto-deployment
+branch = automate-deployments
+branch = autoupdate
+branch = baked
+branch = base
+branch = beta
+branch = beta AND type = push
+branch = build-on-travis-test-on-dev
+branch = build-stages
+branch = build_and_test
+branch = build_image
+branch = buildartifacts
+branch = builds-docker-backport-0.4
+branch = cd
+branch = ci_test
+branch = ci_test OR branch = cooverity_scan
+branch = compose
+branch = coverity
+branch = coverity-scan
+branch = coverity_scan
+branch = crush OR env(JS_CHANGED) IS present
+branch = crush OR env(PY_CHANGED) IS present
+branch = dataDependency OR tag IS present
+branch = dataDependencySync OR tag IS present
+branch = deploy
+branch = deployment/production OR branch = deployment/staging OR branch = deployment/development OR type = pull_request
+branch = dev
+branch = dev AND type != pull_request
+branch = dev and type = push
+branch = dev/test-deploy AND type = push
+branch = dev_package
+branch = devel
+branch = devel OR branch =~ ^develmock/
+branch = devel OR branch ~= ^develmock/
+branch = develop
+branch = develop AND (type IN (push))
+branch = develop AND NOT type = pull_request
+branch = develop AND tag =~ *
+branch = develop AND tag =~ /*/
+branch = develop AND tag =~ \.*\
+branch = develop AND tag =~ \^.*\
+branch = develop AND tag =~ \^[0-9].*\
+branch = develop AND type != pull_request
+branch = develop AND type = push
+branch = develop AND type == cron
+branch = develop AND type IN (pull_request)
+branch = develop AND type IN (push)
+branch = develop AND type IN (push) AND tag =~ *
+branch = develop AND type IN (push, api)
+branch = develop AND type IN (push, pull_request)
+branch = develop OR branch =~ ^greenkeeper
+branch = develop OR tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+$
+branch = develop and type = push
+branch = develop/hardening
+branch = develop/pipes-travis
+branch = develop/travis
+branch = development
+branch = development AND (NOT type = pull_request)
+branch = development AND type = push
+branch = development OR type = pull_request
+branch = docker-branch
+branch = docker-builds
+branch = docker-builds || branch = master || branch = code-freeze-2017
+branch = docker-hub-images
+branch = docker-tags
+branch = env(DEPLOY_BRANCH)
+branch = envs
+branch = es-ecr-lifecycle-cleanup
+branch = experimental
+branch = experimental AND type = push
+branch = faster_ci
+branch = feat-ci
+branch = feature/argparse-docs
+branch = feature/base AND type IN (push)
+branch = feature/ci-cleanup AND type != pull_request
+branch = feature/ci-publishing
+branch = feature/code-deploy AND type = push
+branch = feature/github-pages
+branch = feature/new_design
+branch = feature/publish-artifactory
+branch = feature/travis
+branch = feature/travis-ci
+branch = feature/travis-parallels-test
+branch = fix_travis_osx AND type != pull_request
+branch = gc/dynamic_knapsack_report
+branch = gc/updated_knapsack_report
+branch = hotfix/v0.2.1
+branch = http-connection
+branch = ignore-this-branch
+branch = integration AND type = push
+branch = llvm-6-test
+branch = local_docker_build
+branch = master
+branch = master  AND type IN (push)
+branch = master && type != pull_request
+branch = master && type != pull_request && type != tag
+branch = master AND (NOT type = pull_request)
+branch = master AND (NOT type IN (pull_request))
+branch = master AND (env(rebuild-android) = true OR tag = Rebuild android)
+branch = master AND (type IN (pull_request))
+branch = master AND NOT env(RELEASE_ENVIRONMENT) IS present
+branch = master AND NOT env(TRAVIS_PULL_REQUEST)
+branch = master AND NOT type = pull_request
+branch = master AND NOT type = pull_request AND NOT type = cron
+branch = master AND NOT type IN (cron)
+branch = master AND NOT type IN (pull_request)
+branch = master AND NOT type IN (pull_request, cron, api)
+branch = master AND NOT(type IN (push,pull_request))
+branch = master AND env(TRAVIS_PULL_REQUEST_BRANCH) IS blank AND env(TRAVIS_TAG) IS blank
+branch = master AND env(TRAVIS_TAG) IS blank
+branch = master AND pull_request = false
+branch = master AND pull_request IS false
+branch = master AND repo = Shopify/ingress
+branch = master AND repo = camptocamp/ngeo
+branch = master AND repo = yahoo/navi
+branch = master AND repo = yahoo/navi AND type = push
+branch = master AND sender != elgalubot AND tag IS blank
+branch = master AND sender != elgalubot AND tag IS blank AND type != pull_request
+branch = master AND tag !~ ^v
+branch = master AND tag IS blank
+branch = master AND tag IS present AND env(REBUILD_ANDROID) IS true
+branch = master AND tag IS present AND env(REBUILD_IOS) IS true
+branch = master AND tag is blank
+branch = master AND tag is blank AND fork is false AND repo = head_repo AND type != pull_request
+branch = master AND tag is blank AND fork is false AND type != pull_request
+branch = master AND tag is blank AND fork is false AND type != pull_request AND repo = head_repo
+branch = master AND type != pull_request
+branch = master AND type != pull_request AND NOT tag IS present AND NOT env(TARGET) IS present
+branch = master AND type != pull_request AND type != cron
+branch = master AND type = api AND env(TRAVIS_API_TYPE) IS blank
+branch = master AND type = cron
+branch = master AND type = pull_request
+branch = master AND type = push
+branch = master AND type = push AND env(PEPA) IS blank
+branch = master AND type = push AND fork = false
+branch = master AND type = push AND platform = Linux
+branch = master AND type = push AND repo = plus3it/spel
+branch = master AND type = push OR type = pull_request
+branch = master AND type == cron
+branch = master AND type IN (cron)
+branch = master AND type IN (cron, api)
+branch = master AND type IN (pull_request)
+branch = master AND type IN (push)
+branch = master AND type IN (push) AND fork = false
+branch = master AND type IN (push) AND repo != bootique/bootique
+branch = master AND type IN (push) AND repo = bootique/bootique
+branch = master AND type IN (push) AND repo = bootique/bootique-bom
+branch = master AND type IN (push) AND repo = bootique/bootique-cayenne
+branch = master AND type IN (push) AND repo = bootique/bootique-cxf
+branch = master AND type IN (push) AND repo = bootique/bootique-di
+branch = master AND type IN (push) AND repo = bootique/bootique-flyway
+branch = master AND type IN (push) AND repo = bootique/bootique-jcache
+branch = master AND type IN (push) AND repo = bootique/bootique-jdbc
+branch = master AND type IN (push) AND repo = bootique/bootique-jersey
+branch = master AND type IN (push) AND repo = bootique/bootique-jersey-client
+branch = master AND type IN (push) AND repo = bootique/bootique-jetty
+branch = master AND type IN (push) AND repo = bootique/bootique-job
+branch = master AND type IN (push) AND repo = bootique/bootique-jooq
+branch = master AND type IN (push) AND repo = bootique/bootique-kotlin
+branch = master AND type IN (push) AND repo = bootique/bootique-linkmove
+branch = master AND type IN (push) AND repo = bootique/bootique-linkrest
+branch = master AND type IN (push) AND repo = bootique/bootique-liquibase
+branch = master AND type IN (push) AND repo = bootique/bootique-metrics
+branch = master AND type IN (push) AND repo = bootique/bootique-mvc
+branch = master AND type IN (push) AND repo = bootique/bootique-shiro
+branch = master AND type IN (push) AND repo = bootique/bootique-swagger
+branch = master AND type IN (push) AND repo = bootique/bootique-tapestry
+branch = master AND type IN (push) AND repo = bootique/bootique-undertow
+branch = master AND type IN (push, api, cron) AND fork = false
+branch = master AND type IN (push, cron)
+branch = master AND type NOT IN (pull_request)
+branch = master AND type NOT IN (pull_request, cron)
+branch = master AND type NOT IN (pull_request, cron, api)
+branch = master AND type NOT IN (push, pull_request)
+branch = master AND type in (push)
+branch = master OR  branch = develop
+branch = master OR (branch = develop AND env(TRAVIS_COMMIT_MESSAGE) =~ ^[stagingdeploy]$)
+branch = master OR RUN_QA IS present OR branch = visual-testing
+branch = master OR branch = closureCircularity OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = develop
+branch = master OR branch = develop OR branch = hotfix
+branch = master OR branch = develop OR branch =~ ^release\/.*$ OR branch =~ ^hotfix\/.*$ OR branch =~ ^bugfix\/.*$ OR branch =~ ^support\/.*$ OR tag IS present OR type IN (pull_request, api)
+branch = master OR branch = lukehoban/grpc1.10 OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = moduleSerialization OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = moduleSerialization2 OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = noCaptureBit OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = outputSerialization OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = prod
+branch = master OR branch = serializationWork OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = serializeLess OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = splitFiles OR branch =~ ^release/ OR tag IS present
+branch = master OR branch = v3
+branch = master OR branch =~ ^enterprise-.*
+branch = master OR branch =~ ^mastermock/
+branch = master OR branch =~ ^release/ OR tag IS present
+branch = master OR branch =~ backport/.*
+branch = master OR branch ~= ^[0-9]\.[0-9]$
+branch = master OR env(RUN_QA) IS present
+branch = master OR env(RUN_QA) IS present OR branch = fix/search-refresh
+branch = master OR env(RUN_QA) IS present OR branch = improve-content-spacing
+branch = master OR env(RUN_QA) IS present OR branch = improve-percy-screenshots
+branch = master OR env(RUN_QA) IS present OR branch = visual-testing
+branch = master OR tag =~ $SEMVER_REGEX
+branch = master OR tag =~ ^release-
+branch = master OR tag =~ ^v
+branch = master OR tag =~ ^v[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$
+branch = master OR tag =~ ^v\d+\.\d+$
+branch = master OR tag =~ env(SEMVER_REGEX)
+branch = master OR tag IS present
+branch = master OR tag IS present OR branch = fix-docker
+branch = master OR type != pull_request
+branch = master OR type = pull_request
+branch = master OR type = pull_request OR branch =~ ^rc_.*
+branch = master OR type == pull_request
+branch = master OR type IN (pull_request)
+branch = master OR type IN (pull_request) AND env(TRAVIS_SECURE_ENV_VARS) = true
+branch = master and (not type = pull_request)
+branch = master and not (type = pull_request)
+branch = master and repo = danielsuo/brainiak
+branch = master and type != "pull_request"
+branch = master and type != pull-request
+branch = master and type != pull_request
+branch = master and type = pull_request
+branch = master and type = push
+branch = master or branch = devel
+branch = master or branch = develop
+branch = master or type = pull-request
+branch = master || branch = code-freeze-2017
+branch = master || branch = emergent_qa
+branch = master-test
+branch = migration
+branch = more-osx-cores
+branch = move-AMI-build
+branch = netbsd-i386-build
+branch = oldstable OR tag IS present
+branch = optimize-docker
+branch = optimize-docker AND NOT type = pull_request
+branch = overlayArray OR tag IS present
+branch = pending AND type != pull_request AND tag IS blank
+branch = persistance_integration
+branch = phil-work
+branch = pre-release
+branch = prepare-release
+branch = prerelease
+branch = preview-nanno
+branch = prod
+branch = production
+branch = production AND type != pull_request
+branch = production AND type != pull_requst
+branch = production AND type = push
+branch = python3
+branch = qa
+branch = qa_branch-test
+branch = rancher-prep
+branch = rancher-prep AND type IN (push)
+branch = rancher-updates AND type IN (push)
+branch = ravens
+branch = rc
+branch = react/develop
+branch = react/production
+branch = rec-cluster AND type != pull_request
+branch = release
+branch = release OR branch = master OR branch =~ ^release-(\d).(\d).(\d)$
+branch = release-staging AND type = push
+branch = release-temp
+branch = release-tests AND type = push
+branch = release/staging
+branch = removeComputed OR tag IS present
+branch = rhialto
+branch = rival_stage
+branch = rollbackTest OR tag IS present
+branch = ruby
+branch = sandbox
+branch = secondary
+branch = semantic-release AND type != pull_request
+branch = simpler-travis-tests
+branch = site-auto-publish AND type IN (push)
+branch = stable
+branch = stable OR branch = cooverity_scan
+branch = stable and repo = QISKit/qiskit-sdk-py
+branch = stable10 OR branch =~ ^hotfix-.*$ OR type = cron
+branch = stable10 OR type = cron
+branch = stage
+branch = staging
+branch = staging AND (NOT type IN (pull_request))
+branch = staging AND type = push
+branch = staging AND type IN (push)
+branch = staging OR branch = trying OR branch =~ /^v\d+/
+branch = staging OR type = pull_request
+branch = staging-new-signup
+branch = switch-to-go-1.9
+branch = task/ASI-93-auto-update-campaign-performance-summary-for-periscope
+branch = task/ASI-99-jar-and-dag-auto-deploy-to-production
+branch = test
+branch = test-1
+branch = test-deploy
+branch = test/travis-deploy
+branch = test/travis-deploy-full
+branch = testing OR branch = staging OR type = pull_request
+branch = tmp-dev
+branch = topic/releases
+branch = translation-tx-test AND type = push
+branch = travis
+branch = travis and type = push
+branch = travis-ci
+branch = travis-conditional
+branch = travis-tests
+branch = travis-yml-cleanup
+branch = travis_deployment
+branch = travis_integration
+branch = travis_matrix
+branch = travisdeploy
+branch = travisize
+branch = try
+branch = try AND type = push
+branch = try OR branch = auto
+branch = try OR branch = llvm-6-test
+branch = try-removing-stages AND type = push
+branch = v2
+branch = working
+branch == appcenter-deploy
+branch == custom_env_forwarder
+branch == custom_env_forwarder AND type = push
+branch == master
+branch == master AND branch != master
+branch == master AND type = push
+branch == master AND type IN (push, api, cron)
+branch == rival_stage
+branch =~ /^(develop|master|release\/.*)$/
+branch =~ /^(develop|master|release\/.*|feature\/.*)$/
+branch =~ /^feature\/.*$/
+branch =~ /^feature\/.*/
+branch =~ /^release\/.*$/
+branch =~ /^release\/.*/
+branch =~ /^release\/\d*$/
+branch =~ /^release\/\d*$/ OR branch =~ /^QA\_\d*$/
+branch =~ /^v\d+\.\d+\.\d+.*$/
+branch =~ /feature\/.+/
+branch =~ /master|back\/cs\/main/
+branch =~ /master|back\/go\/main/
+branch =~ /master|front\/ts\/main/
+branch =~ /release\/.+/
+branch =~ ^(master)$
+branch =~ ^(master|preview-(.*)|develop|rc)$
+branch =~ ^(master|production\-reg\.burst)$
+branch =~ ^(master|production\-reg|production\-reg\.burst)$
+branch =~ ^(master|v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)$
+branch =~ ^(pre-master|master|production\-reg|production\-reg\.burst)$
+branch =~ ^(pre-master|master|production\-reg|production\-reg\.test|production\-reg\.burst)$
+branch =~ ^(preview-(.*)|develop)$
+branch =~ ^(prod-seating|prod-cp|prod-accounts|pre-master|production\-reg|production\-reg\.test|production\-reg\.burst)$
+branch =~ ^(rc)$
+branch =~ ^(v?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z-]+(?:\.[\da-z-]+)*)?(?:\+[\da-z-]+(?:\.[\da-z-]+)*)?)$
+branch =~ ^.*(?<!-built)$
+branch =~ ^[0-9]
+branch =~ ^bywater-v
+branch =~ ^develop
+branch =~ ^develop OR branch =~ ^master OR branch =~ ^release
+branch =~ ^develop/.*$
+branch =~ ^f
+branch =~ ^feature\/.*
+branch =~ ^feature\/.* AND type = push
+branch =~ ^feature\/.*$
+branch =~ ^feature\/.*$ AND type = push
+branch =~ ^greenkeeper
+branch =~ ^greenkeeper\/.*$
+branch =~ ^greenkeeper\/.*-.*$
+branch =~ ^master
+branch =~ ^master AND "$TRAVIS_PULL_REQUEST" == "false"
+branch =~ ^master AND NOT type =~ ^pull_request
+branch =~ ^master OR branch =~ /^pr\..*/
+branch =~ ^master$
+branch =~ ^master$ && TRAVIS_PULL_REQUEST == "false"
+branch =~ ^master$ && pull_request == "false"
+branch =~ ^master$ AND type NOT IN (pull_request)
+branch =~ ^master$ AND type ~= pull_request
+branch =~ ^master|develop$ OR branch =~ ^(release|hotfix|bugfix|support)\/.*$ OR tag IS present OR type IN (pull_request, api)
+branch =~ ^preview-(.*)$
+branch =~ ^prod.*$
+branch =~ ^release
+branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$
+branch =~ ^release/\d*$
+branch =~ ^release/\d*$ OR branch =~ ^QA_\d*$
+branch =~ ^release\/\d*$ OR branch =~ ^QA\_\d*$
+branch =~ ^staging*$
+branch =~ ^staging*$ && TRAVIS_PULL_REQUEST == "false"
+branch =~ ^staging*$ AND type != pull_request
+branch =~ ^staging*$ AND type NOT IN (pull_request)
+branch =~ ^staging*$ AND type ~= pull_request
+branch =~ ^staging.*$
+branch =~ ^test-
+branch =~ ^test- OR type IN(pull_request)
+branch =~ ^travis-call-gordon.*$
+branch =~ ^v.+\dlibzfs$
+branch =~ ^v.+fable-import-nodelibzfs$
+branch =~ ^v.+libzfs$
+branch =~ ^v.+libzfs-sys$
+branch =~ ^v.+node$
+branch =~ ^v.+node-libzfs$
+branch =~ ^v[0-9]+\.(x|[0-9]+)\.x$ AND NOT type IN (pull_request)
+branch =~ ^v[0-9]+\.[0-9]+\.x$
+branch =~ ^v\d+\.\d+\.\d$
+branch =~ ^v\d+\.\d+\.\d+$
+branch =~ ^v\d+\.\d+\.\d+-.+$
+branch =~ ^v\d+\.\d+\.\d+-.+node-libzfs$
+branch =~ ^v\d+\.\d+\.\d+-1.*$
+branch =~ ^wip OR branch =~ ^pr-
+branch =~ back
+branch =~ back/go/main
+branch =~ coverage
+branch =~ extraci OR (repo = percona/percona-server) AND (type = push)
+branch =~ extraci OR repo = percona/percona-server AND type IN (push, cron)
+branch =~ front
+branch =~ front/ts/main
+branch =~ fullci OR ((repo = percona/percona-server) AND (type = pull_request))
+branch =~ fullci OR (repo = percona/percona-server) AND (type = pull_request)
+branch =~ fullci OR repo = percona/percona-server AND type IN (push, pull_request, cron)
+branch =~ imageproxy
+branch =~ inverted
+branch =~qa_branch-test
+branch IN ("master")
+branch IN ("master", "/^(?i:epic)/major.*$/", "/^(?i:epic)/feature.*$/", "/^(?i:epic)/bugfix.*$/") AND type = pull_request
+branch IN ("master", "/^(?i:epic)/major.*$/", "/^(?i:epic)/feature.*$/", "/^(?i:epic)/bugfix.*$/") AND type = push
+branch IN ("master1", "/^(?i:epic)/major.*$/", "/^(?i:epic)/feature.*$/", "/^(?i:epic)/bugfix.*$/") AND type = pull_request
+branch IN ("master1", "/^(?i:epic)/major.*$/", "/^(?i:epic)/feature.*$/", "/^(?i:epic)/bugfix.*$/") AND type = push
+branch IN ("master2", "/^(?i:epic)/major.*$/", "/^(?i:epic)/feature.*$/", "/^(?i:epic)/bugfix.*$/")
+branch IN ("master2", "/^(?i:epic)/major.*$/", "/^(?i:epic)/feature.*$/", "/^(?i:epic)/bugfix.*$/") AND type = pull_request
+branch IN ("master2", "/^(?i:epic)/major.*$/", "/^(?i:epic)/feature.*$/", "/^(?i:epic)/bugfix.*$/") AND type = push
+branch IN ("raees/travisFix", master, alpha, staging, prod) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+branch IN ("raees/travisFix", master, alpha, staging, prod) AND NOT (env(FRONTEND_FILES_CHANGED) = "")
+branch IN ('master', 'develop')
+branch IN (1.x, 2.x)
+branch IN (Staging, Stable) AND type = push
+branch IN (Testing, Stable) AND type = push
+branch IN (Testing, Staging, Stable) AND type = push
+branch IN (^v.*, master)
+branch IN (alpha, beta, dev, master)
+branch IN (appveyor-travis-Merge-10.0.x-to-master, master, appveyor-travis-master) OR branch =~ ^ci-control/\d+$
+branch IN (appveyor-travis-Merge-10.0.x-to-master, master, appveyor-travis-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (appveyor-travis-Merge-10.0.x-to-master, master, appveyor-travis-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_move$
+branch IN (dev)
+branch IN (dev, acc, stage, prod)
+branch IN (dev, acc, stage, prod) AND fork = false
+branch IN (dev, alpha, stage, prod)
+branch IN (dev, master, demo)
+branch IN (dev, stage, prod)
+branch IN (dev, staging, production)
+branch IN (dev1, master, staging, rc)
+branch IN (develop)
+branch IN (develop, SPP-323/create-edit-solutions) AND NOT type = pull_request
+branch IN (develop, devops/deploy_tooling)
+branch IN (develop, devops/fix_travis_build)
+branch IN (develop, master)
+branch IN (develop, master) AND type IN (push)
+branch IN (develop, release/1.16.4)
+branch IN (develop, release/1.16.5)
+branch IN (develop, release/1.16.5.2)
+branch IN (develop, release/1.16.5.3)
+branch IN (develop, release/1.17.0)
+branch IN (develop, release/1.17.2)
+branch IN (develop, release/1.17.3)
+branch IN (develop, release/1.19.1)
+branch IN (develop, release/1.20)
+branch IN (develop, release/1.21.0)
+branch IN (develop, release/1.21.1)
+branch IN (develop, rerelease/1.16.3)
+branch IN (develop, staging) OR type = pull_request
+branch IN (develop, staging, master) OR type = pull_request
+branch IN (develop, travis)
+branch IN (develop,poc/administration-page)
+branch IN (develop,release/1.16.5.3)
+branch IN (develop,release/1.16.5.5)
+branch IN (develop,release/1.16.5.6)
+branch IN (develop,release/1.19.0)
+branch IN (development, master) AND NOT type = pull_request
+branch IN (env(RELEASE_BRANCHES))
+branch IN (fastlane-beta, develop)
+branch IN (feat/travis, develop, rc, staging, master) OR type = pull_request
+branch IN (feat/travis, rc, staging, master) OR type = pull_request
+branch IN (fix-downloading-GuiEnv, master, appveyor-travis-10.0.x) OR branch =~ ^ci-control/\d+$
+branch IN (fix-downloading-GuiEnv, master, appveyor-travis-10.0.x) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_move$
+branch IN (master)
+branch IN (master) OR type = pull_request
+branch IN (master, TASK-10)
+branch IN (master, TASK-3)
+branch IN (master, TASK-3, TASK-24)
+branch IN (master, alpha, staging, prod)
+branch IN (master, alpha, staging, prod) AND NOT (env(ANY_SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+branch IN (master, alpha, staging, prod) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+branch IN (master, alpha, staging, prod) AND NOT (env(SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+branch IN (master, appveyor-travis-10.0.x) OR branch =~ ^ci-control/\d+$
+branch IN (master, appveyor-travis-10.0.x) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master, appveyor-travis-10.0.x) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_move$
+branch IN (master, appveyor-travis-master) OR branch =~ ^ci-control/\d+$
+branch IN (master, appveyor-travis-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master, appveyor-travis-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_move$
+branch IN (master, appveyor-travis-master, atom/release) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master, appveyor-travis-master, dont-use-xcpretty) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master, beta, release) OR tag IS present
+branch IN (master, ci-deploy)
+branch IN (master, ci-deploy, ci-temp-test)
+branch IN (master, code-freeze-2017)
+branch IN (master, compatibility-9)
+branch IN (master, dev)
+branch IN (master, dev, creating-structure)
+branch IN (master, devel)
+branch IN (master, devel) OR branch =~ ^version-
+branch IN (master, develop)
+branch IN (master, develop) AND (NOT type = pull_request)
+branch IN (master, develop) AND NOT type = pull_request
+branch IN (master, develop) AND type = push
+branch IN (master, develop) AND type IN (push, api, cron)
+branch IN (master, develop) OR branch =~ ^release\/.+$ OR branch =~ ^hotfix\/.+$ OR branch =~ ^bugfix\/.+$ OR branch =~ ^support\/.+$ OR tag IS present OR type IN (pull_request, api)
+branch IN (master, develop) OR tag =~ ^v
+branch IN (master, develop, SPP-323/create-edit-solutions) AND NOT type = pull_request
+branch IN (master, develop, optimize-docker)
+branch IN (master, develop, optimize-docker) AND NOT type = pull_request
+branch IN (master, develop, robot-tests) AND NOT type = pull_request
+branch IN (master, development)
+branch IN (master, development, MIS-504-take1)
+branch IN (master, development, MIS-569-stages)
+branch IN (master, development, MIS-569-stages-take2)
+branch IN (master, development, MIS-592-retake0)
+branch IN (master, development, MIS-592-retake2)
+branch IN (master, development, MIS-592-retake3)
+branch IN (master, development, MIS-592-retake4)
+branch IN (master, development, MIS-592-retake5)
+branch IN (master, development, MIS-592-ssk-run)
+branch IN (master, development, MIS-592-take10)
+branch IN (master, development, features)
+branch IN (master, devly-ci)
+branch IN (master, documentation) AND type IN (push, api)
+branch IN (master, edge, app-shell_travis-testing-mc) AND type != pull_request
+branch IN (master, emergent_qa)
+branch IN (master, ezkl/shiply-fixes)
+branch IN (master, jenkins-10.0.x, jenkins-Merge-10.0.x-to-master) OR branch =~ ^ci-control/\d+$
+branch IN (master, jenkins-10.0.x, jenkins-Merge-10.0.x-to-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master, jenkins-10.0.x, jenkins-Merge-10.0.x-to-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_move$
+branch IN (master, jenkins-master) OR branch =~ ^ci-control/\d+$
+branch IN (master, jenkins-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master, jenkins-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_move$
+branch IN (master, jenkins-master, jenkins-Merge-10.0.x-to-master) OR branch =~ ^ci-control/\d+$
+branch IN (master, jenkins-master, jenkins-Merge-10.0.x-to-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master, jenkins-master, jenkins-Merge-10.0.x-to-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_move$
+branch IN (master, npm-publish)
+branch IN (master, optimize-docker) AND NOT type = pull_request
+branch IN (master, production)
+branch IN (master, production, dockerize-scheduler-worker)
+branch IN (master, seetest/sandbox)
+branch IN (master, staging)
+branch IN (master, staging, prod)
+branch IN (master, testing)
+branch IN (master, travis)
+branch IN (master, trying) OR tag =~ ^v\d+\.\d+\.\d+.*$
+branch IN (master, trying, staging) OR tag =~ ^\d+\.\d+\.\d+.*$
+branch IN (master, trying, staging) OR tag =~ ^v\d+\.\d+\.\d+.*$
+branch IN (master, turn-xcbeauty-on, jenkins-master, jenkins-Merge-10.0.x-to-master) OR branch =~ ^ci-control/\d+$ OR branch =~ ^ci-control/\d+_atom$
+branch IN (master,dev,qa) or type = pull_request
+branch IN (master,travis)
+branch IN (qa)
+branch IN (qa, release__1.5)
+branch IN (qa, staging, production)
+branch IN (qa, staging, production, release__1.5)
+branch IN (rc, staging, master) OR type = pull_request
+branch IN (stable, master)
+branch IN (stable, master) or branch =~ ^.*-ui$
+branch IN (stable, master) or branch =~ ^.*[-_]ui$
+branch IN (staging, demo, production)
+branch IN (staging, production)
+branch IN (staging, trying)
+branch IN (v.0.9.2.1, master)
+branch IN (working)
+branch IS present
+branch NOT IN (master, alpha, staging, prod) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "" AND env(SENSITIVE_FILES_CHANGED) = "")
+branch NOT IN (master, alpha, staging, prod) AND NOT (env(FRONTEND_FILES_CHANGED) = "" AND env(ANY_SERVICES_FILES_CHANGED) = "")
+branch in (dev, knackperf) and type = push
+branch in (develop, /feature\/.+/ , /release\/.+/)
+branch in (master)
+branch in (master, dev) OR type == pull
+branch in (master, develop)
+branch in (master, develop) AND type != pull_request
+branch in (master, develop, hotfix)
+branch in (master, develop, hotfix) AND type != pull_request
+branch ~= ^(preview-(.*)|develop)$
+branch ~= ^(rc)$
+branch ~= ^[0-9]\.[0-9]$
+branch ~= coverage
+branch ~= imageproxy
+branch=adv-travis-config
+branch=chore/rework-docker-entry
+branch=dev
+branch=feature/publish-artifactory
+branch=master
+branch=master OR type=pull_request
+branch=revert/sopstool-intro
+branche = master
+build =~ /^feature\/.*$/
+build IN (develop, master, /^release\/.*$/)
+changes = 0
+changes = 1
+env(ANY_SERVICES_FILES_CHANGED) != ""
+env(BAR) IS blank
+env(BUILD_DOCS) = false
+env(BUILD_DOCS) IS present
+env(COVERALLS_REPO_TOKEN) != ''
+env(COVERALLS_REPO_TOKEN) != '' AND branch =~ ^v[0-9]+\.x\.x$
+env(COVERITY_SCAN_BRANCH) != 1
+env(COVERITY_SCAN_BRANCH) == 1
+env(DOCS) = true
+env(EXECUTABLE) = false
+env(FEEDSTOCKS) IS BLANK
+env(FEEDSTOCKS) IS blank
+env(FOO) = fifi
+env(FOO) = fofo
+env(FOO) IS blank
+env(FOO) IS present
+env(FORCE_REBUILD) ~= ^true$
+env(FRONTEND_FILES_CHANGED) != ""
+env(FRONTEND_FILES_CHANGED) != "" OR env(ANY_SERVICES_FILES_CHANGED) != "" OR env(SENSITIVE_FILES_CHANGED) != ""
+env(FRONTEND_FILES_CHANGED) != "" OR env(SENSITIVE_FILES_CHANGED) != ""
+env(GH_TOKEN)
+env(GH_TOKEN) IS NOT present
+env(GH_TOKEN) IS blank
+env(INGEST_VERSION) =~ ^0.1.0-SNAPSHOT$
+env(IS_COMMIT_UPDATE_VERSION) == 'yes'
+env(LINT) = true
+env(LP3D_BUILD_PKG) IS blank
+env(MONGOOSE_VERSION) = 5
+env(NODE_ENV) = production
+env(NODE_ENV) = test
+env(PEPA) IS blank
+env(PKG) IS present
+env(PRE_COMMIT_MESSAGE) = xxx
+env(PRE_COMMIT_MESSAGE) =~ xxx
+env(PRIOR_VERSION) != 1.*
+env(PRIOR_VERSION) != env(RELEASE_VERSION)
+env(PRIOR_VERSION) != env(RELEASE_VERSION) and branch = master and type = push AND repo = plus3it/terraform-aws-bucket-objects
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION)
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION) AND branch = master
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION) AND branch = master AND type = push
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION) AND branch = master AND type = push AND repo = cotsog/travis_ci_prod_regular
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION) AND branch = master AND type = push AND repo = justien/travis_conditional_stages
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION) AND branch = master AND type = push AND repo = plus3it/terraform-aws-bucket-objects
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION) AND branch = master AND type = push AND repo = plus3it/terraform-aws-watchmaker
+env(PRIOR_VERSION) IS present AND env(PRIOR_VERSION) != env(RELEASE_VERSION) AND branch = master AND type = push AND repo = plus3it/terraform-external-file-cache
+env(PRIOR_VERSION) IS present and env(PRIOR_VERSION) != env(RELEASE_VERSION) and branch = master and type = push AND repo = plus3it/terraform-aws-bucket-objects
+env(PRIOR_VERSION) IS present and env(PRIOR_VERSION) != env(RELEASE_VERSION) and branch = master and type = push AND repo = plus3it/terraform-aws-watchmaker
+env(PROJECT) = ethereum
+env(REBUILD) = true OR env(FORCE_REBUILD) = true OR (branch = master AND NOT type=pull)
+env(REBUILD) = true OR env(FORCE_REBUILD) = true OR branch = master
+env(REBUILD) OR env(FORCE_REBUILD) OR branch = master
+env(REBUILD) ~= ^true$ OR env(FORCE_REBUILD) ~= ^true$ OR (branch = master AND type = push)
+env(RELEASE_ENVIROMENT) = development
+env(RELEASE_ENVIRONMENT) NOT IN (production, staging, development)
+env(SENSITIVE_FILES_CHANGED) != ""
+env(SERVICE) = lint
+env(SNYK_TOKEN) AND env(GH_TOKEN)
+env(SONAR_TOKEN) IS present
+env(TARGET) = vsi
+env(TARGET) = vsi AND type = api
+env(TEST_SUITE) = env(PY_LINT)
+env(TEST_SUITE) = env(PY_TEST)
+env(TEST_TYPE) = build
+env(TRAVIS_API_TYPE) = nightly
+env(TRAVIS_API_TYPE) IS blank
+env(TRAVIS_BRANCH) != coverity
+env(TRAVIS_BRANCH) != env(COVERITY_BRANCH_NAME)
+env(TRAVIS_BRANCH) = env(COVERITY_BRANCH_NAME)
+env(TRAVIS_COMMIT_MESSAGE) != "Deploy AdguardTeam/FiltersRegistry to github.com/AdguardTeam/FiltersRegistry.git:test"
+env(TRAVIS_COMMIT_MESSAGE) !~ AUTO-CREATED
+env(TRAVIS_COMMIT_MESSAGE) !~ ^AUTO-CREATED
+env(TRAVIS_COMMIT_MESSAGE) =~ *bar*
+env(TRAVIS_COMMIT_MESSAGE) =~ *osx*
+env(TRAVIS_COMMIT_MESSAGE) ~= BP_E2E
+env(TRAVIS_EVENT_TYPE) != cron
+env(TRAVIS_OS_NAME) = 'linux' && env(DIST_NAME) = 'ubuntu' && env(DIST_VERSION) = 'xenial' && env(CC) = 'gcc' && env(MAKE_TARGET) =~ 'deb' && env(DEPLOY_PACKAGE) = 'true'
+env(TRAVIS_PULL_REQUEST_BRANCH) IS blank AND (branch = master OR tag =~ env(SEMVER_REGEX))
+env(TRAVIS_REPO_SLUG) != apache/thrift
+env(TRAVIS_TAG) IS blank
+env(VERSION) != 3.8-dev
+env(VERSION) != 3.8-dev AND ( NOT env(VERSION) =~ ^pypy )
+env(VSI) IS present
+env(VSI_TAG) = latest
+env(VSI_TAG) =~ ^[0-9.]+
+env(VSI_TAG) IS present
+env(env_name) != "false"
+env(env_name) IS blank
+env(env_name) IS present
+env(name) = pip_requirements_check
+env(name) = production_env_check
+event != pull_request
+false
+fork
+fork != false
+fork = false
+fork = true
+fork == false
+fork IS true
+fork OR (type IN (pull_request))
+fork OR type IN (pull_request)
+head_branch = cd
+head_branch = fix-hdfs-travis
+head_branch = master or head_branch = travis-ci
+head_branch = staging or head_branch = travis-ci
+head_branch = travis-ci
+head_branch == master
+head_branch == master AND head_branch != master
+head_branch =~ ^release.*
+head_branch =~ ^release.* || branch =~ ^release.*
+head_branch =~ ^release/.*
+head_branch =~ ^release/.* AND fork == false
+head_branch =~ ^release/.* || branch =~ ^release/.*
+head_branch IS NOT blank
+head_branch IS blank AND branch = master
+head_branch IS present
+head_repo = boostorg/uuid && head_branch = master
+my_var = notdemo
+name = stable
+not (env(SKIP) = Test1)
+not (env(SKIP) = Test2)
+not branch = coverity_scan
+not fork
+not tag =~ ^autobuild
+not tag is present
+not type = cron
+os = linux
+os = osx
+pull_request
+pull_request = false
+repo != apache/thrift
+repo != percona/percona-server OR repo = percona/percona-server AND type IN (push, cron)
+repo = 2m/sssio
+repo = 2m/sssio AND tag =~ ^v
+repo = Azure/azure-cli
+repo = Azure/azure-cli and type = push
+repo = Azure/azure-cli-extensions and branch = master and type = cron
+repo = Azure/azure-cli-extensions and branch = master and type = push
+repo = ZFFramework/ZFFramework AND branch = master
+repo = apache/thrift
+repo = arvidn/libtorrent
+repo = boostorg/uuid and branch = develop
+repo = camptocamp/c2cgeoportal
+repo = derekbekoe/azure-cli-extensions and branch = ext-docs and type = push
+repo = derekbekoe/azure-cli-extensions and type = push
+repo = gzm55/parent-repositories-maven-extension AND branch = master AND type != pull_request
+repo = gzm55/parent-repositories-maven-extension AND tag =~ ^parent-repositories-extension-[0-9]+(\.[0-9]+)+$
+repo = loderunner/ansible-clang AND branch = master
+repo = sigo/console-log-hiring and branch = master and type = push
+repo = sigo/semantic-release-test3 and branch = master and type in (push, api, cron)
+repo == quicktype/quicktype AND branch == master AND type IN (push, api, cron)
+repo =~ ^JimiC AND branch = docker
+repo =~ ^JimiC AND branch = master AND NOT tag IS present AND type != pull_request
+repo =~ ^JimiC AND branch = master AND NOT tag IS present AND type != pull_request AND NOT env(TAG) IS present
+repo =~ ^JimiC AND branch = master AND NOT tag IS present AND type != pull_request AND NOT env(TARGET) IS present
+repo =~ ^JimiC AND branch = master AND NOT tag IS present AND type != pull_request AND NOT env(VSI_TAG) IS present
+repo =~ ^JimiC AND branch = master AND env(TARGET) = vsi AND NOT env(TAG) IS present
+repo =~ ^JimiC AND branch = master AND env(TARGET) = vsi AND type = api AND NOT env(TAG) IS present
+repo =~ ^JimiC AND branch = master AND env(VSI_TAG) = latest AND type = api
+repo =~ ^JimiC AND branch = master AND type = api AND NOT env(TAG) IS present
+repo =~ ^JimiC AND branch = master AND type = push AND NOT tag IS present
+repo =~ ^JimiC AND env(VSI_TAG) =~ ^[0-9.]+-*[a-zA-Z0-9]*
+repo =~ ^JimiC AND env(VSI_TAG) =~ ^[0-9.]+-*[a-zA-Z0-9]* AND type = api
+repo =~ ^JimiC AND env(VSI_TAG) =~ ^latest|[0-9.]+-*[a-zA-Z0-9]* AND type = api
+repo =~ ^vscode-icons AND branch = master
+repo =~ ^vscode-icons AND branch = master AND NOT tag IS present AND type != pull_request AND NOT env(VSI_TAG) IS present
+repo =~ ^vscode-icons AND branch = master AND NOT tag IS present AND type = push
+repo =~ ^vscode-icons AND branch = master AND type != pull_request AND NOT tag IS present AND NOT env(TARGET) IS present
+repo =~ ^vscode-icons AND branch = master AND type = push
+repo =~ ^vscode-icons AND branch = master AND type = push AND NOT tag IS present
+repo =~ ^vscode-icons AND env(VSI_TAG) =~ ^latest|[0-9.]+-*[a-zA-Z0-9]* AND type = api
+repo =~ ^vscode-icons AND tag IS present AND type != pull_request AND NOT env(VSI_TAG) IS present
+repo =~ ^vscode-icons AND tag IS present AND type = push
+sender != RQF7_bot
+sender != RQF_bot
+sender != Travis
+sender != ^weecologydeploy$
+sender != traviscibot
+sender !~ bot$
+sender = rslifka
+sender =~ ^.*$
+sender =~ ^alrr.*$
+tag
+tag != "-fdroid$"
+tag != autobuild
+tag != env(TRAVIS_TAG)
+tag != master-snapshot
+tag != master-snapshot AND tag !~ ^untagged
+tag = submit
+tag =~ .*
+tag =~ .*beta.*
+tag =~ .+
+tag =~ /^release-.*$/
+tag =~ /release/ OR tag IS blank
+tag =~ 0.
+tag =~ [0-9]+\.[0-9]+\.[0-9]+
+tag =~ [0-9]+\.[0-9]+\.[0-9]+ OR type = pull_request
+tag =~ ^((?!-\w).)*$
+tag =~ ^(?!\s*$).+
+tag =~ ^*-macos$
+tag =~ ^.*-v[0-9]+\.[0-9]+.*$
+tag =~ ^.+$
+tag =~ ^0
+tag =~ ^@dev-*
+tag =~ ^@dev-* OR (branch = production AND type = pull_request)
+tag =~ ^[0-9]
+tag =~ ^[0-9]+\.[0-9]+\.[0-9]+
+tag =~ ^[0-9]\.[0-9]\.[0-9]$
+tag =~ ^\d
+tag =~ ^\d+(\.\d+)+(-.*)?
+tag =~ ^\d+(\.\d+)+(-.*)? OR branch = travisbuilds-selenium
+tag =~ ^\d+(\.\d+)+(-.*)? OR tag = staging
+tag =~ ^\d+\.\d+\.\d+$
+tag =~ ^\d+\.\d+\.\d+-p\d+$
+tag =~ ^\d+\.\d+\.\d+-p\d+$ AND type != pull_request
+tag =~ ^\d.\d.\d
+tag =~ ^android_
+tag =~ ^deploy-.*$
+tag =~ ^desktop-v-
+tag =~ ^eva
+tag =~ ^gatsby@.*
+tag =~ ^ios_
+tag =~ ^orderwell-v([0-9]+\.)*[0-9]+-RC[0-9]*$
+tag =~ ^orderwell-v([0-9]+\.)*[0-9]+-release$
+tag =~ ^prerelease_
+tag =~ ^release-
+tag =~ ^release-.*$
+tag =~ ^release\_v.*-.*
+tag =~ ^release_
+tag =~ ^ross
+tag =~ ^smarti- AND type = push
+tag =~ ^v
+tag =~ ^v AND fork = false
+tag =~ ^v OR type in (push, cron)
+tag =~ ^v(\d\.){0,2}\d
+tag =~ ^v*.*.*
+tag =~ ^v.*
+tag =~ ^v.*$
+tag =~ ^v0
+tag =~ ^v1
+tag =~ ^v2
+tag =~ ^v2\.\d+(\.\d+)?$
+tag =~ ^v8 AND type = push
+tag =~ ^v?([0-9])*\.[0-9]*\.[0-9]*(-\w+)?$
+tag =~ ^v[0-9.]+$ OR branch != master
+tag =~ ^v[0-9]
+tag =~ ^v[0-9]+.[0-9]+.[0-9]+(-alpha|-beta)?$
+tag =~ ^v[0-9]+\.
+tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$
+tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-.+)?$
+tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+$
+tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+-(alpha|beta|rc)\.[0-9]+$ OR tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$
+tag =~ ^v[0-9]\.[0-9]
+tag =~ ^v[0-9]\.[0-9]\.[0-9]$
+tag =~ ^v[0-9]\.[0-9]\.[0-9]-rc[0-9]$
+tag =~ ^v[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}$
+tag =~ ^v[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$
+tag =~ ^v[1-9]
+tag =~ ^v\d
+tag =~ ^v\d AND type = push
+tag =~ ^v\d+
+tag =~ ^v\d+(\.\d+)+
+tag =~ ^v\d+(\.\d+)+(-.*)?
+tag =~ ^v\d+(\.\d+)+(-.*)? OR branch = travisbuilds-selenium
+tag =~ ^v\d+\.\d+(\.\d+)?$
+tag =~ ^v\d+\.\d+\.\d+
+tag =~ ^v\d+\.\d+\.\d+$
+tag =~ ^v\d+\.\d+\.\d+-rc\d+$
+tag =~ ^v\d+\.\d+\.\d+\-\d+$
+tag =~ ^v\d+\.\d+\.\d+\-dev.\d+$
+tag =~ ^v\d.*
+tag =~ ^v\d.\d.\d
+tag =~ ^version_code/ OR (tag IS NOT present)
+tag =~ ^version_code/ OR tag IS NOT present
+tag =~ ^zmobile-v([0-9]+\.)*[0-9]+-RC[0-9]*$
+tag =~ ^zmobile-v([0-9]+\.)*[0-9]+-release$
+tag IS NOT blank
+tag IS NOT present
+tag IS NOT present and type IN (push)
+tag IS PRESENT
+tag IS blank
+tag IS blank AND NOT (type IN (push) AND branch = master)
+tag IS blank AND NOT type IN (push)
+tag IS blank AND branch = master
+tag IS blank AND branch = master AND type != pull_request
+tag IS blank AND type != pull_request
+tag IS blank AND type = pull_request
+tag IS blank AND type = push
+tag IS blank AND type = push AND branch = master
+tag IS blank AND type IN (pull_request, push)
+tag IS blank OR tag = 7.6.0
+tag IS blank OR tag = 7.6.7
+tag IS blank OR tag = 7.7.0
+tag IS blank OR tag = 7.7.4
+tag IS blank OR tag = 7.8.0
+tag IS blank OR tag = 7.8.0-SNAPSHOT
+tag IS blank OR tag = 7.8.0-alpha4
+tag IS present
+tag IS present AND NOT tag =~ \+d2$
+tag IS present AND repo = camptocamp/ngeo
+tag IS present AND tag != "-fdroid$"
+tag IS present AND tag =~ ^(?:[0-9]{1,}\.[0-9]{1,}\.[0-9]{1,})(?:(-(alpha|beta|rc)\.[0-9]{1,}){1,})?$
+tag IS present AND tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+
+tag IS present AND type = push
+tag IS present AND type = push AND tag =~ ^v
+tag IS present OR ( branch = master AND pull_request IS false )
+tag IS present OR ( branch = master AND type != pull_request )
+tag IS present OR (branch = master AND type != pull_request)
+tag IS present OR branch = master
+tag IS present OR branch = master OR type IN (pull_request)
+tag IS present OR branch =~ ^v[0-9]+\.(x|[0-9]+)\.x$ AND NOT type IN (pull_request) AND repo = sociomantic-tsunami/libdrizzle-redux
+tag IS present OR type = pull_request
+tag IS present and branch IS present
+tag is blank
+tag is present
+tag or branch = master
+tag ~= ^(stable|beta|future)/
+tag ~= ^v
+tags = true
+tags =rue
+tags IS blank
+true
+true || "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" && "$DO_RELEASE" == "true"
+type != api
+type != cron
+type != cron AND type != api
+type != cron AND type != pull_request
+type != cron and branch = master
+type != pull-request AND branch = master
+type != pull_request
+type != pull_request AND ( branch = release OR branch = master OR branch =~ ^release-(\d).(\d).(\d)$ )
+type != pull_request AND ( branch = release OR branch =~ ^release-(\d).(\d).(\d)$ )
+type != pull_request AND ( branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$ )
+type != pull_request AND (branch = master OR tag =~ env(SEMVER_REGEX))
+type != pull_request AND (branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$)
+type != pull_request AND (branch =~ ^release$ OR branch =~ ^release-)
+type != pull_request AND (head_branch =~ ^release/.* OR branch =~ ^release/.*)
+type != pull_request AND (head_branch =~ ^release/major/.* OR branch =~ ^release/major/.*)
+type != pull_request AND (head_branch =~ ^release/minor/.* OR branch =~ ^release/minor/.)
+type != pull_request AND (head_branch =~ ^release/minor/.* OR branch =~ ^release/minor/.*)
+type != pull_request AND (head_branch =~ ^release/patch/.* OR branch =~ ^release/patch/.*)
+type != pull_request AND (tag IS present OR branch IN (master, edge))
+type != pull_request AND (tag IS present OR branch IN (master, edge, app-shell_travis-testing-mc))
+type != pull_request AND branch = master
+type != pull_request AND branch = master AND NOT env(RELEASE_ENVIRONMENT) IS present
+type != pull_request AND branch IN (docker-and-kubernetes-deployment-updates)
+type != pull_request AND branch IN (master, develop)
+type != pull_request AND fork = false
+type != pull_request AND tag IS blank
+type != pull_request AND tag IS present
+type != pull_request AND type != cron
+type != pull_request OR (type == pull_request AND head_branch == not_a_real_branch)
+type != pull_request OR branch =~ not-the-branch-name
+type != pull_request OR head_branch = fix-hdfs-travi
+type != pull_request OR head_branch = fix-hdfs-travis
+type != pull_request OR head_branch == not_a_real_branch
+type != pull_request OR head_branch =~ __TEST_HDFS__
+type != pull_request OR head_branch =~ hdfs-travis
+type != pull_request OR head_branch =~ not-the-branch-name
+type != pull_request OR type != pull_request
+type != pull_request and (branch =~ ^(v1\.\d+\.x|master)$ or tag IS present)
+type != pull_request and branch =~ ^(v1\.\d+\.x|master)$
+type != push
+type !=cron
+type = api
+type = api AND branch = master
+type = api AND branch = master AND repo = fmbg/ingress-nginx
+type = api AND branch = master AND repo = harborfront/kubernetes-ingress
+type = api AND branch = master AND repo = kubernetes/ingress-nginx
+type = api AND env(TRAVIS_API_TYPE) = nightly
+type = api OR branch = 'feature/cypress-tests' OR tag IS present
+type = cron
+type = cron OR (env(TEST_SQLITE) IS true)
+type = cron OR branch = master OR branch =~ ^android
+type = cron OR env(TEST_SQLITE)
+type = cron OR env(TEST_SQLITE) IS true
+type = cron OR env(TEST_SQLITE) ~= ^true$
+type = cron OR tag =~ ^v
+type = cron OR tag IS present
+type = cron OR tag is present
+type = cron OR type = api
+type = pr or branch = master
+type = pr or branch = master or NOT branch =~ ^docs
+type = pull_request
+type = pull_request AND branch = master
+type = pull_request AND branch = staging
+type = pull_request AND sender != snappy-m-o
+type = pull_request OR (type = push AND NOT branch = master)
+type = pull_request OR branch = auto
+type = pull_request OR branch = llvm-6-test
+type = pull_request OR branch = master
+type = pull_request OR branch = staging OR branch = trying OR branch =~ /^v\d+/
+type = pull_request OR branch = travis-conditionals-bug
+type = pull_request OR branch = try
+type = pull_request OR branch = try OR branch = auto
+type = pull_request OR branch =~ ^(master|development)$
+type = pull_request OR branch IN (develop, release, master)
+type = pull_request OR branch IN (master, development)
+type = pull_request OR branch in (master, travis-conditional-build)
+type = pull_request OR env(PRE_COMMIT_MESSAGE) =~ build-web
+type = pull_request OR tag IS present
+type = pull_request OR type = cron
+type = pull_request and sender = "alrra"
+type = pull_request and sender = "greenkeeper[bot]"
+type = push
+type = push AND (NOT tag =~ .{2,}$) AND (NOT type = pull_request)
+type = push AND (branch = dev OR branch = master)
+type = push AND (tag =~ ^v8 OR branch IN (master, neon, argon))
+type = push AND (tag =~ ^v[0-9].[0-9].[0-9]$)
+type = push AND (tag =~ ^v[0-9].[0-9].[0-9]-)
+type = push AND NOT (branch = develop)
+type = push AND NOT tag
+type = push AND NOT tag IS present AND branch = master
+type = push AND NOT type = pull_request
+type = push AND branch !~ ^(master|development)$
+type = push AND branch = RED-1180
+type = push AND branch = WI-194
+type = push AND branch = beta
+type = push AND branch = chrome-mobile
+type = push AND branch = delete-old-code
+type = push AND branch = deploy
+type = push AND branch = develop
+type = push AND branch = email-box
+type = push AND branch = fix-ci-travis AND repo = Shopify/ingress
+type = push AND branch = hash
+type = push AND branch = issue.npm-publish
+type = push AND branch = jk-header-2017-11-26
+type = push AND branch = jk-header-2017-12-01
+type = push AND branch = jk-landing-page-2017-11-22
+type = push AND branch = jk-landing-page-fixes-2017-12-08
+type = push AND branch = jk-landing-page-js-2017-11-22
+type = push AND branch = jk-test-test
+type = push AND branch = jk-thankyou2-changes-2017-11-20
+type = push AND branch = master
+type = push AND branch = master AND platform = Linux
+type = push AND branch = master AND repo = Shopify/ingress
+type = push AND branch = master AND repo = camptocamp/ngeo
+type = push AND branch = mt-mypy-selenium
+type = push AND branch = mt-new-give
+type = push AND branch = tempMaster
+type = push AND branch = tempMaster AND platform = Linux
+type = push AND branch = wheredid
+type = push AND branch IN (1.x, 2.x)
+type = push AND branch IN (dev1, master, staging, rc)
+type = push AND branch IN (master, develop)
+type = push AND branch IN (master, pre-merge)
+type = push AND branch IN (master, production)
+type = push AND branch IN (master, staging, beta, develop, preview)
+type = push AND branch IN (stable/ultra01-06, stable/ultra01-03)
+type = push AND branch IN (staging, production)
+type = push AND branch NOT IN (master, development)
+type = push AND env(PEPE) = pepo
+type = push AND env(SONAR_TOKEN) IS present
+type = push AND repo = camptocamp/ngeo AND branch IS present
+type = push AND repo = deliveryhero/rps-webkick
+type = push AND tag
+type = push AND tag IS NOT present AND branch = master
+type = push AND tag IS NOT present AND branch = master AND env(TRAVIS_PULL_REQUEST) = false
+type = push AND tag IS present
+type = push OR type = cron
+type = push OR type = pull
+type = push and branch = master
+type = push and branch =~ ^greenkeeper\/.*-.*$
+type = push and tag =~ ^v0.4
+type == "cron"
+type == cron
+type == pull_request
+type == pull_request AND head_branch == not_a_real_branch
+type == push
+type == push AND (NOT branch IN (master, development))
+type IN (api, cron)
+type IN (api, cron) OR tag IS present
+type IN (api, pull_request, push)
+type IN (api, push)
+type IN (cron)
+type IN (cron, api)
+type IN (cron, api) OR tag IS present
+type IN (cron, push, pull_reqest)
+type IN (pull_request)
+type IN (pull_request) AND branch IN (master, staging)
+type IN (pull_request) AND branch IN (staging)
+type IN (pull_request) AND branch IN (staging, production)
+type IN (pull_request) AND branch in (staging)
+type IN (pull_request) OR branch = master
+type IN (pull_request) OR branch IN (master, development)
+type IN (pull_request) OR tag
+type IN (pull_request) OR tag IS present
+type IN (pull_request) OR tag IS present OR branch = master
+type IN (pull_request, cron)
+type IN (pull_request, cron) OR (type = push AND branch = master)
+type IN (pull_request, cron) OR (type IN (push) AND branch = master)
+type IN (pull_request, cron, push)
+type IN (pull_request, push)
+type IN (pull_request, tag)
+type IN (push) AND branch = master
+type IN (push) AND branch = prerelease
+type IN (push, api, cron)
+type IN (push, cron)
+type IN (push, cron) AND (NOT branch =~ [0-9]{8,})
+type IN (push, cron) AND (tag =~ ^$)
+type IN (push, cron) AND NOT (branch =~ [0-9]{8,})
+type IN (push, cron) OR env(TRAVIS_EVENT_TYPE) = cron
+type IN (push, cron, api)
+type IN (push, pull_request)
+type IN (push, pull_request) AND branch = master
+type NOT IN (api, cron)
+type NOT IN (cron)
+type NOT IN (pull_request)
+type NOT IN (pull_request) AND head_branch =~ ^release.*
+type NOT IN (pull_request, api, cron)
+type NOT IN (push, pull_request) AND (tag IS present AND (branch = master))
+type NOT IN (push, pull_request) AND tag IS present AND branch = master
+type in (cron)
+type in (pull_request)
+type in (pull_request) and (branch =~ ^greenkeeper\/.*-.*$)
+type in (push)
+type in (push) AND branch != master
+type in (push) and branch IN (master)
+type in (push) and branch IN (master,staging)
+type in (push, pull_request, api)
+type not in (pull_request)
+type=cron
