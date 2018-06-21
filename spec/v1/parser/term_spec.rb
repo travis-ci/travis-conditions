@@ -50,6 +50,10 @@ describe Travis::Conditions::V1::Parser, 'term' do
     should eq [:match, [:var, :tag], [:reg, [:call, :env, [[:val, 'foo']]]]]
   end
 
+  it 'tag =~ concat(^foo-, env(foo))' do
+    should eq [:match, [:var, :tag], [:reg, [:call, :concat, [[:val, "^foo-"], [:call, :env, [[:val, 'foo']]]]]]]
+  end
+
   it 'type IN (foo)' do
     should eq [:in, [:var, :type], [[:val, 'foo']]]
   end
