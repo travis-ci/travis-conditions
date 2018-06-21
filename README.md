@@ -13,6 +13,29 @@ Travis::Conditions.parse(str, data)
 
 See [this file](https://github.com/travis-ci/travis-conditions/blob/master/lib/travis/conditions/v1/parser.rb#L6-L47) for the EBNF.
 
+## CLI
+
+With the gem installed you can use the command `travis-conditions` in order to
+test your conditions locally. For example:
+
+```
+$ travis-conditions "branch = foo" --data '{"branch": "foo"}'
+true
+
+$ echo '{"branch": "foo"}' | travis-conditions "branch = foo"
+true
+```
+
+The given `data` hash can include known attributes (such as branch, tag, repo)
+and an `env` key that can either hold a hash, or an array of strings:
+
+```
+$ travis-conditions "env(foo) = bar" --data '{"env": {"foo": "bar"}}'
+true
+$ travis-conditions "env(foo) = bar" --data '{"env": ["foo=bar"]}'
+true
+```
+
 ## Conditions
 
 Conditions can be used to filter out, and reject builds, stages, and jobs by

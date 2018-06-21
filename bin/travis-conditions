@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+$: << 'lib'
+
+require 'json'
+require 'optparse'
+require 'travis/conditions'
+
+def help
+  abort <<~help
+    Usage:
+      travis-conditions "branch = master" --data '{"branch": "master"}'
+      travis-conditions echo '{"branch": "master"}' | travis-conditions "branch = master"
+
+    The given data JSON hash can include known attributes (such as branch, tag,
+    repo) and an "env" key that can either hold a hash, or an array of strings:
+
+      {"env": {"foo": "bar"}}
+      {"env": ["foo=bar"]}
+  help
+end
+
+data = $stdin.read unless $stdin.tty?
+
+ARGV.options do |opts|
+  opts.on("-d", "--data DATA") { |val| data = val }
+  opts.on_tail("-h", "--help") { help }
+  opts.parse!
+end
+
+cond = ARGV.shift
+abort help unless cond && data
+
+p Travis::Conditions.eval(cond, JSON.parse(data), version: :v1)
