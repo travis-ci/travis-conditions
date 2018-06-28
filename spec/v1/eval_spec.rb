@@ -176,6 +176,11 @@ describe Travis::Conditions::V1, 'eval' do
 
   describe 'in' do
     context do
+      let(:str) { 'branch in (foo, master, bar)' }
+      it { should be true }
+    end
+
+    context do
       let(:str) { 'branch IN (foo, master, bar)' }
       it { should be true }
     end
@@ -197,6 +202,11 @@ describe Travis::Conditions::V1, 'eval' do
   end
 
   describe 'not in' do
+    context do
+      let(:str) { 'branch not in (foo, master, bar)' }
+      it { should be false }
+    end
+
     context do
       let(:str) { 'branch NOT IN (foo, master, bar)' }
       it { should be false }
@@ -220,7 +230,17 @@ describe Travis::Conditions::V1, 'eval' do
 
   describe 'is' do
     context do
+      let(:str) { 'branch is present' }
+      it { should be true }
+    end
+
+    context do
       let(:str) { 'branch IS present' }
+      it { should be true }
+    end
+
+    context do
+      let(:str) { 'branch IS PRESENT' }
       it { should be true }
     end
 
@@ -241,6 +261,11 @@ describe Travis::Conditions::V1, 'eval' do
 
     context do
       let(:str) { 'env(baz) IS present' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'branch IS BLANK' }
       it { should be false }
     end
 
@@ -271,6 +296,11 @@ describe Travis::Conditions::V1, 'eval' do
   end
 
   describe 'is not' do
+    context do
+      let(:str) { 'branch is not present' }
+      it { should be false }
+    end
+
     context do
       let(:str) { 'branch IS NOT present' }
       it { should be false }
