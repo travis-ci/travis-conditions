@@ -71,7 +71,7 @@ module Travis
           end
 
           def call(name, args)
-            send(name, *args.map { |arg| evl(arg) })
+            send(name.to_s.downcase, *args.map { |arg| evl(arg) })
           end
 
           def env(key)

@@ -110,6 +110,11 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
+      let(:str) { 'ENV(foo) = foo' }
+      it { should be true }
+    end
+
+    context do
       let(:str) { 'env(foo) = bar' }
       it { should be false }
     end
