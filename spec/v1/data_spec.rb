@@ -13,9 +13,23 @@ describe Travis::Conditions::V1::Data do
   end
 
   describe 'given an env array' do
-    let(:env) { ['foo=FOO'] }
-    it { expect(subject.env(:foo)).to eq 'FOO' }
-    it { expect(subject.env('foo')).to eq 'FOO' }
+    describe 'with a single var' do
+      let(:env) { ['foo=FOO'] }
+      it { expect(subject.env(:foo)).to eq 'FOO' }
+      it { expect(subject.env('foo')).to eq 'FOO' }
+    end
+
+    describe 'with several vars on one string' do
+      let(:env) { ['foo=FOO bar=BAR'] }
+      it { expect(subject.env(:foo)).to eq 'FOO' }
+      it { expect(subject.env(:bar)).to eq 'BAR' }
+    end
+
+    describe 'with quoted vars' do
+      let(:env) { ['foo="FOO BAR" bar="BAR BAZ"'] }
+      it { expect(subject.env(:foo)).to eq 'FOO BAR' }
+      it { expect(subject.env(:bar)).to eq 'BAR BAZ' }
+    end
   end
 
   describe 'given a string without an = it raises an ArgumentError' do
