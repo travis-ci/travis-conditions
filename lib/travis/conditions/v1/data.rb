@@ -2,6 +2,9 @@ module Travis
   module Conditions
     module V1
       class Data < Struct.new(:data)
+        PAIRS = /((?:\\.|[^= ]+)*)=("(?:\\.|[^"\\]+)*"|(?:\\.|[^ "\\]+)*)/
+        QUOTE = /^(["'])(.*)\1$/
+
         def initialize(data)
           super(normalize(data))
         end
@@ -55,15 +58,18 @@ module Travis
             when Hash
               obj
             else
-              Array(obj).map { |obj| split(obj.to_s) }.to_h
+              Array(obj).map { |obj| parse(obj.to_s) }.flatten(1).to_h
             end
           end
 
-          def split(str)
+          def parse(str)
             str = str.strip
             raise arg_error(str) if str.empty? || !str.include?("=")
-            lft, rgt = str.split('=', 2)
-            [lft, cast(rgt)]
+            str.scan(PAIRS).map { |lft, rgt| [lft, cast(unquote(rgt))] }
+          end
+
+          def unquote(str)
+            QUOTE =~ str && $2 || str
           end
 
           def arg_error(arg)
