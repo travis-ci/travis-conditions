@@ -37,10 +37,8 @@ module Travis
 
           def normalize_env(env)
             symbolize(to_h(env || {}))
-          rescue TypeError, EnvVars::String::ParseError
-            # raise error(env)
-            puts "[travis-conditions] Cannot normalize data[:env] (#{env.inspect} given)"
-            {}
+          rescue TypeError
+            raise error(env)
           end
 
           def to_h(obj)
@@ -55,6 +53,9 @@ module Travis
           def parse(str)
             vars = EnvVars::String.new(str).to_h
             vars.map { |lft, rgt| [lft, cast(unquote(rgt))] }
+          rescue EnvVars::String::ParseError
+            puts "[travis-conditions] Cannot normalize env var (#{str.inspect} given)"
+            []
           end
 
           def cast(obj)
