@@ -19,4 +19,5 @@ Gem::Specification.new do |s|
   s.executables << 'travis-conditions'
 
   s.add_dependency 'parslet', '~> 1.8'
+  s.add_dependency 'travis-env_vars', '~> 0.1'
 end
