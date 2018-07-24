@@ -9,7 +9,7 @@ module Travis
       ParseError = Class.new(ArgumentError)
 
       KEY   = /[^\s=]+/
-      WORD  = /(\\["']|[^'"\s])+/
+      WORD  = /(\\.*|[^'"\s])+/
       QUOTE = /(['"]{1})/
       SPACE = /\s+/
       EQUAL = /=/
