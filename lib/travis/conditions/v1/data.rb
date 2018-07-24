@@ -1,10 +1,9 @@
+require 'travis/env_vars'
+
 module Travis
   module Conditions
     module V1
       class Data < Struct.new(:data)
-        PAIRS = /((?:\\.|[^= ]+)*)=("(?:\\.|[^"\\]+)*"|(?:\\.|[^ "\\]+)*)/
-        QUOTE = /^(["'])(.*)\1$/
-
         def initialize(data)
           super(normalize(data))
         end
@@ -49,8 +48,8 @@ module Travis
 
           def normalize_env(env)
             symbolize(to_h(env || {}))
-          rescue TypeError
-            raise arg_error(env)
+          rescue TypeError, EnvVars::String::ParseError
+            raise error(env)
           end
 
           def to_h(obj)
@@ -63,16 +62,17 @@ module Travis
           end
 
           def parse(str)
-            str = str.strip
-            raise arg_error(str) if str.empty? || !str.include?("=")
-            str.scan(PAIRS).map { |lft, rgt| [lft, cast(unquote(rgt))] }
+            vars = EnvVars::String.new(str).to_h
+            vars.map { |lft, rgt| [lft, cast(unquote(rgt))] }
           end
+
+          QUOTE = /^(["'])(.*)\1$/
 
           def unquote(str)
             QUOTE =~ str && $2 || str
           end
 
-          def arg_error(arg)
+          def error(arg)
             ArgumentError.new("Invalid env data (#{arg.inspect} given)")
           end
       end
