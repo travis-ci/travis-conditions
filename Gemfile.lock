@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/travis-ci/travis-env_vars
+  revision: c592ec523dd2ae6b6f3432656864478df189b2b1
+  ref: sf-env_vars
+  specs:
+    travis-env_vars (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -23,6 +30,7 @@ PLATFORMS
 DEPENDENCIES
   parslet
   rspec
+  travis-env_vars!
 
 BUNDLED WITH
    1.16.1
