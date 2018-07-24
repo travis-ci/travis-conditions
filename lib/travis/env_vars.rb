@@ -10,9 +10,10 @@ module Travis
 
       KEY   = /[^\s=]+/
       WORD  = /(\\.*|[^'"\s])+/
-      QUOTE = /(['"]{1})/
+      QUOTE = /(['"`]{1})/
       SPACE = /\s+/
       EQUAL = /=/
+      SUBSH = /\$\(.*?\)/
 
       extend Forwardable
 
@@ -56,11 +57,15 @@ module Travis
       end
 
       def value
-        quoted || word
+        quoted || subshell || word
       end
 
       def word
         scan(WORD)
+      end
+
+      def subshell
+        scan(SUBSH)
       end
 
       def quoted

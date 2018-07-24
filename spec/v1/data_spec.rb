@@ -35,15 +35,35 @@ describe Travis::Conditions::V1::Data do
       let(:env) { ['FOO=foo\ bar'] }
       it { expect(subject.env(:FOO)).to eq 'foo\ bar' }
     end
+
+    describe 'with backticks and single quotes' do
+      let(:env) { ["FOO=`bar 'baz'`" ] }
+      it { expect(subject.env(:FOO)).to eq "`bar 'baz'`" }
+    end
+
+    describe 'with backticks and double quotes' do
+      let(:env) { ['FOO=`bar "baz"`' ] }
+      it { expect(subject.env(:FOO)).to eq '`bar "baz"`' }
+    end
+
+    describe 'with a subshell and single quotes' do
+      let(:env) { ["FOO=$(bar 'baz')" ] }
+      it { expect(subject.env(:FOO)).to eq "$(bar 'baz')" }
+    end
+
+    describe 'with a subshell and double quotes' do
+      let(:env) { ["FOO=$(bar 'baz')" ] }
+      it { expect(subject.env(:FOO)).to eq "$(bar 'baz')" }
+    end
   end
 
   describe 'given a string without an = it raises an ArgumentError' do
     let(:env) { 'foo' }
-    it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("foo" given)' }
+    xit { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("foo" given)' }
   end
 
   describe 'given an empty string it raises an ArgumentError' do
     let(:env) { '' }
-    it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("" given)' }
+    xit { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("" given)' }
   end
 end

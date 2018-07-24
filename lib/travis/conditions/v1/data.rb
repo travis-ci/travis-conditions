@@ -18,6 +18,12 @@ module Travis
 
         private
 
+          def normalize(data)
+            data = symbolize(data)
+            data[:env] = normalize_env(data[:env])
+            data
+          end
+
           def symbolize(obj)
             case obj
             when Hash
@@ -29,27 +35,12 @@ module Travis
             end
           end
 
-          def cast(obj)
-            case obj.to_s.downcase
-            when 'false'
-              false
-            when 'true'
-              true
-            else
-              obj
-            end
-          end
-
-          def normalize(data)
-            data = symbolize(data)
-            data[:env] = normalize_env(data[:env])
-            data
-          end
-
           def normalize_env(env)
             symbolize(to_h(env || {}))
           rescue TypeError, EnvVars::String::ParseError
-            raise error(env)
+            # raise error(env)
+            puts "[travis-conditions] Cannot normalize data[:env] (#{env.inspect} given)"
+            {}
           end
 
           def to_h(obj)
@@ -64,6 +55,17 @@ module Travis
           def parse(str)
             vars = EnvVars::String.new(str).to_h
             vars.map { |lft, rgt| [lft, cast(unquote(rgt))] }
+          end
+
+          def cast(obj)
+            case obj.to_s.downcase
+            when 'false'
+              false
+            when 'true'
+              true
+            else
+              obj
+            end
           end
 
           QUOTE = /^(["'])(.*)\1$/
