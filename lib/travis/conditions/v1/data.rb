@@ -1,10 +1,9 @@
+require 'travis/env_vars'
+
 module Travis
   module Conditions
     module V1
       class Data < Struct.new(:data)
-        PAIRS = /((?:\\.|[^= ]+)*)=("(?:\\.|[^"\\]+)*"|(?:\\.|[^ "\\]+)*)/
-        QUOTE = /^(["'])(.*)\1$/
-
         def initialize(data)
           super(normalize(data))
         end
@@ -19,6 +18,12 @@ module Travis
 
         private
 
+          def normalize(data)
+            data = symbolize(data)
+            data[:env] = normalize_env(data[:env])
+            data
+          end
+
           def symbolize(obj)
             case obj
             when Hash
@@ -28,6 +33,29 @@ module Travis
             else
               obj
             end
+          end
+
+          def normalize_env(env)
+            symbolize(to_h(env || {}))
+          rescue TypeError
+            raise error(env)
+          end
+
+          def to_h(obj)
+            case obj
+            when Hash
+              obj
+            else
+              Array(obj).map { |obj| parse(obj.to_s) }.flatten(1).to_h
+            end
+          end
+
+          def parse(str)
+            vars = EnvVars.new(str).to_h
+            vars.map { |lft, rgt| [lft, cast(unquote(rgt))] }
+          rescue EnvVars::String::ParseError
+            puts "[travis-conditions] Cannot normalize env var (#{str.inspect} given)"
+            []
           end
 
           def cast(obj)
@@ -41,38 +69,13 @@ module Travis
             end
           end
 
-          def normalize(data)
-            data = symbolize(data)
-            data[:env] = normalize_env(data[:env])
-            data
-          end
-
-          def normalize_env(env)
-            symbolize(to_h(env || {}))
-          rescue TypeError
-            raise arg_error(env)
-          end
-
-          def to_h(obj)
-            case obj
-            when Hash
-              obj
-            else
-              Array(obj).map { |obj| parse(obj.to_s) }.flatten(1).to_h
-            end
-          end
-
-          def parse(str)
-            str = str.strip
-            raise arg_error(str) if str.empty? || !str.include?("=")
-            str.scan(PAIRS).map { |lft, rgt| [lft, cast(unquote(rgt))] }
-          end
+          QUOTE = /^(["'])(.*)\1$/
 
           def unquote(str)
             QUOTE =~ str && $2 || str
           end
 
-          def arg_error(arg)
+          def error(arg)
             ArgumentError.new("Invalid env data (#{arg.inspect} given)")
           end
       end

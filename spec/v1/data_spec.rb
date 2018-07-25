@@ -7,38 +7,63 @@ describe Travis::Conditions::V1::Data do
   it { expect(subject['branch']).to eq 'branch' }
 
   describe 'given an env hash' do
-    let(:env) { { foo: 'FOO' } }
-    it { expect(subject.env(:foo)).to eq 'FOO' }
-    it { expect(subject.env('foo')).to eq 'FOO' }
+    let(:env) { { FOO: 'foo' } }
+    it { expect(subject.env(:FOO)).to eq 'foo' }
+    it { expect(subject.env('FOO')).to eq 'foo' }
   end
 
   describe 'given an env array' do
     describe 'with a single var' do
-      let(:env) { ['foo=FOO'] }
-      it { expect(subject.env(:foo)).to eq 'FOO' }
-      it { expect(subject.env('foo')).to eq 'FOO' }
+      let(:env) { ['FOO=foo'] }
+      it { expect(subject.env(:FOO)).to eq 'foo' }
+      it { expect(subject.env('FOO')).to eq 'foo' }
     end
 
     describe 'with several vars on one string' do
-      let(:env) { ['foo=FOO bar=BAR'] }
-      it { expect(subject.env(:foo)).to eq 'FOO' }
-      it { expect(subject.env(:bar)).to eq 'BAR' }
+      let(:env) { ['FOO=foo BAR=bar'] }
+      it { expect(subject.env(:FOO)).to eq 'foo' }
+      it { expect(subject.env(:BAR)).to eq 'bar' }
     end
 
     describe 'with quoted vars' do
-      let(:env) { ['foo="FOO BAR" bar="BAR BAZ"'] }
-      it { expect(subject.env(:foo)).to eq 'FOO BAR' }
-      it { expect(subject.env(:bar)).to eq 'BAR BAZ' }
+      let(:env) { ['FOO="foo bar" BAR="bar baz"'] }
+      it { expect(subject.env(:FOO)).to eq 'foo bar' }
+      it { expect(subject.env(:BAR)).to eq 'bar baz' }
+    end
+
+    describe 'with an escaped space' do
+      let(:env) { ['FOO=foo\ bar'] }
+      it { expect(subject.env(:FOO)).to eq 'foo\ bar' }
+    end
+
+    describe 'with backticks and single quotes' do
+      let(:env) { ["FOO=`bar 'baz'`" ] }
+      it { expect(subject.env(:FOO)).to eq "`bar 'baz'`" }
+    end
+
+    describe 'with backticks and double quotes' do
+      let(:env) { ['FOO=`bar "baz"`' ] }
+      it { expect(subject.env(:FOO)).to eq '`bar "baz"`' }
+    end
+
+    describe 'with a subshell and single quotes' do
+      let(:env) { ["FOO=$(bar 'baz')" ] }
+      it { expect(subject.env(:FOO)).to eq "$(bar 'baz')" }
+    end
+
+    describe 'with a subshell and double quotes' do
+      let(:env) { ["FOO=$(bar 'baz')" ] }
+      it { expect(subject.env(:FOO)).to eq "$(bar 'baz')" }
     end
   end
 
   describe 'given a string without an = it raises an ArgumentError' do
     let(:env) { 'foo' }
-    it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("foo" given)' }
+    xit { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("foo" given)' }
   end
 
   describe 'given an empty string it raises an ArgumentError' do
     let(:env) { '' }
-    it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("" given)' }
+    xit { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("" given)' }
   end
 end
