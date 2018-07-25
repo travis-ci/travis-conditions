@@ -53,7 +53,7 @@ module Travis
           def parse(str)
             vars = EnvVars.new(str).to_h
             vars.map { |lft, rgt| [lft, cast(unquote(rgt))] }
-          rescue EnvVars::String::ParseError
+          rescue EnvVars::ParseError
             puts "[travis-conditions] Cannot normalize env var (#{str.inspect} given)"
             []
           end
