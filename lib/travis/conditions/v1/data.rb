@@ -50,7 +50,7 @@ module Travis
             when Array
               obj.map { |obj| to_h(obj).to_a }.flatten(1).to_h
             else
-              parse(obj.to_s)
+              parse(obj.to_s.strip)
             end
           end
 
