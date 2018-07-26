@@ -55,6 +55,11 @@ describe Travis::Conditions::V1::Data do
       let(:env) { ["FOO=$(bar 'baz')" ] }
       it { expect(subject.env(:FOO)).to eq "$(bar 'baz')" }
     end
+
+    describe 'with a string and a secure env var' do
+      let(:env) { ["FOO=foo BAR=bar", { secure: '12345' }] }
+      it { expect(subject.env(:FOO)).to eq 'foo' }
+    end
   end
 
   describe 'given a string without an = it raises an ArgumentError' do
