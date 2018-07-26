@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/travis-ci/travis-env_vars
-  revision: c592ec523dd2ae6b6f3432656864478df189b2b1
+  revision: 6ed4b4c27f5f9a57f4aa9f0ae8e15a6dfaf7eeb6
   ref: sf-env_vars
   specs:
     travis-env_vars (0.1.0)
