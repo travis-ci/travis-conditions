@@ -65,7 +65,7 @@ describe Travis::Conditions::V1, 'real conditions' do
     fork = false
     not tag =~ ^autobuild
     tag =~ ''
-    tag =~ /(^version_code\/)|(^$)/
+    tag =~ /(^version_code\\/)|(^$)/
     tag =~ /^$|\s+/
     tag =~ [0-9]+\.[0-9]+\.[0-9]+
     tag =~ ^\d+(\.\d+)+(-.*)?

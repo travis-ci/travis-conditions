@@ -66,7 +66,6 @@ module Travis
         NRE   = /!~/
         COMMA = /,/
         WORD  = /[^\s\(\)"',=!]+/
-        REGEX = %r(/.+/|\S*[^\s\)]+)
         CONT  = /\\\s*[\n\r]/
 
         OP = {
@@ -84,7 +83,7 @@ module Travis
           shell_str:   'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
         }
 
-        def_delegators :str, :scan, :skip, :string, :pos, :peek
+        def_delegators :str, :rest, :scan, :skip, :string, :pos, :peek
         attr_reader :str
 
         def initialize(str)
@@ -118,8 +117,9 @@ module Travis
         def regex
           val = call
           return [:reg, val] if val
-          reg = space { scan(REGEX) }
-          [:reg, reg.gsub(/^\/|\/$/, '')] or err('an operand')
+          return unless reg = space { Regex.new(rest).scan }
+          str.pos = str.pos + reg.size
+          [:reg, reg.gsub(%r(^/|/$), '')] # or err('an operand')
         end
 
         def eq

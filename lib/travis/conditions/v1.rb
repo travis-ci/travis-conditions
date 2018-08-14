@@ -1,6 +1,7 @@
 require 'travis/conditions/v1/data'
 require 'travis/conditions/v1/eval'
 require 'travis/conditions/v1/parser'
+require 'travis/conditions/v1/regex'
 
 module Travis
   module Conditions
