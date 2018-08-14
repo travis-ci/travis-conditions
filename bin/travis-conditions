@@ -4,20 +4,41 @@ $: << 'lib'
 
 require 'json'
 require 'optparse'
+require 'pp'
 require 'travis/conditions'
 
 def help
-  abort <<~help
-    Usage:
-      travis-conditions "branch = master" --data '{"branch": "master"}'
-      travis-conditions echo '{"branch": "master"}' | travis-conditions "branch = master"
+  abort <<~str
+    SYNOPSIS:
 
-    The given data JSON hash can include known attributes (such as branch, tag,
-    repo) and an "env" key that can either hold a hash, or an array of strings:
+      travis-conditions <command>
 
-      {"env": {"foo": "bar"}}
-      {"env": ["foo=bar"]}
-  help
+    COMMANDS:
+
+      parse
+
+        Validate the syntax of a condition, inspect the resulting abstract
+        syntax tree.
+
+        E.g.:
+
+          travis-conditions parse "branch = master"
+
+      eval
+
+        Validate the behavior of a condition, given an input data hash.
+
+        E.g.:
+
+          travis-conditions eval "branch = master" --data '{"branch": "master"}'
+          echo '{"branch": "master"}' | eval travis-conditions "branch = master"
+
+        The given data JSON hash can include known attributes (such as branch, tag,
+        repo) and an "env" key that can either hold a hash, or an array of strings:
+
+          {"env": {"foo": "bar"}}
+          {"env": ["foo=bar"]}
+  str
 end
 
 data = $stdin.read unless $stdin.tty?
@@ -28,7 +49,19 @@ ARGV.options do |opts|
   opts.parse!
 end
 
-cond = ARGV.shift
-abort help unless cond && data
+cmd = ARGV.shift
+abort help unless cmd
 
-p Travis::Conditions.eval(cond, JSON.parse(data), version: :v1)
+cond = ARGV.shift
+abort help unless cond && (cmd == 'parse' || data)
+
+begin
+  case cmd
+  when 'parse'
+    pp Travis::Conditions.parse(cond, version: :v1)
+  when 'eval'
+    p Travis::Conditions.eval(cond, JSON.parse(data), version: :v1)
+  end
+rescue Travis::Conditions::ParseError => e
+  abort e.message
+end

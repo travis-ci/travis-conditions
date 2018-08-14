@@ -59,6 +59,7 @@ describe Travis::Conditions::V1::Data do
     describe 'with a string and a secure env var' do
       let(:env) { ["FOO=foo BAR=bar", { secure: '12345' }] }
       it { expect(subject.env(:FOO)).to eq 'foo' }
+      it { expect(subject.env(:BAR)).to eq 'bar' }
     end
   end
 
