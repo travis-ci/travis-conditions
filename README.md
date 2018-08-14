@@ -16,13 +16,28 @@ See [this file](https://github.com/travis-ci/travis-conditions/blob/master/lib/t
 ## CLI
 
 With the gem installed you can use the command `travis-conditions` in order to
-test your conditions locally. For example:
+test your conditions locally.
+
+### parse
+
+Check the syntax of a condition by inspecting the resulting abstract syntax
+tree.
 
 ```
-$ travis-conditions "branch = foo" --data '{"branch": "foo"}'
+$ travis-conditions eval "branch = foo"
+[:eq, [:var, :branch], [:val, "foo"]]
+
+```
+
+### eval
+
+Check conditions against a given data hash.
+
+```
+$ travis-conditions eval "branch = foo" --data '{"branch": "foo"}'
 true
 
-$ echo '{"branch": "foo"}' | travis-conditions "branch = foo"
+$ echo '{"branch": "foo"}' | travis-conditions eval "branch = foo"
 true
 ```
 
@@ -30,9 +45,9 @@ The given `data` hash can include known attributes (such as branch, tag, repo)
 and an `env` key that can either hold a hash, or an array of strings:
 
 ```
-$ travis-conditions "env(foo) = bar" --data '{"env": {"foo": "bar"}}'
+$ travis-conditions eval "env(foo) = bar" --data '{"env": {"foo": "bar"}}'
 true
-$ travis-conditions "env(foo) = bar" --data '{"env": ["foo=bar"]}'
+$ travis-conditions eval "env(foo) = bar" --data '{"env": ["foo=bar"]}'
 true
 ```
 
