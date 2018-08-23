@@ -78,6 +78,7 @@ module Travis
         }
 
         MSGS = {
+          invalid:     'Invalid condition: %p',
           parse_error: 'Could not parse %s',
           shell_var:   'Variable names cannot start with a dollar (shell code does not work). If you are trying to compare to an env var, please use env("name")',
           shell_str:   'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
@@ -87,6 +88,7 @@ module Travis
         attr_reader :str
 
         def initialize(str)
+          raise ArgumentError, MSGS[:invalid] % [str] unless str.is_a?(String)
           @str = StringScanner.new(filter(str))
         end
 

@@ -483,4 +483,9 @@ describe Travis::Conditions::V1::Parser do
   it '$FOO = bar' do
     expect { subject }.to raise_error(Travis::Conditions::ParseError)
   end
+
+  describe 'given an array of strings' do
+    let(:str) { ['foo', 'bar'] }
+    it { expect { subject }.to raise_error(Travis::Conditions::ArgumentError, 'Invalid condition: ["foo", "bar"]') }
+  end
 end

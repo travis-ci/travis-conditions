@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.7
+
+### Fixed
+
+- Raise an argument error if the given condition is not a single string (see [#14](https://github.com/travis-ci/travis-conditions/pull/14))
+
 ## v1.0.6
 
 ### Fixed
