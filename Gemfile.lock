@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/travis-ci/travis-env_vars
-  revision: 6ed4b4c27f5f9a57f4aa9f0ae8e15a6dfaf7eeb6
-  ref: sf-env_vars
+  revision: f2c2f6bbc02927bf380afeb7a2d6a0a50f459aa0
+  ref: jc-collection
   specs:
-    travis-env_vars (0.1.0)
+    travis-env_vars (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -33,4 +33,4 @@ DEPENDENCIES
   travis-env_vars!
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
