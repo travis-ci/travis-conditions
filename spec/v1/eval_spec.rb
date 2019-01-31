@@ -77,6 +77,18 @@ describe Travis::Conditions::V1, 'eval' do
     end
 
     context do
+      let(:data) { { branch: 'master', tag: tag, env: ["foo=foo", "REPO=this"] } }
+      let(:str) { 'concat(branch, -, env(foo), -, env(REPO)) = master-foo-this' }
+      it { should be true }
+    end
+
+    context do
+      let(:data) { { branch: 'master', tag: tag, env: ["foo=foo", "THIS_REPO=this"] } }
+      let(:str) { 'concat(branch, -, env(foo), -, env(THIS_REPO)) = master-foo-this' }
+      it { should be true }
+    end
+
+    context do
       let(:tag) { '0.0.1' }
       let(:str) { 'tag =~ /^(0|[1-9]\d*)(?:\.(0|[1-9]\d*))?(?:\.(0|[1-9]\d*))?(?:-([\w.-]+))?(?:\+([\w.-]+))?$ AND type IN (push, api)/' }
       it { should be false }
