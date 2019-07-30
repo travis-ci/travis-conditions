@@ -130,7 +130,7 @@ module Travis
               end
 
               def stri(str)
-                str(str) | str(str.upcase)
+                str(str.to_s) | str(str.to_s.upcase)
               end
 
               def parens?(node)
