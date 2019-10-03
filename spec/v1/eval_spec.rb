@@ -1,6 +1,7 @@
 describe Travis::Conditions::V1, 'eval' do
+  let(:data) { { branch: 'master', tag: tag, env: env } }
+  let(:env)  { { foo: 'foo', bar: false } }
   let(:tag)  { nil }
-  let(:data) { { branch: 'master', tag: tag, env: { foo: 'foo', bar: false } } }
   subject { described_class.eval(str, data) }
 
   context do
@@ -251,7 +252,36 @@ describe Travis::Conditions::V1, 'eval' do
 
     context do
       let(:str) { 'env(foo) IS present' }
-      it { should be true }
+
+      describe 'given an env hash with a string value' do
+        let(:env) { { foo: 'foo' } }
+        it { should be true }
+      end
+
+      describe 'given an env hash with a numeric value' do
+        let(:env) { { foo: 1 } }
+        it { should be true }
+      end
+
+      describe 'given an env hash with a boolean value' do
+        let(:env) { { foo: true } }
+        it { should be true }
+      end
+
+      describe 'given an env strings array with a string value' do
+        let(:env) { ['foo=foo'] }
+        it { should be true }
+      end
+
+      describe 'given an env strings array with a numeric value' do
+        let(:env) { ['foo=1'] }
+        it { should be true }
+      end
+
+      describe 'given an env strings array with a boolean value' do
+        let(:env) { ['foo=true'] }
+        it { should be true }
+      end
     end
 
     context do

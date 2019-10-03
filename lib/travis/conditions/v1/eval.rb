@@ -83,7 +83,7 @@ module Travis
           end
 
           def present(value)
-            value.respond_to?(:empty?) && !value.empty?
+            value.respond_to?(:empty?) ? !value.empty? : !!value
           end
 
           def blank(value)
