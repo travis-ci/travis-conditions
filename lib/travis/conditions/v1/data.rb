@@ -13,7 +13,9 @@ module Travis
         end
 
         def env(key)
-          data.fetch(:env, {})[key.to_sym]
+          value = data.fetch(:env, {})[key.to_sym]
+          value = value.gsub(/^(["'])(.*)\1$/, '\2') if value.respond_to?(:gsub)
+          value
         end
 
         private
