@@ -32,19 +32,19 @@ describe Travis::Conditions::V1, 'real conditions' do
   end
 
   context do
-    let(:str) do
+    let(:cond) do
       %(
         repo = iribeyri/travis-experiments
         AND type != pull_request
         AND (branch = master OR tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+.*$)
       )
     end
-    it { expect { described_class.parse(str) }.to_not raise_error }
+    it { expect { described_class.parse(cond) }.to_not raise_error }
   end
 
   context do
     let(:subject) { described_class.parse(cond) }
     let(:cond) { 'commit_message !~ concat("[skip", env(TRAVIS_JOB_NAME), "]")' }
-    it { expect { subject }.to_not raise_error }
+    it { expect { described_class.parse(cond) }.to_not raise_error }
   end
 end
