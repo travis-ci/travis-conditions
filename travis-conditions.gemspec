@@ -18,6 +18,5 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.executables << 'travis-conditions'
 
-  s.add_dependency 'parslet', '~> 1.8'
-  s.add_dependency 'travis-env_vars', '~> 0.1'
+  s.add_dependency 'sh_vars', '~> 1.0.2'
 end

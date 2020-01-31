@@ -1,15 +1,8 @@
-GIT
-  remote: https://github.com/travis-ci/travis-env_vars
-  revision: 6ed4b4c27f5f9a57f4aa9f0ae8e15a6dfaf7eeb6
-  ref: sf-env_vars
-  specs:
-    travis-env_vars (0.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.3)
-    parslet (1.8.0)
+    parslet (1.8.2)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)
@@ -23,6 +16,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    sh_vars (1.0.2)
 
 PLATFORMS
   ruby
@@ -30,7 +24,7 @@ PLATFORMS
 DEPENDENCIES
   parslet
   rspec
-  travis-env_vars!
+  sh_vars
 
 BUNDLED WITH
-   1.16.1
+   2.0.2

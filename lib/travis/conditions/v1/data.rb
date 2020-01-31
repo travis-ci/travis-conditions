@@ -1,4 +1,4 @@
-require 'travis/env_vars'
+require 'sh_vars'
 
 module Travis
   module Conditions
@@ -55,9 +55,9 @@ module Travis
           end
 
           def parse(str)
-            vars = EnvVars::String.new(str).parse
+            vars = ShVars::String.new(str).parse
             vars.map { |lft, rgt| [lft, cast(unquote(rgt))] }
-          rescue EnvVars::ParseError
+          rescue ShVars::ParseError
             puts "[travis-conditions] Cannot normalize env var (#{str.inspect} given)"
             []
           end
