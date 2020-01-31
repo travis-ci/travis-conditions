@@ -71,6 +71,36 @@ describe Travis::Conditions::V1::Data do
     end
   end
 
+  describe 'given a double quoted string' do
+    let(:env) { [FOO: '"foo"'] }
+    it { expect(subject.env(:FOO)).to eq 'foo' }
+  end
+
+  describe 'given a single quoted string' do
+    let(:env) { [FOO: "'foo'"] }
+    it { expect(subject.env(:FOO)).to eq 'foo' }
+  end
+
+  describe 'given a string with an unbalanced double quote at the beginning' do
+    let(:env) { [FOO: '"foo'] }
+    it { expect(subject.env(:FOO)).to eq '"foo' }
+  end
+
+  describe 'given a string with an unbalanced double quote at the end' do
+    let(:env) { [FOO: 'foo"'] }
+    it { expect(subject.env(:FOO)).to eq 'foo"' }
+  end
+
+  describe 'given a string with an unbalanced single quote at the beginning' do
+    let(:env) { [FOO: "'foo"] }
+    it { expect(subject.env(:FOO)).to eq "'foo" }
+  end
+
+  describe 'given a string with an unbalanced single quote at the end' do
+    let(:env) { [FOO: "foo'"] }
+    it { expect(subject.env(:FOO)).to eq "foo'" }
+  end
+
   describe 'given a string without an = it raises an ArgumentError' do
     let(:env) { 'foo' }
     xit { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid env data ("foo" given)' }

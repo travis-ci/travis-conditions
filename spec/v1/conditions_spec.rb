@@ -47,4 +47,11 @@ describe Travis::Conditions::V1, 'real conditions' do
     let(:cond) { 'commit_message !~ concat("[skip", env(TRAVIS_JOB_NAME), "]")' }
     it { expect { described_class.parse(cond) }.to_not raise_error }
   end
+
+  describe 'quoted env var' do
+    let(:cond) { 'branch = env(FOO)' }
+    let(:data) { { branch: 'foo', env: [FOO: '"foo"'] } }
+    subject { described_class.eval(cond, data) }
+    it { should be true }
+  end
 end
