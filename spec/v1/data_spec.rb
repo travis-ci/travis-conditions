@@ -12,7 +12,7 @@ describe Travis::Conditions::V1::Data do
     it { expect(subject.env('FOO')).to eq 'foo' }
   end
 
-  describe 'given an env array' do
+  describe 'given an env array of strings' do
     describe 'with a single var' do
       let(:env) { ['FOO=foo'] }
       it { expect(subject.env(:FOO)).to eq 'foo' }
@@ -60,6 +60,14 @@ describe Travis::Conditions::V1::Data do
       let(:env) { ["FOO=foo BAR=bar", { secure: '12345' }] }
       it { expect(subject.env(:FOO)).to eq 'foo' }
       it { expect(subject.env(:BAR)).to eq 'bar' }
+    end
+  end
+
+  describe 'given an env array of hashes' do
+    describe 'with a single var' do
+      let(:env) { [FOO: 'foo'] }
+      it { expect(subject.env(:FOO)).to eq 'foo' }
+      it { expect(subject.env('FOO')).to eq 'foo' }
     end
   end
 
