@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    travis-conditions (1.0.9)
+      parslet (~> 1.8.2)
+      sh_vars (~> 1.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -25,6 +32,7 @@ DEPENDENCIES
   parslet
   rspec
   sh_vars
+  travis-conditions!
 
 BUNDLED WITH
    2.0.2
