@@ -54,4 +54,18 @@ describe Travis::Conditions::V1, 'real conditions' do
     subject { described_class.eval(cond, data) }
     it { should be true }
   end
+
+  describe 'env vars as hashes' do
+    let(:cond) { 'repo = env(SLUG)' }
+    let(:data) { { repo: 'owner/name', env: [SLUG: 'owner/name'] } }
+    subject { described_class.eval(cond, data) }
+    it { should be true }
+  end
+
+  describe 'missing env var' do
+    let(:cond) { 'branch =~ env(PATTERN)' }
+    let(:data) { { branch: 'master', env: [] } }
+    subject { described_class.eval(cond, data) }
+    it { should be false }
+  end
 end

@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.8
+
+### Fixed
+
+- Do not raise Type Error when a missing env var is used as a regular expression
+
 ## v1.0.7
 
 ### Fixed

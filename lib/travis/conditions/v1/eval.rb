@@ -34,7 +34,8 @@ module Travis
           end
 
           def match(lft, rgt)
-            evl(lft) =~ evl(rgt)
+            lft, rgt = evl(lft), evl(rgt)
+            lft && rgt && lft =~ rgt
           end
 
           def not_match(lft, rgt)
@@ -63,7 +64,8 @@ module Travis
           end
 
           def reg(expr)
-            Regexp.new(evl(expr))
+            str = evl(expr)
+            Regexp.new(str) if str
           end
 
           def var(name)

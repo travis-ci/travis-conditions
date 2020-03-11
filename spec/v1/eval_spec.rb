@@ -173,6 +173,26 @@ describe Travis::Conditions::V1, 'eval' do
       let(:str) { 'env(foo) =~ concat("^", env(foo), "$")' }
       it { should be true }
     end
+
+    context do
+      let(:str) { 'env(missing) =~ str' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'str =~ env(missing)' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { 'env(missing) =~ ^.*$' }
+      it { should be false }
+    end
+
+    context do
+      let(:str) { '^.*$ =~ env(missing)' }
+      it { should be false }
+    end
   end
 
   describe 'in' do

@@ -69,6 +69,12 @@ describe Travis::Conditions::V1::Data do
       it { expect(subject.env(:FOO)).to eq 'foo' }
       it { expect(subject.env('FOO')).to eq 'foo' }
     end
+
+    describe 'with several vars' do
+      let(:env) { [{ FOO: 'foo' }, { BAR: 'bar' }] }
+      it { expect(subject.env(:BAR)).to eq 'bar' }
+      it { expect(subject.env('BAR')).to eq 'bar' }
+    end
   end
 
   describe 'given a double quoted string' do
