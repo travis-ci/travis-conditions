@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.12
+
+### Fixed
+
+- Reraise RegexpError as Conditions::ArgumentError
+
 ## v1.0.11
 
 ### Fixed

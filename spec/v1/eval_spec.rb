@@ -193,6 +193,11 @@ describe Travis::Conditions::V1, 'eval' do
       let(:str) { '^.*$ =~ env(missing)' }
       it { should be false }
     end
+
+    context do
+      let(:str) { 'str =~ /[z-a]/' }
+      it { expect { subject }.to raise_error Travis::Conditions::ArgumentError, 'Invalid regular expression: /[z-a]/' }
+    end
   end
 
   describe 'in' do

@@ -66,6 +66,8 @@ module Travis
           def reg(expr)
             str = evl(expr)
             Regexp.new(str) if str
+          rescue RegexpError => e
+            raise ArgumentError.new("Invalid regular expression: /#{str}/")
           end
 
           def var(name)
