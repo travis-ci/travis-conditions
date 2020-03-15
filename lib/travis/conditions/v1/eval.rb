@@ -78,7 +78,7 @@ module Travis
             send(name.to_s.downcase, *args.map { |arg| evl(arg) })
           end
 
-          def env(key)
+          def env(key = nil)
             data.env(key)
           end
 

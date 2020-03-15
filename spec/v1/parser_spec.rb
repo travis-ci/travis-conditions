@@ -24,6 +24,11 @@ describe Travis::Conditions::V1::Parser do
       [:call, :env, [[:val, 'FOO']]]
   end
 
+  it 'env()' do
+    should eq \
+      [:call, :env, []]
+  end
+
   # one operand
 
   it '1=1' do

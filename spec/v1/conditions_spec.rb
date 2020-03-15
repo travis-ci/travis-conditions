@@ -75,4 +75,11 @@ describe Travis::Conditions::V1, 'real conditions' do
     subject { described_class.eval(cond, data) }
     it { should be false }
   end
+
+  describe 'missing argument' do
+    let(:cond) { 'branch = env()' }
+    let(:data) { { branch: 'master' } }
+    subject { described_class.eval(cond, data) }
+    it { should be false }
+  end
 end

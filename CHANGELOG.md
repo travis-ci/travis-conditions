@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.13
+
+### Fixed
+
+- Do not raise an ArgumentError if env() was used with a missing argument
+
 ## v1.0.12
 
 ### Fixed

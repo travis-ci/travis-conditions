@@ -9,11 +9,11 @@ module Travis
         end
 
         def [](key)
-          data[key.to_sym]
+          data[key&.to_sym]
         end
 
         def env(key)
-          value = data.fetch(:env, {})[key.to_sym]
+          value = data.fetch(:env, {})[key&.to_sym]
           value = value.gsub(/^(["'])(.*)\1$/, '\2') if value.respond_to?(:gsub)
           value
         end
