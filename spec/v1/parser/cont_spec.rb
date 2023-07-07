@@ -5,37 +5,37 @@ describe Travis::Conditions::V1::Parser, 'line continuation' do
   # backslashes
 
   it "1 = 1 AND\\\n2 = 2" do
-    should eq \
+    expect(subject).to eq \
       [:and,
-        [:eq, [:val, '1'], [:val, '1']],
-        [:eq, [:val, '2'], [:val, '2']]]
+       [:eq, [:val, '1'], [:val, '1']],
+       [:eq, [:val, '2'], [:val, '2']]]
   end
 
   it "1 = 1 AND \\\n 2 = 2" do
-    should eq \
+    expect(subject).to eq \
       [:and,
-        [:eq, [:val, '1'], [:val, '1']],
-        [:eq, [:val, '2'], [:val, '2']]]
+       [:eq, [:val, '1'], [:val, '1']],
+       [:eq, [:val, '2'], [:val, '2']]]
   end
 
   it "1 = 1 AND \\ \n 2 = 2" do
-    should eq \
+    expect(subject).to eq \
       [:and,
-        [:eq, [:val, '1'], [:val, '1']],
-        [:eq, [:val, '2'], [:val, '2']]]
+       [:eq, [:val, '1'], [:val, '1']],
+       [:eq, [:val, '2'], [:val, '2']]]
   end
 
   it "\\\n1 = 1 AND\\\n2 = 2" do
-    should eq \
+    expect(subject).to eq \
       [:and,
-        [:eq, [:val, '1'], [:val, '1']],
-        [:eq, [:val, '2'], [:val, '2']]]
+       [:eq, [:val, '1'], [:val, '1']],
+       [:eq, [:val, '2'], [:val, '2']]]
   end
 
   it "\\\n1 = 1 AND\\\n2 = 2\\\n" do
-    should eq \
+    expect(subject).to eq \
       [:and,
-        [:eq, [:val, '1'], [:val, '1']],
-        [:eq, [:val, '2'], [:val, '2']]]
+       [:eq, [:val, '1'], [:val, '1']],
+       [:eq, [:val, '2'], [:val, '2']]]
   end
 end

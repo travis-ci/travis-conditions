@@ -51,7 +51,8 @@ module Travis
     module V1
       class Parser
         extend Forwardable
-        include Boolean, Helper
+        include Helper
+        include Boolean
 
         VAR   = /type|repo|head_repo|os|dist|group|sudo|language|sender|fork|
                  branch|head_branch|tag|commit_message/x
@@ -69,19 +70,19 @@ module Travis
         CONT  = /\\\s*[\n\r]/
 
         OP = {
-          '='   => :eq,
-          '=='  => :eq,
-          '!='  => :not_eq,
-          '=~'  => :match,
-          '~='  => :match,
-          '!~'  => :not_match
+          '=' => :eq,
+          '==' => :eq,
+          '!=' => :not_eq,
+          '=~' => :match,
+          '~=' => :match,
+          '!~' => :not_match
         }
 
         MSGS = {
-          invalid:     'Invalid condition: %p',
+          invalid: 'Invalid condition: %p',
           parse_error: 'Could not parse %s',
-          shell_var:   'Variable names cannot start with a dollar (shell code does not work). If you are trying to compare to an env var, please use env("name")',
-          shell_str:   'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
+          shell_var: 'Variable names cannot start with a dollar (shell code does not work). If you are trying to compare to an env var, please use env("name")',
+          shell_str: 'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
         }
 
         def_delegators :str, :rest, :scan, :skip, :string, :pos, :peek
@@ -89,6 +90,7 @@ module Travis
 
         def initialize(str)
           raise ArgumentError, MSGS[:invalid] % [str] unless str.is_a?(String)
+
           @str = StringScanner.new(filter(str))
         end
 
@@ -120,8 +122,9 @@ module Travis
           val = call
           return [:reg, val] if val
           return unless reg = space { Regex.new(rest).scan }
+
           str.pos = str.pos + reg.size
-          [:reg, reg.gsub(%r(^/|/$), '')] # or err('an operand')
+          [:reg, reg.gsub(%r{^/|/$}, '')] # or err('an operand')
         end
 
         def eq
@@ -137,6 +140,7 @@ module Travis
           var = scan(VAR)
           error(:shell_var) if var && var[0] == '$'
           return [:var, var.downcase.to_sym] if var && boundary?
+
           str.pos = pos
           nil
         end
@@ -149,9 +153,10 @@ module Travis
 
         def call
           return unless name = func
+
           args = parens { list }
           args or return
-          return [:call, name.to_sym, args]
+          [:call, name.to_sym, args]
         end
 
         def val
@@ -176,6 +181,7 @@ module Travis
 
         def list
           return [] unless item = var || call || val
+
           list = comma ? [item] + self.list : [item]
           skip(COMMA)
           list.compact

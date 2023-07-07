@@ -3,14 +3,14 @@ describe Travis::Conditions::V1::Parser, 'var' do
   let(:subject) { described_class.new(str).var }
 
   it 'type' do
-    should eq [:var, :type]
+    expect(subject).to eq %i[var type]
   end
 
   it 'repo' do
-    should eq [:var, :repo]
+    expect(subject).to eq %i[var repo]
   end
 
   it 'nope' do
-    should be_nil
+    expect(subject).to be_nil
   end
 end

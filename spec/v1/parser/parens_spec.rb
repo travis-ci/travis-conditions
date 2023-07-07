@@ -7,22 +7,22 @@ describe Travis::Conditions::V1::Parser, 'parens' do
   end
 
   it '(foo)' do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
   it '( foo)' do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
   it '(foo )' do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
   it '( foo )' do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
   it 'foo' do
-    should eq nil
+    expect(subject).to eq nil
   end
 end

@@ -7,22 +7,22 @@ describe Travis::Conditions::V1::Parser, 'comma' do
   end
 
   it 'foo,bar' do
-    should eq ['foo', 'bar']
+    expect(subject).to eq %w[foo bar]
   end
 
   it 'foo, bar' do
-    should eq ['foo', 'bar']
+    expect(subject).to eq %w[foo bar]
   end
 
   it 'foo ,bar' do
-    should eq ['foo', 'bar']
+    expect(subject).to eq %w[foo bar]
   end
 
   it 'foo , bar' do
-    should eq ['foo', 'bar']
+    expect(subject).to eq %w[foo bar]
   end
 
   it 'foo' do
-    should eq ['foo', nil]
+    expect(subject).to eq ['foo', nil]
   end
 end

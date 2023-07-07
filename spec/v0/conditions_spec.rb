@@ -16,6 +16,7 @@ describe Travis::Conditions::V0, 'real conditions' do
   context do
     let(:subject) { described_class.parse(cond) }
     let(:cond) { 'commit_message !~ concat("[skip", env(TRAVIS_JOB_NAME), "]")' }
+
     it { expect { subject }.to raise_error Travis::Conditions::ParseError }
   end
 end

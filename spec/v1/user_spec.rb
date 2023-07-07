@@ -10,13 +10,13 @@
 # docs: make the warning about `env` only having the .travis.yml vars bigger and fatter
 
 describe Travis::Conditions::V1, 'real conditions' do
-  broken = <<~strs.split("\n")
-    branch =~ ^(!:release\/) or tag =~ ^version_code\/
-    tag =~ (^version_code\/)|(^$)
+  broken = <<~STRS.split("\n")
+    branch =~ ^(!:release/) or tag =~ ^version_code/
+    tag =~ (^version_code/)|(^$)
     branch = develop/pipes=travis
-  strs
+  STRS
 
-  used = <<~strs.split("\n")
+  used = <<~STRS.split("\n")
     ((NOT branch =~ ^develop/.*$) OR (branch = develop/travis)) AND (tag IS blank)
     (NOT branch =~ ^develop/.*$) AND (tag IS blank)
     (branch != master OR type = cron OR type = api)
@@ -36,7 +36,7 @@ describe Travis::Conditions::V1, 'real conditions' do
     NOT branch =~ ^develop/.*$
     NOT tag = "stable"
     NOT tag = stable
-    NOT tag =~ \+d2$
+    NOT tag =~ +d2$
     branch = develop/hardening
     branch = develop/pipes-travis
     branch = develop/travis
@@ -44,7 +44,7 @@ describe Travis::Conditions::V1, 'real conditions' do
     branch = master AND NOT(type IN (push,pull_request))
     branch = master AND type = pull_request
     branch = master AND type = push
-    branch = master OR tag =~ ^v\d+\.\d+$
+    branch = master OR tag =~ ^v\d+.\d+$
     branch = master OR tag IS present
     branch = master OR type = pull_request OR branch =~ ^rc_.*
     branch = staging
@@ -56,9 +56,9 @@ describe Travis::Conditions::V1, 'real conditions' do
     branch =~ ^develop OR branch =~ ^master OR branch =~ ^release
     branch =~ ^release
     branch =~ ^release.*$
-    branch =~ ^release/ or tag =~ ^version_code\/
+    branch =~ ^release/ or tag =~ ^version_code/
     branch IN (master, ^develop, ^release)
-    branch IN (master, develop) OR branch =~ ^release\/.+$ OR branch =~ ^hotfix\/.+$ OR branch =~ ^bugfix\/.+$ OR branch =~ ^support\/.+$ ORtag IS present OR type IN (pull_request, api)
+    branch IN (master, develop) OR branch =~ ^release/.+$ OR branch =~ ^hotfix/.+$ OR branch =~ ^bugfix/.+$ OR branch =~ ^support/.+$ ORtag IS present OR type IN (pull_request, api)
     branch IN (master, development, features)
     branch is blank
     env(TRAVIS_SECURE_ENV_VARS) = true
@@ -67,16 +67,16 @@ describe Travis::Conditions::V1, 'real conditions' do
     tag =~ ''
     tag =~ /(^version_code\\/)|(^$)/
     tag =~ /^$|\s+/
-    tag =~ [0-9]+\.[0-9]+\.[0-9]+
-    tag =~ ^\d+(\.\d+)+(-.*)?
-    tag =~ ^\d+(\.\d+)+(-.*)? OR branch = travisbuilds-selenium
+    tag =~ [0-9]+.[0-9]+.[0-9]+
+    tag =~ ^\d+(.\d+)+(-.*)?
+    tag =~ ^\d+(.\d+)+(-.*)? OR branch = travisbuilds-selenium
     tag =~ ^travis*
     tag =~ ^v
     tag =~ ^v
     tag =~ ^version_code/ OR (tag IS NOT present)
     tag =~ ^version_code/ OR tag IS NOT present
-    tag =~ ^version_code\/ OR tag =~ ^$
-    tag =~ ^version_code\/|^$
+    tag =~ ^version_code/ OR tag =~ ^$
+    tag =~ ^version_code/|^$
     tag IS blank
     tag IS blank
     tag IS present
@@ -84,9 +84,9 @@ describe Travis::Conditions::V1, 'real conditions' do
     type = push
     type IN (api, cron)
     type IN (push, pull_request)
-  strs
+  STRS
 
-  fixed = <<~strs.split("\n").reject(&:empty?)
+  fixed = <<~STRS.split("\n").reject(&:empty?)
     true
     1=1
     ( branch NOT IN (master) OR fork = true ) AND type IN (push, api, pull_request)
@@ -157,9 +157,9 @@ describe Travis::Conditions::V1, 'real conditions' do
     type != pull_request AND ( branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$ )
     type != pull_request AND (branch =~ ^release$ OR branch =~ ^release-(\d).(\d).(\d)$)
     (branch = master) OR (branch =~ ^release/) OR (tag is present)
-  strs
+  STRS
 
-  kaputt = <<~strs.split("\n")
+  kaputt = <<~STRS.split("\n")
     # IS used for comparison
     (branch = dev) AND (type IS cron)
     (repo IS 2m/sssio) AND (tag =~ ^v)
@@ -199,14 +199,15 @@ describe Travis::Conditions::V1, 'real conditions' do
     # missing quotes
     env(TRAVIS_COMMIT_MESSAGE) IN (Replace Conditional)
     env(TRAVIS_COMMIT_MESSAGE) = Replace conditional
-  strs
+  STRS
 
   strs = used + fixed
 
   strs.each do |str|
     context do
       let(:subject) { described_class.parse(str) }
-      it(str) { expect { subject }.to_not raise_error }
+
+      it(str) { expect { subject }.not_to raise_error }
     end
   end
 
@@ -215,9 +216,10 @@ describe Travis::Conditions::V1, 'real conditions' do
       %(
         repo = iribeyri/travis-experiments
         AND type != pull_request
-        AND (branch = master OR tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+.*$)
+        AND (branch = master OR tag =~ ^v[0-9]+.[0-9]+.[0-9]+.*$)
       )
     end
-    it { expect { described_class.parse(str) }.to_not raise_error }
+
+    it { expect { described_class.parse(str) }.not_to raise_error }
   end
 end
