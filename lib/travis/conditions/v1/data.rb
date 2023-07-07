@@ -29,7 +29,7 @@ module Travis
         def symbolize(obj)
           case obj
           when Hash
-            obj.map { |key, value| [key&.to_sym, symbolize(value)] }.to_h
+            obj.to_h { |key, val| [key&.to_sym, symbolize(val)] }
           when Array
             obj.map { |obj| symbolize(obj) }
           else
@@ -50,7 +50,7 @@ module Travis
           when Hash
             obj
           when Array
-            obj.flat_map { |obj| to_h(obj).to_a }.to_h
+            obj.flat_map { |val| to_h(val).to_a }.to_h
           else
             parse(obj.to_s.strip)
           end

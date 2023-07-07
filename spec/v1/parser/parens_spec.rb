@@ -23,6 +23,6 @@ describe Travis::Conditions::V1::Parser, 'parens' do
   end
 
   it 'foo' do
-    expect(subject).to eq nil
+    expect(subject).to be_nil
   end
 end

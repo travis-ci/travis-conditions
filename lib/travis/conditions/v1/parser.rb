@@ -49,7 +49,7 @@ require 'travis/conditions/v1/helper'
 module Travis
   module Conditions
     module V1
-      class Parser
+      class Parser # rubocop:disable Metrics/ClassLength
         extend Forwardable
         include Helper
         include Boolean
@@ -76,14 +76,14 @@ module Travis
           '=~' => :match,
           '~=' => :match,
           '!~' => :not_match
-        }
+        }.freeze
 
-        MSGS = {
+        MSGS = { # rubocop:disable
           invalid: 'Invalid condition: %p',
           parse_error: 'Could not parse %s',
           shell_var: 'Variable names cannot start with a dollar (shell code does not work). If you are trying to compare to an env var, please use env("name")',
           shell_str: 'Strings cannot start with a dollar (shell code does not work). This can be bypassed by quoting the string.'
-        }
+        }.freeze
 
         def_delegators :str, :rest, :scan, :skip, :string, :pos, :peek
         attr_reader :str
@@ -121,7 +121,7 @@ module Travis
         def regex
           val = call
           return [:reg, val] if val
-          return unless reg = space { Regex.new(rest).scan }
+          return unless (reg = space { Regex.new(rest).scan })
 
           str.pos = str.pos + reg.size
           [:reg, reg.gsub(%r{^/|/$}, '')] # or err('an operand')
@@ -152,7 +152,7 @@ module Travis
         end
 
         def call
-          return unless name = func
+          return unless (name = func)
 
           args = parens { list }
           args or return
@@ -180,7 +180,7 @@ module Travis
         end
 
         def list
-          return [] unless item = var || call || val
+          return [] unless (item = var || call || val)
 
           list = comma ? [item] + self.list : [item]
           skip(COMMA)

@@ -6,8 +6,8 @@ module Travis
     module V1
       class Regex
         REGEX = /\S*[^\s\)]+/
-        DELIM = '/'
-        ESC   = '\\'
+        DELIM = '/'.freeze
+        ESC   = '\\'.freeze
 
         extend Forwardable
 
@@ -30,7 +30,7 @@ module Travis
         end
 
         def regex
-          return unless peek(1) == DELIM && reg = getch
+          return unless peek(1) == DELIM && (reg = getch)
 
           char = nil
           reg << char while (char = read) && char != :eos

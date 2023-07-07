@@ -34,7 +34,7 @@ module Travis
           'or' => :or,
           '||' => :and,
           'not' => :not
-        }
+        }.freeze
 
         def expr
           lft = expr_

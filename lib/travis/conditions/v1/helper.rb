@@ -8,7 +8,7 @@ module Travis
         SPACE = /\s*/
 
         def quoted
-          return unless quote = scan(QUOTE)
+          return unless (quote = scan(QUOTE))
 
           scan(/[^#{quote}]*/).tap { scan(/#{quote}/) || err(quote) }
         end

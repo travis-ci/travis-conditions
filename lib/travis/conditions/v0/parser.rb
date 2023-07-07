@@ -3,9 +3,9 @@ require 'parslet'
 module Travis
   module Conditions
     module V0
-      class Parser < Struct.new(:opts)
-        FUNCS    = %w[env]
-        PRESENCE = %w[present blank]
+      class Parser < Struct.new(:opts) # rubocop:disable Metrics/ClassLength
+        FUNCS    = %w[env].freeze
+        PRESENCE = %w[present blank].freeze
 
         def parse(str)
           parser.parse(str)
@@ -17,7 +17,7 @@ module Travis
           @parser ||= define_parser(opts[:keys]).new
         end
 
-        def define_parser(keywords)
+        def define_parser(keywords) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
           Class.new(Parslet::Parser) do
             root :expr_or
 
@@ -167,7 +167,7 @@ module Travis
           '!=' => :not_eq,
           '=~' => :match,
           '!~' => :not_match
-        }
+        }.freeze
 
         str  = ->(node) { node.is_a?(Hash) ? node[:str].to_s : node.to_s }
         sym  = ->(node) { str.call(node).downcase.to_sym }

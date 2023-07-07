@@ -1,4 +1,4 @@
-$:.unshift File.expand_path('lib', __dir__)
+$LOAD_PATH.unshift File.expand_path('lib', __dir__)
 
 require 'travis/conditions/version'
 
@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage     = 'https://github.com/travis-ci/travis-conditions'
   s.summary      = 'Boolean language for conditional builds, stages, jobs'
   s.licenses     = ['MIT']
+  s.required_ruby_version = '~> 3.2'
 
   s.files        = Dir['{bin/**/*,lib/**/*,spec/**/*,[A-Z]*}']
   s.platform     = Gem::Platform::RUBY

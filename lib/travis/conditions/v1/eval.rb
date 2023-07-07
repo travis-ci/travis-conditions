@@ -44,7 +44,7 @@ module Travis
         end
 
         def in(lft, rgt)
-          rgt = rgt.map { |rgt| evl(rgt) }
+          rgt = rgt.map { |val| evl(val) }
           rgt.include?(evl(lft))
         end
 
@@ -67,7 +67,7 @@ module Travis
         def reg(expr)
           str = evl(expr)
           Regexp.new(str) if str
-        rescue RegexpError => e
+        rescue RegexpError
           raise ArgumentError, "Invalid regular expression: /#{str}/"
         end
 
