@@ -35,7 +35,8 @@ module Travis
 
           def match(lft, rgt)
             lft, rgt = evl(lft), evl(rgt)
-            lft && rgt && lft =~ rgt
+            lft = lft&.to_s  unless lft.respond_to?('=~')
+            lft && rgt && (lft =~ rgt || rgt =~ lft)
           end
 
           def not_match(lft, rgt)
