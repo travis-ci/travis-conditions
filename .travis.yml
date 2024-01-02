@@ -1,3 +1,5 @@
 language: ruby
 ruby: 2.6.2
 script: bundle exec rspec
+before_install:
+  - gem install rubygems-update -v 3.4.22
