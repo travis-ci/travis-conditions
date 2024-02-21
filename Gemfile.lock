@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    travis-conditions (1.0.10)
+    travis-conditions (1.0.13)
       parslet (~> 1.8.2)
       sh_vars (~> 1.0.2)
 
@@ -35,4 +35,4 @@ DEPENDENCIES
   travis-conditions!
 
 BUNDLED WITH
-   2.0.2
+   2.3.7
