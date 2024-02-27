@@ -6,7 +6,7 @@ module Travis
   module Conditions
     module V0
       class << self
-        def eval(str, data, opts = {})
+        def eval(str, data, _opts = {})
           Eval.new(parse(str, keys: data.keys), Data.new(data)).apply
         end
 

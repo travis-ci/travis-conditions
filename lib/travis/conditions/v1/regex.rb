@@ -5,9 +5,9 @@ module Travis
   module Conditions
     module V1
       class Regex
-        REGEX = %r(\S*[^\s\)]+)
-        DELIM = '/'
-        ESC   = '\\'
+        REGEX = /\S*[^\s\)]+/
+        DELIM = '/'.freeze
+        ESC   = '\\'.freeze
 
         extend Forwardable
 
@@ -25,11 +25,13 @@ module Travis
 
         def word
           return if peek(1) == DELIM
+
           str.scan(REGEX)
         end
 
         def regex
-          return unless peek(1) == DELIM && reg = getch
+          return unless peek(1) == DELIM && (reg = getch)
+
           char = nil
           reg << char while (char = read) && char != :eos
           reg << DELIM if char == :eos
