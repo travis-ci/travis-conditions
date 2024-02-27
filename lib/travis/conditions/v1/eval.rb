@@ -33,10 +33,11 @@ module Travis
           !eq(lft, rgt)
         end
 
+
         def match(lft, rgt)
-          lft = evl(lft)
-          rgt = evl(rgt)
-          lft && rgt && lft =~ rgt
+          lft, rgt = evl(lft), evl(rgt)
+          lft = lft&.to_s
+          lft && rgt && (lft =~ rgt || rgt =~ lft)
         end
 
         def not_match(lft, rgt)
