@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    travis-conditions (1.0.14)
+    travis-conditions (1.0.15)
       parslet (~> 1.8.2)
       sh_vars (~> 1.0.2)
 
@@ -77,6 +77,7 @@ GEM
     unicode-display_width (2.4.2)
 
 PLATFORMS
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
