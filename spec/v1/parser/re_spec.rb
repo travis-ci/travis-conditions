@@ -3,14 +3,14 @@ describe Travis::Conditions::V1::Parser, 'operand' do
   let(:subject) { described_class.new(str).operand }
 
   it 'type' do
-    should eq [:var, :type]
+    expect(subject).to eq %i[var type]
   end
 
   it 'foo' do
-    should eq [:val, 'foo']
+    expect(subject).to eq [:val, 'foo']
   end
 
   it 'env(foo)' do
-    should eq [:call, :env, [[:val, 'foo']]]
+    expect(subject).to eq [:call, :env, [[:val, 'foo']]]
   end
 end

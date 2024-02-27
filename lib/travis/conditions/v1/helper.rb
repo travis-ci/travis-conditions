@@ -8,12 +8,13 @@ module Travis
         SPACE = /\s*/
 
         def quoted
-          return unless quote = scan(QUOTE)
+          return unless (quote = scan(QUOTE))
+
           scan(/[^#{quote}]*/).tap { scan(/#{quote}/) || err(quote) }
         end
 
-        def parens
-          space { skip(OPEN) } and space { yield }.tap { skip(CLOSE) || err(')') }
+        def parens(&)
+          space { skip(OPEN) } and space(&).tap { skip(CLOSE) || err(')') }
         end
 
         def space

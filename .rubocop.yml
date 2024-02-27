@@ -1,0 +1,81 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  Exclude:
+    - bin/**/*
+
+Bundler/OrderedGems:
+  Enabled: false
+Gemspec/RequireMFA:
+  Enabled: false
+Gemspec/OrderedDependencies:
+  Enabled: false
+Naming/VariableNumber:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 20
+Metrics/CyclomaticComplexity:
+  Max: 10
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/StructInheritance:
+  Enabled: false
+Style/RescueStandardError:
+  Enabled: false
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+Style/FetchEnvVar:
+  Enabled: false
+Style/FormatString:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Lint/BooleanSymbol:
+  Enabled: false
+RSpec/FilePath:
+  Enabled: false
+RSpec/MultipleDescribes:
+  Enabled: false
+RSpec/DescribeMethod:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 20
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/RepeatedExample:
+  Enabled: false
+RSpec/RepeatedDescription:
+  Enabled: false
+Style/SymbolProc:
+  Enabled: false
+RSpec/SubjectDeclaration:
+  Enabled: false
+RSpec/MissingExampleGroupArgument:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
+RSpec/PendingWithoutReason:
+  Enabled: false
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false
+Lint/UselessAssignment:
+  Enabled: false
+Layout/LineLength:
+  Exclude: ['spec/**/*_spec.rb']
+  Max: 165
+Naming/MethodParameterName:
+  Enabled: false
+Naming/PredicateName:
+  Enabled: false

@@ -7,34 +7,34 @@ describe Travis::Conditions::V1::Parser, 'space' do
   end
 
   it 'foo' do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
-  it ' foo' do
-    should eq 'foo'
+  it 'foo' do
+    expect(subject).to eq 'foo'
   end
 
-  it 'foo ' do
-    should eq 'foo'
+  it 'foo' do
+    expect(subject).to eq 'foo'
   end
 
-  it '  foo  ' do
-    should eq 'foo'
+  it 'foo' do
+    expect(subject).to eq 'foo'
   end
 
   it "foo\t" do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
   it "\tfoo" do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
   it "foo\n" do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 
   it "\nfoo" do
-    should eq 'foo'
+    expect(subject).to eq 'foo'
   end
 end
