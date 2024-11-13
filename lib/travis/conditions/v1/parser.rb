@@ -54,7 +54,7 @@ module Travis
         include Helper
         include Boolean
 
-        VAR   = /type|repo|head_repo|os|dist|group|sudo|language|sender|fork|
+        VAR   = /type|repo|head_repo|os|dist|group|sudo|language|sender|fork|draft|
                  branch|head_branch|tag|commit_message/x
 
         PRED  = /present|blank|true|false/i
