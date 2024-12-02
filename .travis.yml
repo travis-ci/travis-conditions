@@ -3,3 +3,5 @@ ruby: 3.2.2
 before_install:
   - gem install bundler:2.2.2
 script: bundle exec rspec
+before_install:
+  - gem install rubygems-update -v 3.4.22
